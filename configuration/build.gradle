@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'br.edu.utfpr.libex7.configuration'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':application')
+    implementation project(':adapters:persistence')
+    implementation project(':adapters:gui')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

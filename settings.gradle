@@ -1,0 +1,6 @@
+rootProject.name = 'libex7'
+include ':application'
+include ':adapters:persistence'
+include ':adapters:gui'
+include 'configuration'
+
