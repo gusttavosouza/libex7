@@ -1,7 +1,7 @@
 package br.edu.utfpr.adapters.gui.controllers;
 
 import br.edu.utfpr.libex7.application.domain.authors.Author;
-import br.edu.utfpr.libex7.application.ports.in.SaveAuthorUseCase;
+import br.edu.utfpr.libex7.application.ports.in.authors.SaveAuthorUseCase;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

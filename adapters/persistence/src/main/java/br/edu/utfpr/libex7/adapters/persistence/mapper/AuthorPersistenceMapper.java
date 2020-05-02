@@ -1,6 +1,6 @@
 package br.edu.utfpr.libex7.adapters.persistence.mapper;
 
-import br.edu.utfpr.libex7.adapters.persistence.entity.AuthorEntity;
+import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.application.domain.authors.Author;
 
 public class AuthorPersistenceMapper implements AbstractMapper<Author, AuthorEntity> {

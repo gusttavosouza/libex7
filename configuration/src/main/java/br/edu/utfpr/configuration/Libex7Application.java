@@ -1,15 +1,15 @@
 package br.edu.utfpr.configuration;
 
 import br.edu.utfpr.adapters.gui.controllers.SaveAuthorController;
-import br.edu.utfpr.libex7.adapters.persistence.adapters.AuthorPersistenceAdapter;
+import br.edu.utfpr.libex7.adapters.persistence.adapters.author.AuthorPersistenceAdapter;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.AuthorPersistenceMapper;
-import br.edu.utfpr.libex7.adapters.persistence.repository.AuthorRepository;
+import br.edu.utfpr.libex7.adapters.persistence.repository.authors.AuthorRepository;
 import br.edu.utfpr.libex7.adapters.persistence.repository.ConnectionFactory;
-import br.edu.utfpr.libex7.adapters.persistence.service.AuthorPersistenceService;
+import br.edu.utfpr.libex7.adapters.persistence.service.authors.AuthorPersistenceService;
 import br.edu.utfpr.libex7.application.domain.authors.Author;
-import br.edu.utfpr.libex7.application.ports.in.SaveAuthorUseCase;
-import br.edu.utfpr.libex7.application.ports.out.SaveAuthorPort;
-import br.edu.utfpr.libex7.application.service.SaveAuthorService;
+import br.edu.utfpr.libex7.application.ports.in.authors.SaveAuthorUseCase;
+import br.edu.utfpr.libex7.application.ports.out.authors.SaveAuthorPort;
+import br.edu.utfpr.libex7.application.service.authors.SaveAuthorService;
 
 import java.sql.Connection;
 import java.util.Scanner;

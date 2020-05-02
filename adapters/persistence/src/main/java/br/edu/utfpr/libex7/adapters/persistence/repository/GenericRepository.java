@@ -2,6 +2,7 @@ package br.edu.utfpr.libex7.adapters.persistence.repository;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class GenericRepository<T, K> {
 
@@ -11,11 +12,13 @@ public abstract class GenericRepository<T, K> {
         this.connection = connection;
     }
 
-    protected abstract T save(T entity);
+    public abstract T save(T entity);
 
-    protected abstract T findById(K id);
+    public abstract Optional<T> findById(K id);
 
-    protected abstract List<T> findAll();
+    public abstract List<T> findAll();
+
+    public abstract void remove(K id);
 
 
 }
