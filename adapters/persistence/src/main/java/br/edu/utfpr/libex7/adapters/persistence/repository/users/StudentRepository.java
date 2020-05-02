@@ -2,10 +2,7 @@ package br.edu.utfpr.libex7.adapters.persistence.repository.users;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Optional;
 
 public class StudentRepository extends UserRepository<StudentEntity> {
@@ -18,7 +15,7 @@ public class StudentRepository extends UserRepository<StudentEntity> {
     public StudentEntity save(StudentEntity user) {
         try {
             super.save(user);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ALUNO (CODIGO_USUARIO, REGISTRO_ALUNO) values (?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ALUNO (CODIGO_USUARIO, REGISTRO_ALUNO) values (?, ?)", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1,user.getId());
             preparedStatement.setLong(2,user.getStudentNumber());
             preparedStatement.execute();

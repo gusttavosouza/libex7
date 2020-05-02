@@ -18,7 +18,7 @@ public class UserPersistenceService implements IUserPersistenceService {
 
     @Override
     public Optional<UserEntity> findById(Long id) {
-        return Optional.empty();
+        return userRepository.findById(id);
     }
 
     @Override

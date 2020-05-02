@@ -1,15 +1,20 @@
 package br.edu.utfpr.libex7.adapters.persistence.entity.users;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class StudentEntity extends UserEntity{
+
+    public StudentEntity(Long id, String name, LocalDate dob, Long studentNumber) {
+        super(id, name, dob);
+        this.studentNumber = studentNumber;
+    }
 
     private Long studentNumber;
 

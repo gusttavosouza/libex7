@@ -2,7 +2,7 @@ package br.edu.utfpr.configuration;
 
 import br.edu.utfpr.adapters.gui.controllers.SaveAuthorController;
 import br.edu.utfpr.libex7.adapters.persistence.adapters.author.AuthorPersistenceAdapter;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.AuthorPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.authors.AuthorPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.repository.authors.AuthorRepository;
 import br.edu.utfpr.libex7.adapters.persistence.repository.ConnectionFactory;
 import br.edu.utfpr.libex7.adapters.persistence.service.authors.AuthorPersistenceService;

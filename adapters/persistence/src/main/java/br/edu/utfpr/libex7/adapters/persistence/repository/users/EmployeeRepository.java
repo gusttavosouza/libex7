@@ -2,10 +2,7 @@ package br.edu.utfpr.libex7.adapters.persistence.repository.users;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.EmployeeEntity;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Optional;
 
 public class EmployeeRepository extends UserRepository<EmployeeEntity> {
@@ -18,7 +15,7 @@ public class EmployeeRepository extends UserRepository<EmployeeEntity> {
     public EmployeeEntity save(EmployeeEntity user) {
         try {
             super.save(user);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO SERVIDOR (CODIGO_USUARIO, MATRICULA_SERVIDOR) values (?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO SERVIDOR (CODIGO_USUARIO, MATRICULA_SERVIDOR) values (?, ?)", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1,user.getId());
             preparedStatement.setLong(2,user.getEmployeeNumber());
             preparedStatement.execute();

@@ -1,7 +1,7 @@
 package br.edu.utfpr.libex7.adapters.persistence.adapters.users;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.UserPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.users.UserPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.service.users.UserPersistenceService;
 import br.edu.utfpr.libex7.application.domain.users.User;
 import br.edu.utfpr.libex7.application.ports.out.users.RemoveUserPort;

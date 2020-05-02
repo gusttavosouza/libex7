@@ -3,10 +3,7 @@ package br.edu.utfpr.libex7.adapters.persistence.repository.authors;
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.adapters.persistence.repository.GenericRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,12 +18,12 @@ public class AuthorRepository extends GenericRepository<AuthorEntity, Long> {
     @Override
     public AuthorEntity save(AuthorEntity authorEntity) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO AUTOR (NOME_AUTOR) values (?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO AUTOR (NOME_AUTOR) values (?)", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1,authorEntity.getName());
             preparedStatement.execute();
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                Long id = generatedKeys.getLong(1);
+            if(generatedKeys.next()){
+                Long id = generatedKeys.getLong("CODIGO_AUTOR");
                 authorEntity.setId(id);
             }
             return authorEntity;

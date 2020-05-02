@@ -1,7 +1,7 @@
 package br.edu.utfpr.libex7.adapters.persistence.adapters.author;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.AuthorPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.authors.AuthorPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.service.authors.AuthorPersistenceService;
 import br.edu.utfpr.libex7.application.domain.authors.Author;
 import br.edu.utfpr.libex7.application.ports.out.authors.SaveAuthorPort;

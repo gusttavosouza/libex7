@@ -143,10 +143,9 @@ create table SITUACAO_EXEMPLAR
 /*==============================================================*/
 create table TELEFONE_USUARIO
 (
-   CODIGO_TELEFONE      int not null auto_increment,
    CODIGO_USUARIO       int not null,
    NUMERO_TELEFONE      bigint not null,
-   primary key (CODIGO_TELEFONE, CODIGO_USUARIO)
+   primary key (CODIGO_USUARIO, NUMERO_TELEFONE)
 );
 
 /*==============================================================*/
