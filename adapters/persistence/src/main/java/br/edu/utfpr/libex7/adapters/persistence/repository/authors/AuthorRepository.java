@@ -2,7 +2,11 @@ package br.edu.utfpr.libex7.adapters.persistence.repository.authors;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.adapters.persistence.repository.GenericRepository;
+import br.edu.utfpr.libex7.adapters.persistence.util.annotations.Id;
+import br.edu.utfpr.libex7.adapters.persistence.util.relection.ReflectionUtils;
+import br.edu.utfpr.libex7.application.domain.authors.Author;
 
+import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +28,10 @@ public class AuthorRepository extends GenericRepository<AuthorEntity, Long> {
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             if(generatedKeys.next()){
                 Long id = generatedKeys.getLong("CODIGO_AUTOR");
-                authorEntity.setId(id);
+                List<Field> fields = ReflectionUtils.getFields(AuthorEntity.class, Id.class);
+                for (Field field : fields) {
+                   ReflectionUtils.updateField(field, authorEntity, generatedKeys.getLong("CODIGO_AUTOR"));
+                }
             }
             return authorEntity;
         } catch (SQLException e) {
@@ -40,11 +47,11 @@ public class AuthorRepository extends GenericRepository<AuthorEntity, Long> {
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            AuthorEntity authorEntity = new AuthorEntity();
+
             if(resultSet.next()){
                 Long authorId = resultSet.getLong("CODIGO_AUTOR");
                 String authorName = resultSet.getString("NOME_AUTOR");
-                authorEntity.setId(authorId);
+                AuthorEntity authorEntity = new AuthorEntity(authorId);
                 authorEntity.setName(authorName);
                 return Optional.ofNullable(authorEntity);
             }
@@ -63,10 +70,9 @@ public class AuthorRepository extends GenericRepository<AuthorEntity, Long> {
 
             List<AuthorEntity> authors = new ArrayList<>();
             while(resultSet.next()){
-                AuthorEntity authorEntity = new AuthorEntity();
                 Long authorId = resultSet.getLong("CODIGO_AUTOR");
                 String authorName = resultSet.getString("NOME_AUTOR");
-                authorEntity.setId(authorId);
+                AuthorEntity authorEntity = new AuthorEntity(authorId);
                 authorEntity.setName(authorName);
                 authors.add(authorEntity);
             }
@@ -87,5 +93,9 @@ public class AuthorRepository extends GenericRepository<AuthorEntity, Long> {
             e.printStackTrace();
             throw new RuntimeException("Erro ao remover autor",e);
         }
+    }
+
+    public List<Author> findByName(String name) {
+        return null;
     }
 }

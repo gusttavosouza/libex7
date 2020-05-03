@@ -1,38 +1,48 @@
 package br.edu.utfpr.libex7.adapters.persistence.entity.users;
 
-import br.edu.utfpr.libex7.adapters.persistence.entity.phones.PhoneEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-@Getter
+@RequiredArgsConstructor
 public abstract class UserEntity {
 
-    @Setter
-    protected Long id;
+    @Getter
+    protected final Long id;
+
+    @Getter
     @Setter
     protected String name;
+
+    @Getter
     @Setter
     protected LocalDate dob;
+
     protected List<PhoneEntity> phones = new LinkedList<>();
 
-    public UserEntity(Long id, String name, LocalDate dob) {
-        this.id = id;
-        this.name = name;
-        this.dob = dob;
+    public List<PhoneEntity> getPhones() {
+        return Collections.unmodifiableList(phones);
     }
 
-    public UserEntity() {
-        super();
-    }
 
-    public Integer addPhone(PhoneEntity phone){
-        phone.setUser(this);
+    public Integer addPhone(Long number){
+        PhoneEntity phone = new PhoneEntity(this, number);
         this.phones.add(phone);
         return this.phones.size();
     }
+
+
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class PhoneEntity {
+
+        private UserEntity user;
+        private Long number;
+    }
+
 
 }

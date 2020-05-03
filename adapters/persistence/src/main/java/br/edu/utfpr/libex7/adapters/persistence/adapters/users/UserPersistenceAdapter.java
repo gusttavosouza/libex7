@@ -42,6 +42,14 @@ public class UserPersistenceAdapter implements SaveUserPort, SearchUserPort, Rem
     }
 
     @Override
+    public List<User> findByName(String name) {
+        List<UserEntity> userEntities = service.findByName(name);
+        List<User> users = new ArrayList<>();
+        userEntities.forEach(u -> users.add(mapper.mapToDomain(u)));
+        return users;
+    }
+
+    @Override
     public List<User> findAll() {
         List<UserEntity> userEntities = service.findAll();
         List<User> users = new ArrayList<>();

@@ -1,6 +1,6 @@
 package br.edu.utfpr.libex7.adapters.persistence.repository.users;
 
-import br.edu.utfpr.libex7.adapters.persistence.entity.phones.PhoneEntity;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import br.edu.utfpr.libex7.adapters.persistence.repository.ConnectionFactory;
@@ -34,9 +34,11 @@ public class StudentRepositoryTest {
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
         Long studentNumber = 1L;
-        StudentEntity userEntity = new StudentEntity(id, name, dob,studentNumber );
-        PhoneEntity phone = new PhoneEntity(userEntity, 99989898L);
-        userEntity.addPhone(phone);
+        StudentEntity userEntity = new StudentEntity(id );
+        userEntity.setName(name);
+        userEntity.setDob(dob);
+        userEntity.setStudentNumber(studentNumber);
+        userEntity.addPhone(99989898L);
         UserEntity savedUser = this.repository.save(userEntity);
         assertThat(savedUser.getId()).isNotNull();
     }
@@ -48,10 +50,12 @@ public class StudentRepositoryTest {
         Long id = 1L;
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
-        Long studentNumber = 2L;
-        StudentEntity userEntity = new StudentEntity(id, name, dob,studentNumber );
-        PhoneEntity phone = new PhoneEntity(userEntity, 99989898L);
-        userEntity.addPhone(phone);
+        Long studentNumber = 1L;
+        StudentEntity userEntity = new StudentEntity(id );
+        userEntity.setName(name);
+        userEntity.setDob(dob);
+        userEntity.setStudentNumber(studentNumber);
+        userEntity.addPhone(99989898L);
         UserEntity savedUser = this.repository.save(userEntity);
 
         Optional<UserEntity> optionalUserEntity = repository.findById(savedUser.getId());
@@ -64,10 +68,12 @@ public class StudentRepositoryTest {
         Long id = 1L;
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
-        Long studentNumber = 3L;
-        StudentEntity userEntity = new StudentEntity(id, name, dob,studentNumber );
-        PhoneEntity phone = new PhoneEntity(userEntity, 99989898L);
-        userEntity.addPhone(phone);
+        Long studentNumber = 1L;
+        StudentEntity userEntity = new StudentEntity(id );
+        userEntity.setName(name);
+        userEntity.setDob(dob);
+        userEntity.setStudentNumber(studentNumber);
+        userEntity.addPhone(99989898L);
         UserEntity savedUser = this.repository.save(userEntity);
         repository.remove(savedUser.getId());
     }
@@ -79,10 +85,12 @@ public class StudentRepositoryTest {
         Long id = 1L;
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
-        Long studentNumber = 4L;
-        StudentEntity userEntity = new StudentEntity(id, name, dob,studentNumber );
-        PhoneEntity phone = new PhoneEntity(userEntity, 99989898L);
-        userEntity.addPhone(phone);
+        Long studentNumber = 1L;
+        StudentEntity userEntity = new StudentEntity(id );
+        userEntity.setName(name);
+        userEntity.setDob(dob);
+        userEntity.setStudentNumber(studentNumber);
+        userEntity.addPhone(99989898L);
         this.repository.save(userEntity);
 
         List<UserEntity> userEntities = repository.findAll();

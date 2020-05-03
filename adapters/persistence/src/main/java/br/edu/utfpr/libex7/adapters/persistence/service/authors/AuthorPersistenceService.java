@@ -2,6 +2,7 @@ package br.edu.utfpr.libex7.adapters.persistence.service.authors;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.adapters.persistence.repository.authors.AuthorRepository;
+import br.edu.utfpr.libex7.application.domain.authors.Author;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -30,5 +31,10 @@ public class AuthorPersistenceService  implements IAuthorPersistenceService{
     @Override
     public void remove(Long id) {
         authorRepository.remove(id);
+    }
+
+    @Override
+    public List<Author> findByName(String name) {
+        return authorRepository.findByName(name);
     }
 }

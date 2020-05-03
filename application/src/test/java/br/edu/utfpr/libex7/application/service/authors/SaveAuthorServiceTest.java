@@ -28,7 +28,8 @@ public class SaveAuthorServiceTest {
 
         Long id = 1L;
         String name = "Foo";
-        Author author = new Author(id, name);
+        Author author = new Author(id);
+        author.setName(name);
 
         when(port.save(any(Author.class))).thenReturn(author);
 

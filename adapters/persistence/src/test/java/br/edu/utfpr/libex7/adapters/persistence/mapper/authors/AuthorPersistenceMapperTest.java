@@ -24,7 +24,8 @@ public class AuthorPersistenceMapperTest {
 
         Long id = 1L;
         String name = "Foo";
-        Author author = new Author(id, name);
+        Author author = new Author(id);
+        author.setName(name);
 
         AuthorEntity authorEntity = mapper.mapToEntity(author);
 
@@ -37,7 +38,8 @@ public class AuthorPersistenceMapperTest {
     public void givenAuthorEntityWhenMapThenReturnAuthorDomain(){
         Long id = 1L;
         String name = "Foo";
-        AuthorEntity authorEntity = new AuthorEntity(id, name);
+        AuthorEntity authorEntity = new AuthorEntity(id);
+        authorEntity.setName(name);
 
         Author author = mapper.mapToDomain(authorEntity);
 

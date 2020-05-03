@@ -19,6 +19,11 @@ public class SearchAuthorService implements SearchAuthorUseCase {
     }
 
     @Override
+    public List<Author> findByName(String name) {
+        return searchAuthorPort.findByName(name);
+    }
+
+    @Override
     public List<Author> findAll() {
         return searchAuthorPort.findAll();
     }

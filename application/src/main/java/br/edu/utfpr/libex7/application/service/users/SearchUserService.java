@@ -20,6 +20,11 @@ public class SearchUserService implements SearchUserUseCase {
     }
 
     @Override
+    public List<User> findByName(String name) {
+        return searchUserPort.findByName(name);
+    }
+
+    @Override
     public List<User> findAll() {
         return searchUserPort.findAll();
     }

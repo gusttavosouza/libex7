@@ -1,7 +1,6 @@
 package br.edu.utfpr.libex7.application.service.users;
 
 
-import br.edu.utfpr.libex7.application.domain.phones.Phone;
 import br.edu.utfpr.libex7.application.domain.users.Employee;
 import br.edu.utfpr.libex7.application.domain.users.User;
 import br.edu.utfpr.libex7.application.ports.out.users.SaveUserPort;
@@ -35,15 +34,11 @@ public class SaveUserServiceTest {
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
         Long employeeNumber = 12345L;
-        Employee user = new Employee();
-        user.setId(id);
+        Employee user = new Employee(id);
         user.setName(name);
         user.setDob(dob);
         user.setEmployeeNumber(employeeNumber);
-        Phone phone = new Phone();
-        phone.setUser(user);
-        phone.setNumber(989898997L);
-        user.addPhone(phone);
+        user.addPhone(989898997L);
 
         when(port.save(any(User.class))).thenReturn(user);
 
