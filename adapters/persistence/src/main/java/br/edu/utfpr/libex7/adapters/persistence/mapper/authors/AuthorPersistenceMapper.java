@@ -11,13 +11,17 @@ public class AuthorPersistenceMapper implements AbstractMapper<Author, AuthorEnt
     public Author mapToDomain(AuthorEntity authorEntity) {
         Long id = authorEntity.getId();
         String name = authorEntity.getName();
-        return new Author(id,name);
+        Author author = new Author(id);
+        author.setName(name);
+        return author;
     }
 
     @Override
     public AuthorEntity mapToEntity(Author author) {
         Long id = author.getId();
         String name = author.getName();
-        return new AuthorEntity(id, name);
+        AuthorEntity authorEntity = new AuthorEntity(id);
+        authorEntity.setName(name);
+        return authorEntity;
     }
 }

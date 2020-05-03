@@ -1,8 +1,10 @@
 package br.edu.utfpr.libex7.adapters.persistence.repository.users;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.EmployeeEntity;
+import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 
 import java.sql.*;
+import java.util.List;
 import java.util.Optional;
 
 public class EmployeeRepository extends UserRepository<EmployeeEntity> {
@@ -64,7 +66,12 @@ public class EmployeeRepository extends UserRepository<EmployeeEntity> {
     }
 
     @Override
-    protected EmployeeEntity newInstance() {
-        return new EmployeeEntity();
+    protected EmployeeEntity newInstance(Long id) {
+        return new EmployeeEntity(id);
+    }
+
+    @Override
+    public List<UserEntity> findByName(String name) {
+        return null;
     }
 }

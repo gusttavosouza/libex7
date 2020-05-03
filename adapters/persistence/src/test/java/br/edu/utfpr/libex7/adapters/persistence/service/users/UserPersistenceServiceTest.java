@@ -35,9 +35,9 @@ public class UserPersistenceServiceTest {
     @Test
     @DisplayName("Given New User When Save Then Return Saved User")
     public void givenNewUserWhenSaveThenReturnSavedUser(){
-        UserEntity user = new EmployeeEntity();
+        UserEntity user = new EmployeeEntity(1L);
         user.setName("Foo");
-        when(repository.save(any(UserEntity.class))).thenReturn(new EmployeeEntity());
+        when(repository.save(any(UserEntity.class))).thenReturn(new EmployeeEntity(1L));
         UserEntity savedUser = service.save(user);
         assertThat(savedUser).isNotNull();
     }
@@ -45,9 +45,9 @@ public class UserPersistenceServiceTest {
     @Test
     @DisplayName("Given User Id When Exists Then Return User")
     public void givenUserIdWhenExistsThenReturnUser(){
-        User user = new Employee();
+        User user = new Employee(1L);
         user.setName("Foo");
-        when(repository.findById(anyLong())).thenReturn(Optional.ofNullable(new EmployeeEntity()));
+        when(repository.findById(anyLong())).thenReturn(Optional.ofNullable(new EmployeeEntity(1L)));
         Optional<UserEntity> optionalUser = service.findById(1L);
         assertTrue(optionalUser.isPresent());
     }
@@ -63,9 +63,9 @@ public class UserPersistenceServiceTest {
     @Test
     @DisplayName("Given Find All Method When Is Called Then Return User List")
     public void givenFindAllMethodWhenIsCalledThenReturnUserList(){
-        User user = new Employee();
+        User user = new Employee(1L);
         user.setName("Foo");
-        when(repository.findAll()).thenReturn(Arrays.asList(new EmployeeEntity()));
+        when(repository.findAll()).thenReturn(Arrays.asList(new EmployeeEntity(1L)));
         List<UserEntity> authors = service.findAll();
         assertFalse(authors.isEmpty());
     }

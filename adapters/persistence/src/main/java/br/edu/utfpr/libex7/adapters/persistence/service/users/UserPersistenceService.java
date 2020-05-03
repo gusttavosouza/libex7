@@ -30,4 +30,9 @@ public class UserPersistenceService implements IUserPersistenceService {
     public void remove(Long id) {
         userRepository.remove(id);
     }
+
+    @Override
+    public List<UserEntity> findByName(String name) {
+        return userRepository.findByName(name);
+    }
 }

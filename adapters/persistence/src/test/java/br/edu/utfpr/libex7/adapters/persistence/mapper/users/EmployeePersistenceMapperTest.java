@@ -1,10 +1,7 @@
 package br.edu.utfpr.libex7.adapters.persistence.mapper.users;
 
 
-import br.edu.utfpr.libex7.adapters.persistence.entity.phones.PhoneEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.EmployeeEntity;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.phones.PhonePersistenceMapper;
-import br.edu.utfpr.libex7.application.domain.phones.Phone;
 import br.edu.utfpr.libex7.application.domain.users.Employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,12 +14,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class EmployeePersistenceMapperTest {
 
     private EmployeePersistenceMapper mapper;
-    private PhonePersistenceMapper phonePersistenceMapper;
+
 
     @BeforeEach
     public void setup(){
-        this.phonePersistenceMapper = new PhonePersistenceMapper();
-        this.mapper = new EmployeePersistenceMapper(phonePersistenceMapper);
+        this.mapper = new EmployeePersistenceMapper();
     }
 
 
@@ -32,10 +28,12 @@ public class EmployeePersistenceMapperTest {
         Long id = 1L;
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
-        Phone phone = new Phone();
         Long employeeNumber = 12345L;
-        Employee user = new Employee(id, name, dob,employeeNumber);
-        user.addPhone(phone);
+        Employee user = new Employee(id);
+        user.setName(name);
+        user.setDob(dob);
+        user.setEmployeeNumber(employeeNumber);
+        user.addPhone(9898989L);
 
         EmployeeEntity userEntity =  mapper.mapToEntity(user);
 
@@ -53,10 +51,12 @@ public class EmployeePersistenceMapperTest {
         Long id = 1L;
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
-        PhoneEntity phone = new PhoneEntity();
         Long employeeNumber = 12345L;
-        EmployeeEntity userEntity = new EmployeeEntity(id, name, dob,employeeNumber );
-        userEntity.addPhone(phone);
+        EmployeeEntity userEntity = new EmployeeEntity(id);
+        userEntity.setName(name);
+        userEntity.setDob(dob);
+        userEntity.setEmployeeNumber(employeeNumber);
+        userEntity.addPhone(9898989L);;
 
         Employee user = mapper.mapToDomain(userEntity);
 

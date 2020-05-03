@@ -2,7 +2,6 @@ package br.edu.utfpr.libex7.adapters.persistence.adapters.users;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.EmployeeEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.phones.PhonePersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.EmployeePersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.UserPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.service.users.UserPersistenceService;
@@ -26,24 +25,22 @@ import static org.mockito.Mockito.*;
 public class UserPersistenceAdapterTest {
 
     private UserPersistenceService service;
-    private PhonePersistenceMapper phonePersistenceMapper;
     private UserPersistenceMapper mapper;
     private UserPersistenceAdapter adapter;
 
     @BeforeEach
     public void setup(){
         this.service = mock(UserPersistenceService.class);
-        this.phonePersistenceMapper = new PhonePersistenceMapper();
-        this.mapper = new EmployeePersistenceMapper(phonePersistenceMapper);
+        this.mapper = new EmployeePersistenceMapper();
         this.adapter = new UserPersistenceAdapter(service,mapper);
     }
 
     @Test
     @DisplayName("Given New User When Save Then Return Saved User")
     public void givenNewUserWhenSaveThenReturnSavedUser(){
-        User user = new Employee();
+        User user = new Employee(1L);
         user.setName("Foo");
-        when(service.save(any(UserEntity.class))).thenReturn(new EmployeeEntity());
+        when(service.save(any(UserEntity.class))).thenReturn(new EmployeeEntity(1L));
         User savedUser = adapter.save(user);
         assertThat(savedUser).isNotNull();
     }
@@ -51,9 +48,9 @@ public class UserPersistenceAdapterTest {
     @Test
     @DisplayName("Given User Id When Exists Then Return User")
     public void givenUserIdWhenExistsThenReturnUser(){
-        User user = new Employee();
+        User user = new Employee(1L);
         user.setName("Foo");
-        when(service.findById(anyLong())).thenReturn(Optional.ofNullable(new EmployeeEntity()));
+        when(service.findById(anyLong())).thenReturn(Optional.ofNullable(new EmployeeEntity(1L)));
         Optional<User> optionalUser = adapter.findById(1L);
         assertTrue(optionalUser.isPresent());
     }
@@ -69,9 +66,9 @@ public class UserPersistenceAdapterTest {
     @Test
     @DisplayName("Given Find All Method When Is Called Then Return User List")
     public void givenFindAllMethodWhenIsCalledThenReturnUserList(){
-        User user = new Employee();
+        User user = new Employee(1L);
         user.setName("Foo");
-        when(service.findAll()).thenReturn(Arrays.asList(new EmployeeEntity()));
+        when(service.findAll()).thenReturn(Arrays.asList(new EmployeeEntity(1L)));
         List<User> authors = adapter.findAll();
         assertFalse(authors.isEmpty());
     }

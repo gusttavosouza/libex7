@@ -13,6 +13,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -30,7 +31,8 @@ public class SearchAuthorServiceTest {
     @Test
     @DisplayName("Given Author Id When Search Then Return Author")
     public void givenAuthorIdWhenSearchThenReturnAuthor(){
-        Author author = new Author(1L, "Foo");
+        Author author = new Author(1L);
+        author.setName( "Foo");
 
         when(port.findById(anyLong())).thenReturn(Optional.ofNullable(author));
 
@@ -39,12 +41,26 @@ public class SearchAuthorServiceTest {
     }
 
     @Test
+    @DisplayName("Given Author Name When Search Then Return Author")
+    public void givenAuthorNameWhenSearchThenReturnAuthor(){
+        String name = "Foo";
+
+        Author author = new Author(1L);
+        author.setName(name);
+
+        when(port.findByName(anyString())).thenReturn(Arrays.asList(author));
+
+        List<Author> authors = service.findByName(name);
+        assertFalse(authors.isEmpty());
+    }
+
+
+    @Test
     @DisplayName("Given Find All Method When Is Called Then Author List")
     public void givenFindAllMethodWhenIsCalledThenReturnAuthorList(){
         Long id = 1L;
         String name = "Foo";
-        Author author = new Author();
-        author.setId(id);
+        Author author = new Author(id);
         author.setName(name);
 
         when(port.findAll()).thenReturn(Arrays.asList(author));

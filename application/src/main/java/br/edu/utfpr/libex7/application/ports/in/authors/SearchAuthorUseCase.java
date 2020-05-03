@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface SearchAuthorUseCase {
     Optional<Author> findById(Long id);
+    List<Author> findByName(String name);
     List<Author> findAll();
 }

@@ -1,15 +1,11 @@
 package br.edu.utfpr.libex7.adapters.persistence.mapper.users;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.phones.PhonePersistenceMapper;
 import br.edu.utfpr.libex7.application.domain.users.Student;
 
 public class StudentPersistenceMapper extends UserPersistenceMapper<Student, StudentEntity> {
 
 
-    public StudentPersistenceMapper(PhonePersistenceMapper phonePersistenceMapper) {
-        super(phonePersistenceMapper);
-    }
 
     @Override
     public Student mapToDomain(StudentEntity userEntity) {
@@ -26,12 +22,12 @@ public class StudentPersistenceMapper extends UserPersistenceMapper<Student, Stu
     }
 
     @Override
-    protected Student newInstanceDomain() {
-        return new Student();
+    protected Student newInstanceDomain(Long id) {
+        return new Student(id);
     }
 
     @Override
-    protected StudentEntity newInstanceEntity() {
-        return new StudentEntity();
+    protected StudentEntity newInstanceEntity(Long id) {
+        return new StudentEntity(id);
     }
 }

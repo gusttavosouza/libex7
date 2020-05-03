@@ -1,7 +1,6 @@
 package br.edu.utfpr.libex7.application.service.users;
 
 
-import br.edu.utfpr.libex7.application.domain.phones.Phone;
 import br.edu.utfpr.libex7.application.domain.users.Employee;
 import br.edu.utfpr.libex7.application.domain.users.Student;
 import br.edu.utfpr.libex7.application.domain.users.User;
@@ -19,6 +18,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -39,10 +39,13 @@ public class SearchUserServiceTest {
         Long id = 1L;
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
-        Phone phone = new Phone();
+
         Long studentNumber = 12345L;
-        Student user = new Student(id, name, dob,studentNumber );
-        user.addPhone(phone);
+        Student user = new Student(1L);
+        user.setName(name);
+        user.setDob(dob);
+        user.setStudentNumber(studentNumber);
+        user.addPhone(989898997L);
 
         when(port.findById(anyLong())).thenReturn(Optional.ofNullable(user));
 
@@ -57,22 +60,49 @@ public class SearchUserServiceTest {
     }
 
     @Test
-    @DisplayName("Given Find All Method When Is Called Then User List")
-    public void givenFindAllMethodWhenIsCalledThenReturnUserList(){
-        Long id = 1L;
+    @DisplayName("Given User Name When Search Then Return User")
+    public void givenUserNameWhenSearchThenReturnUser(){
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
 
         Long studentNumber = 12345L;
-        Student student = new Student();
-        student.setId(id);
+        Student student = new Student(1L);
         student.setName(name);
         student.setDob(dob);
         student.setStudentNumber(studentNumber);
-        Phone phone = new Phone(student, 121233L);
-        student.addPhone(phone);
+        student.addPhone(989898997L);
 
-        Employee employee = new Employee(1L, "Bar", dob, 1213123L);
+        Long employeeNumber = 1213123L;
+        Employee employee = new Employee(1L);
+        employee.setName( "Bar");
+        employee.setDob(dob);
+        employee.setEmployeeNumber(employeeNumber);
+
+        when(port.findByName(anyString())).thenReturn(Arrays.asList(student, employee));
+
+
+        List<User> users = service.findByName(name);
+        assertFalse(users.isEmpty());
+    }
+
+    @Test
+    @DisplayName("Given Find All Method When Is Called Then User List")
+    public void givenFindAllMethodWhenIsCalledThenReturnUserList(){
+        String name = "Foo";
+        LocalDate dob = LocalDate.of(1973, 05, 21);
+
+        Long studentNumber = 12345L;
+        Student student = new Student(1L);
+        student.setName(name);
+        student.setDob(dob);
+        student.setStudentNumber(studentNumber);
+        student.addPhone(989898997L);
+
+        Long employeeNumber = 1213123L;
+        Employee employee = new Employee(1L);
+        employee.setName( "Bar");
+        employee.setDob(dob);
+        employee.setEmployeeNumber(employeeNumber);
 
         when(port.findAll()).thenReturn(Arrays.asList(student, employee));
 

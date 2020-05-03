@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthorRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">persistence</a> &gt; <a href="index.source.html" class="el_package">br.edu.utfpr.libex7.adapters.persistence.repository.authors</a> &gt; <span class="el_source">AuthorRepository.java</span></div><h1>AuthorRepository.java</h1><pre class="source lang-java linenums">package br.edu.utfpr.libex7.adapters.persistence.repository.authors;
+
+import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
+import br.edu.utfpr.libex7.adapters.persistence.repository.GenericRepository;
+import br.edu.utfpr.libex7.adapters.persistence.util.annotations.Id;
+import br.edu.utfpr.libex7.adapters.persistence.util.relection.ReflectionUtils;
+import br.edu.utfpr.libex7.application.domain.authors.Author;
+
+import java.lang.reflect.Field;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class AuthorRepository extends GenericRepository&lt;AuthorEntity, Long&gt; {
+
+
+    public AuthorRepository(Connection connection) {
+<span class="fc" id="L19">        super(connection);</span>
+<span class="fc" id="L20">    }</span>
+
+    @Override
+    public AuthorEntity save(AuthorEntity authorEntity) {
+        try {
+<span class="fc" id="L25">            PreparedStatement preparedStatement = connection.prepareStatement(&quot;INSERT INTO AUTOR (NOME_AUTOR) values (?)&quot;, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="fc" id="L26">            preparedStatement.setString(1,authorEntity.getName());</span>
+<span class="fc" id="L27">            preparedStatement.execute();</span>
+<span class="fc" id="L28">            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            if(generatedKeys.next()){</span>
+<span class="fc" id="L30">                Long id = generatedKeys.getLong(&quot;CODIGO_AUTOR&quot;);</span>
+<span class="fc" id="L31">                List&lt;Field&gt; fields = ReflectionUtils.getFields(AuthorEntity.class, Id.class);</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">                for (Field field : fields) {</span>
+<span class="nc" id="L33">                   ReflectionUtils.updateField(field, authorEntity, generatedKeys.getLong(&quot;CODIGO_AUTOR&quot;));</span>
+<span class="nc" id="L34">                }</span>
+            }
+<span class="fc" id="L36">            return authorEntity;</span>
+<span class="nc" id="L37">        } catch (SQLException e) {</span>
+<span class="nc" id="L38">            e.printStackTrace();</span>
+<span class="nc" id="L39">            throw new RuntimeException(&quot;Erro ao inserir autor&quot;,e);</span>
+        }
+    }
+
+    @Override
+    public Optional&lt;AuthorEntity&gt; findById(Long id) {
+        try {
+<span class="fc" id="L46">            PreparedStatement preparedStatement = connection.prepareStatement(&quot;SELECT * FROM AUTOR WHERE CODIGO_AUTOR = ?&quot;);</span>
+<span class="fc" id="L47">            preparedStatement.setLong(1, id);</span>
+<span class="fc" id="L48">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">            if(resultSet.next()){</span>
+<span class="fc" id="L52">                Long authorId = resultSet.getLong(&quot;CODIGO_AUTOR&quot;);</span>
+<span class="fc" id="L53">                String authorName = resultSet.getString(&quot;NOME_AUTOR&quot;);</span>
+<span class="fc" id="L54">                AuthorEntity authorEntity = new AuthorEntity(authorId);</span>
+<span class="fc" id="L55">                authorEntity.setName(authorName);</span>
+<span class="fc" id="L56">                return Optional.ofNullable(authorEntity);</span>
+            }
+<span class="nc" id="L58">            return Optional.empty();</span>
+<span class="nc" id="L59">        } catch (SQLException e) {</span>
+<span class="nc" id="L60">            e.printStackTrace();</span>
+<span class="nc" id="L61">            throw new RuntimeException(&quot;Erro ao consultar autor&quot;,e);</span>
+        }
+    }
+
+    @Override
+    public List&lt;AuthorEntity&gt; findAll() {
+        try {
+<span class="fc" id="L68">            PreparedStatement preparedStatement = connection.prepareStatement(&quot;SELECT * FROM AUTOR&quot;);</span>
+<span class="fc" id="L69">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="fc" id="L71">            List&lt;AuthorEntity&gt; authors = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            while(resultSet.next()){</span>
+<span class="fc" id="L73">                Long authorId = resultSet.getLong(&quot;CODIGO_AUTOR&quot;);</span>
+<span class="fc" id="L74">                String authorName = resultSet.getString(&quot;NOME_AUTOR&quot;);</span>
+<span class="fc" id="L75">                AuthorEntity authorEntity = new AuthorEntity(authorId);</span>
+<span class="fc" id="L76">                authorEntity.setName(authorName);</span>
+<span class="fc" id="L77">                authors.add(authorEntity);</span>
+<span class="fc" id="L78">            }</span>
+<span class="fc" id="L79">            return authors;</span>
+<span class="nc" id="L80">        } catch (SQLException e) {</span>
+<span class="nc" id="L81">            e.printStackTrace();</span>
+<span class="nc" id="L82">            throw new RuntimeException(&quot;Erro ao consultar autores&quot;,e);</span>
+        }
+    }
+
+    @Override
+    public void remove(Long id) {
+        try {
+<span class="fc" id="L89">            PreparedStatement preparedStatement = connection.prepareStatement(&quot;DELETE FROM AUTOR WHERE CODIGO_AUTOR = ?&quot;);</span>
+<span class="fc" id="L90">            preparedStatement.setLong(1, id);</span>
+<span class="fc" id="L91">            preparedStatement.execute();</span>
+<span class="nc" id="L92">        } catch (SQLException e) {</span>
+<span class="nc" id="L93">            e.printStackTrace();</span>
+<span class="nc" id="L94">            throw new RuntimeException(&quot;Erro ao remover autor&quot;,e);</span>
+<span class="fc" id="L95">        }</span>
+<span class="fc" id="L96">    }</span>
+
+    public List&lt;Author&gt; findByName(String name) {
+<span class="nc" id="L99">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

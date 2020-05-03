@@ -1,11 +1,10 @@
 package br.edu.utfpr.libex7.adapters.persistence.repository.users;
 
-import br.edu.utfpr.libex7.adapters.persistence.entity.phones.PhoneEntity;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.EmployeeEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import br.edu.utfpr.libex7.adapters.persistence.repository.GenericRepository;
-import br.edu.utfpr.libex7.adapters.persistence.repository.phones.PhoneRepository;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -15,11 +14,8 @@ import java.util.Optional;
 
 public abstract class UserRepository<T extends UserEntity> extends GenericRepository<T, Long> {
 
-    private final PhoneRepository phoneRepository;
-
     public UserRepository(Connection connection) {
         super(connection);
-        this.phoneRepository = new PhoneRepository(connection);
     }
 
     @Override
@@ -32,10 +28,8 @@ public abstract class UserRepository<T extends UserEntity> extends GenericReposi
             var generatedKeys = preparedStatement.getGeneratedKeys();
             if (generatedKeys.next()) {
                 Long id = generatedKeys.getLong(1);
-                user.setId(id);
             }
-            List<PhoneEntity> phones = user.getPhones();
-            phones.forEach(ph -> phoneRepository.save(ph));
+            List<UserEntity.PhoneEntity> phones = user.getPhones();
             return user;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,8 +46,6 @@ public abstract class UserRepository<T extends UserEntity> extends GenericReposi
 
             if(resultSet.next()){
                 T user = createUser(resultSet);
-                List<PhoneEntity> phoneEntities = phoneRepository.findByUserId(user.getId());
-                phoneEntities.forEach(ph -> user.addPhone(ph));
                 return Optional.ofNullable(user);
             }
             return Optional.empty();
@@ -93,15 +85,12 @@ public abstract class UserRepository<T extends UserEntity> extends GenericReposi
     }
 
     private T createUser(ResultSet resultSet) throws SQLException {
-        T user = this.newInstance();
         Long userId = resultSet.getLong("CODIGO_USUARIO");
         String userName = resultSet.getString("NOME_USUARIO");
         LocalDate dob = resultSet.getDate("DATA_NASCIMENTO_USUARIO").toLocalDate();
-        user.setId(userId);
+        T user = this.newInstance(userId);
         user.setName(userName);
         user.setDob(dob);
-        List<PhoneEntity> phoneEntities = phoneRepository.findByUserId(user.getId());
-        phoneEntities.forEach(ph -> user.addPhone(ph));
         return user;
     }
 
@@ -117,5 +106,7 @@ public abstract class UserRepository<T extends UserEntity> extends GenericReposi
         }
     }
 
-    protected abstract T newInstance();
+    protected abstract T newInstance(Long id);
+
+    public abstract List<UserEntity> findByName(String name);
 }

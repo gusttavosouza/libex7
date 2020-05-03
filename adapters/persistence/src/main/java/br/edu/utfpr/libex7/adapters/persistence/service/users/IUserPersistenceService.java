@@ -14,4 +14,6 @@ public interface IUserPersistenceService {
     List<UserEntity> findAll();
 
     void remove(Long id);
+
+    List<UserEntity> findByName(String name);
 }

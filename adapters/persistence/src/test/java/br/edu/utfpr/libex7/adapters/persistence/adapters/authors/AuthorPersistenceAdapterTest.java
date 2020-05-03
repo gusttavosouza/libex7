@@ -36,9 +36,9 @@ public class AuthorPersistenceAdapterTest {
     @Test
     @DisplayName("Given New Author When Save Then Return Saved Author")
     public void givenNewAuthorWhenSaveThenReturnSavedAuthor(){
-        Author author = new Author();
+        Author author = new Author(1L);
         author.setName("Foo");
-        when(service.save(any(AuthorEntity.class))).thenReturn(new AuthorEntity());
+        when(service.save(any(AuthorEntity.class))).thenReturn(new AuthorEntity(1L));
         Author savedAuthor = adapter.save(author);
         assertThat(savedAuthor).isNotNull();
     }
@@ -46,9 +46,9 @@ public class AuthorPersistenceAdapterTest {
     @Test
     @DisplayName("Given Author Id When Exists Then Return Author")
     public void givenAuthorIdWhenExistsThenReturnAuthor(){
-        Author author = new Author();
+        Author author = new Author(1L);
         author.setName("Foo");
-        when(service.findById(anyLong())).thenReturn(Optional.ofNullable(new AuthorEntity()));
+        when(service.findById(anyLong())).thenReturn(Optional.ofNullable(new AuthorEntity(1L)));
         Optional<Author> optionalAuthor = adapter.findById(1L);
         assertTrue(optionalAuthor.isPresent());
     }
@@ -64,9 +64,9 @@ public class AuthorPersistenceAdapterTest {
     @Test
     @DisplayName("Given Find All Method When Is Called Then Return Author List")
     public void givenFindAllMethodWhenIsCalledThenReturnAuthorList(){
-        Author author = new Author();
+        Author author = new Author(1L);
         author.setName("Foo");
-        when(service.findAll()).thenReturn(Arrays.asList(new AuthorEntity()));
+        when(service.findAll()).thenReturn(Arrays.asList(new AuthorEntity(1L)));
         List<Author> authors = adapter.findAll();
         assertFalse(authors.isEmpty());
     }

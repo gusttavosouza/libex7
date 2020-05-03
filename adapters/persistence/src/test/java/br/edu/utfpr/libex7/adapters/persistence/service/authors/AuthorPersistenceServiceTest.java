@@ -33,9 +33,9 @@ public class AuthorPersistenceServiceTest {
     @Test
     @DisplayName("Given New Author When Save Then Return Saved Author")
     public void givenNewAuthorWhenSaveThenReturnSavedAuthor(){
-        AuthorEntity author = new AuthorEntity();
+        AuthorEntity author = new AuthorEntity(1L);
         author.setName("Foo");
-        when(repository.save(any(AuthorEntity.class))).thenReturn(new AuthorEntity());
+        when(repository.save(any(AuthorEntity.class))).thenReturn(new AuthorEntity(1L));
         AuthorEntity savedAuthor = service.save(author);
         assertThat(savedAuthor).isNotNull();
     }
@@ -43,9 +43,9 @@ public class AuthorPersistenceServiceTest {
     @Test
     @DisplayName("Given Author Id When Exists Then Return Author")
     public void givenAuthorIdWhenExistsThenReturnAuthor(){
-        AuthorEntity author = new AuthorEntity();
+        AuthorEntity author = new AuthorEntity(1L);
         author.setName("Foo");
-        when(repository.findById(anyLong())).thenReturn(Optional.ofNullable(new AuthorEntity()));
+        when(repository.findById(anyLong())).thenReturn(Optional.ofNullable(new AuthorEntity(1L)));
         Optional<AuthorEntity> optionalAuthor = service.findById(1L);
         assertTrue(optionalAuthor.isPresent());
     }
@@ -61,9 +61,9 @@ public class AuthorPersistenceServiceTest {
     @Test
     @DisplayName("Given Find All Method When Is Called Then Return Author List")
     public void givenFindAllMethodWhenIsCalledThenReturnAuthorList(){
-        Author author = new Author();
+        Author author = new Author(1L);
         author.setName("Foo");
-        when(repository.findAll()).thenReturn(Arrays.asList(new AuthorEntity()));
+        when(repository.findAll()).thenReturn(Arrays.asList(new AuthorEntity(1L)));
         List<AuthorEntity> authors = service.findAll();
         assertFalse(authors.isEmpty());
     }

@@ -1,10 +1,7 @@
 package br.edu.utfpr.libex7.adapters.persistence.mapper.users;
 
 
-import br.edu.utfpr.libex7.adapters.persistence.entity.phones.PhoneEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.phones.PhonePersistenceMapper;
-import br.edu.utfpr.libex7.application.domain.phones.Phone;
 import br.edu.utfpr.libex7.application.domain.users.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,12 +14,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class StudentPersistenceMapperTest {
 
     private StudentPersistenceMapper mapper;
-    private PhonePersistenceMapper phonePersistenceMapper;
 
     @BeforeEach
     public void setup(){
-        this.phonePersistenceMapper = new PhonePersistenceMapper();
-        this.mapper = new StudentPersistenceMapper(phonePersistenceMapper);
+        this.mapper = new StudentPersistenceMapper();
     }
 
 
@@ -32,10 +27,12 @@ public class StudentPersistenceMapperTest {
         Long id = 1L;
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
-        Phone phone = new Phone();
         Long studentNumber = 12345L;
-        Student user = new Student(id, name, dob,studentNumber);
-        user.addPhone(phone);
+        Student user = new Student(id);
+        user.setName(name);
+        user.setDob(dob);
+        user.setStudentNumber(studentNumber);
+        user.addPhone(99988999L);
 
         StudentEntity userEntity =  mapper.mapToEntity(user);
 
@@ -53,10 +50,12 @@ public class StudentPersistenceMapperTest {
         Long id = 1L;
         String name = "Foo";
         LocalDate dob = LocalDate.of(1973, 05, 21);
-        PhoneEntity phone = new PhoneEntity();
         Long studentNumber = 12345L;
-        StudentEntity userEntity = new StudentEntity(id, name, dob,studentNumber );
-        userEntity.addPhone(phone);
+        StudentEntity userEntity = new StudentEntity(id);
+        userEntity.setName(name);
+        userEntity.setDob(dob);
+        userEntity.setStudentNumber(studentNumber);
+        userEntity.addPhone(99988999L);
 
         Student user = mapper.mapToDomain(userEntity);
 

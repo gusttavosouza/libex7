@@ -28,7 +28,7 @@ public class AuthorRepositoryTest {
     @DisplayName("Given New Author When Save Then Return Saved Author")
     public void givenNewAuthorWhenSaveThenReturnSavedAuthor(){
         String name = "Foo";
-        AuthorEntity authorEntity = new AuthorEntity();
+        AuthorEntity authorEntity = new AuthorEntity(1L);
         authorEntity.setName(name);
         AuthorEntity savedAuthor = this.repository.save(authorEntity);
         assertThat(savedAuthor.getId()).isNotNull();
@@ -39,7 +39,7 @@ public class AuthorRepositoryTest {
     @DisplayName("Given Existing Author When Find By Id Then Return Author")
     public void givenExistingAuthorWhenFindByIdThenReturnAuthor(){
         String name = "Foo";
-        AuthorEntity authorEntity = new AuthorEntity();
+        AuthorEntity authorEntity = new AuthorEntity(1L);
         authorEntity.setName(name);
         AuthorEntity savedAuthor = this.repository.save(authorEntity);
 
@@ -51,7 +51,7 @@ public class AuthorRepositoryTest {
     @DisplayName("Given Existing Author When Remove By Id Then Do Nothing")
     public void givenExistingAuthorWhenRemoveThenDoNothing(){
         String name = "Foo";
-        AuthorEntity authorEntity = new AuthorEntity();
+        AuthorEntity authorEntity = new AuthorEntity(1L);
         authorEntity.setName(name);
         AuthorEntity savedAuthor = this.repository.save(authorEntity);
         repository.remove(savedAuthor.getId());
@@ -62,7 +62,7 @@ public class AuthorRepositoryTest {
     @DisplayName("Given Existing Authors When Find All Then Return Author List")
     public void givenExistingAuthorsWhenFindAllThenReturnAuthorList(){
         String name = "Foo";
-        AuthorEntity authorEntity = new AuthorEntity();
+        AuthorEntity authorEntity = new AuthorEntity(1L);
         authorEntity.setName(name);
         this.repository.save(authorEntity);
 
