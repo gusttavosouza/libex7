@@ -16,10 +16,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.categories.CategoryEntity;
+import br.edu.utfpr.libex7.adapters.persistence.entity.copies.CopyEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -66,6 +68,10 @@ public class BookEntity implements Serializable {
 					                                      referencedColumnName = "CODIGO_AUTOR")})
     private List<AuthorEntity> authors = new ArrayList<>();
     
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "book", orphanRemoval = true )
+    private List<CopyEntity> copies = new ArrayList<>();
+    
     public BookEntity(Long id) {
 		this.id = id;
 	}
@@ -73,10 +79,19 @@ public class BookEntity implements Serializable {
     public List<AuthorEntity> getAuthors() {
         return Collections.unmodifiableList(authors);
     }
+    
+    public List<CopyEntity> getCopies() {
+    	 return Collections.unmodifiableList(copies);
+	}
 
     public Integer addAuthor(AuthorEntity author){
         this.authors.add(author);
         return this.authors.size();
+    }
+    
+    public Integer addCopy(CopyEntity copy){
+        this.copies.add(copy);
+        return this.copies.size();
     }
 
 	

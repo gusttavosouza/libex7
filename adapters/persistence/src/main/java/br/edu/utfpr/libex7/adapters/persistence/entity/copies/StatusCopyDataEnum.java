@@ -32,4 +32,13 @@ public enum StatusCopyDataEnum {
 		}
 		return null;
 	}
+	
+	public static StatusCopyDataEnum fromValue(Integer code) {
+		for(StatusCopyDataEnum statusCopyDataEnum : StatusCopyDataEnum.values()) {
+			if(statusCopyDataEnum.getCode().equals(code)) {
+				return statusCopyDataEnum;
+			}
+		}
+		return null;
+	}
 }

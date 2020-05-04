@@ -1,14 +1,15 @@
 package br.edu.utfpr.libex7.application.domain.books;
 
-import br.edu.utfpr.libex7.application.domain.authors.Author;
-import br.edu.utfpr.libex7.application.domain.categories.Category;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import br.edu.utfpr.libex7.application.domain.authors.Author;
+import br.edu.utfpr.libex7.application.domain.categories.Category;
+import br.edu.utfpr.libex7.application.domain.copies.Copy;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @RequiredArgsConstructor
 public class Book {
@@ -29,14 +30,25 @@ public class Book {
     private Integer year;
 
     private List<Author> authors = new ArrayList<>();
+    
+    private List<Copy> copies = new ArrayList<>();
 
     public List<Author> getAuthors() {
         return Collections.unmodifiableList(authors);
     }
+    
+    public List<Copy> getCopies() {
+    	return Collections.unmodifiableList(copies);
+	}
 
     public Integer addAuthor(Author author){
         this.authors.add(author);
         return this.authors.size();
+    }
+    
+    public Integer addCopy(Copy copy){
+        this.copies.add(copy);
+        return this.copies.size();
     }
 
 }
