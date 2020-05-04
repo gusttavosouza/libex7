@@ -15,7 +15,7 @@ public abstract class UserPersistenceMapper<X extends User, Y extends UserEntity
         Long id = userEntity.getId();
         X user = newInstanceDomain(id);
         List<UserEntity.PhoneEntity> phoneEntities = userEntity.getPhones();
-        phoneEntities.forEach(ph -> user.addPhone(ph.getNumber()));
+        phoneEntities.forEach(ph -> user.addPhone(ph.getPhoneId().getNumber()));
         user.setName(userEntity.getName());
         user.setDob(userEntity.getDob());
         return user;

@@ -1,5 +1,9 @@
 package br.edu.utfpr.libex7.adapters.persistence.adapters.users;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.UserPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.service.users.UserPersistenceService;
@@ -9,15 +13,11 @@ import br.edu.utfpr.libex7.application.ports.out.users.SaveUserPort;
 import br.edu.utfpr.libex7.application.ports.out.users.SearchUserPort;
 import lombok.RequiredArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 @RequiredArgsConstructor
 public class UserPersistenceAdapter implements SaveUserPort, SearchUserPort, RemoveUserPort {
 
     private final UserPersistenceService service;
-    private final UserPersistenceMapper mapper;
+    private final UserPersistenceMapper<User, UserEntity> mapper;
 
     @Override
     public User save(User user) {
