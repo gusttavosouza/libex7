@@ -3,22 +3,22 @@
 /* Created on:     23/04/2020 21:03:51                          */
 /*==============================================================*/
 
+--SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists ALUNO;
-
-drop table if exists AUTOR;
-
-drop table if exists DEVOLUCAO;
-
-drop table if exists EMPRESTIMO;
+/*
+SET FOREIGN_KEY_CHECKS=0;
 
 drop table if exists EMPRESTIMO_EXEMPLAR;
 
+drop table if exists EMPRESTIMO;
+
+drop table if exists DEVOLUCAO;
+
 drop table if exists EXEMPLAR;
 
-drop table if exists OBRA;
-
 drop table if exists OBRA_AUTOR;
+
+drop table if exists OBRA;
 
 drop table if exists SERVIDOR;
 
@@ -28,7 +28,18 @@ drop table if exists TELEFONE_USUARIO;
 
 drop table if exists TIPO_OBRA;
 
+drop table if exists ALUNO;
+
+drop table if exists AUTOR;
+
 drop table if exists USUARIO;
+
+--SET REFERENTIAL_INTEGRITY TRUE;
+
+SET FOREIGN_KEY_CHECKS=1;
+*/
+
+DROP ALL OBJECTS; 
 
 /*==============================================================*/
 /* Table: ALUNO                                                 */
@@ -134,7 +145,7 @@ create table SERVIDOR
 create table SITUACAO_EXEMPLAR
 (
    CODIGO_SITUACAO_EXEMPLAR int not null,
-   DESCRICAO_SITUACAO_EXEMPLAR varchar(50) not null,
+   DESCRICAO_SITUACAO_EXEMPLAR varchar(200) not null,
    primary key (CODIGO_SITUACAO_EXEMPLAR)
 );
 
@@ -153,7 +164,7 @@ create table TELEFONE_USUARIO
 /*==============================================================*/
 create table TIPO_OBRA
 (
-   CODIGO_TIPO_OBRA     int not null,
+   CODIGO_TIPO_OBRA     int not null auto_increment,
    DESCRICAO_TIPO_OBRA  varchar(50) not null,
    primary key (CODIGO_TIPO_OBRA)
 );
@@ -208,3 +219,6 @@ alter table SERVIDOR add constraint FK_INHERITANCE_1 foreign key (CODIGO_USUARIO
 alter table TELEFONE_USUARIO add constraint FK_POSSUI_TELEFONE foreign key (CODIGO_USUARIO)
       references USUARIO (CODIGO_USUARIO) on delete restrict on update restrict;
 
+
+INSERT INTO SITUACAO_EXEMPLAR (CODIGO_SITUACAO_EXEMPLAR, DESCRICAO_SITUACAO_EXEMPLAR) VALUES (1, 'Disponível');
+INSERT INTO SITUACAO_EXEMPLAR (CODIGO_SITUACAO_EXEMPLAR, DESCRICAO_SITUACAO_EXEMPLAR) VALUES (2, 'Indisponível');

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-03T19:29:38" hostname="home-pc" time="0.82">
+<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-04T21:35:56" hostname="DESKTOP-LUUQ2JI" time="1.651">
   <properties/>
-  <testcase name="givenAuthorIdWhenExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.689"/>
-  <testcase name="givenExistingAuthorWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.018"/>
-  <testcase name="givenNewAuthorWhenSaveThenReturnSavedAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.104"/>
-  <testcase name="givenAuthorIdWhenNotExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.003"/>
-  <testcase name="givenFindAllMethodWhenIsCalledThenReturnAuthorList()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.002"/>
+  <testcase name="givenAuthorIdWhenExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="1.45"/>
+  <testcase name="givenExistingAuthorWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.022"/>
+  <testcase name="givenNewAuthorWhenSaveThenReturnSavedAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.162"/>
+  <testcase name="givenAuthorIdWhenNotExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.004"/>
+  <testcase name="givenFindAllMethodWhenIsCalledThenReturnAuthorList()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

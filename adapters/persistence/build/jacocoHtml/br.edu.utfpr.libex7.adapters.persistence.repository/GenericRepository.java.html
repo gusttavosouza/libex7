@@ -1,24 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GenericRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">persistence</a> &gt; <a href="index.source.html" class="el_package">br.edu.utfpr.libex7.adapters.persistence.repository</a> &gt; <span class="el_source">GenericRepository.java</span></div><h1>GenericRepository.java</h1><pre class="source lang-java linenums">package br.edu.utfpr.libex7.adapters.persistence.repository;
 
-import java.sql.Connection;
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Id;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import br.edu.utfpr.libex7.adapters.persistence.util.relection.ReflectionUtils;
+
 public abstract class GenericRepository&lt;T, K&gt; {
 
-    protected Connection connection;
+    protected EntityManager em;
 
-<span class="fc" id="L11">    public GenericRepository(Connection connection){</span>
-<span class="fc" id="L12">        this.connection = connection;</span>
-<span class="fc" id="L13">    }</span>
+<span class="nc" id="L21">    public GenericRepository(EntityManager em){</span>
+<span class="nc" id="L22">		this.em = em;</span>
+<span class="nc" id="L23">    }</span>
 
-    public abstract T save(T entity);
+    public T save(T entity) {
+<span class="nc" id="L26">    	em.getTransaction().begin();</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">    	if(isNew(entity)) {</span>
+<span class="nc" id="L28">    		em.persist(entity);</span>
+    	}else {
+<span class="nc" id="L30">    		entity = em.merge(entity);</span>
+    	}
+<span class="nc" id="L32">    	em.getTransaction().commit();</span>
+<span class="nc" id="L33">       return entity;</span>
+    }
 
-    public abstract Optional&lt;T&gt; findById(K id);
+    public Optional&lt;T&gt; findById(K id){
+<span class="nc" id="L37">    	Class&lt;T&gt; classType = getClassType();</span>
+<span class="nc" id="L38">		return Optional.ofNullable(em.find(classType, id));</span>
+    }
 
-    public abstract List&lt;T&gt; findAll();
+    public List&lt;T&gt; findAll(){
+<span class="nc" id="L42">       Class&lt;T&gt; classType = getClassType();</span>
+<span class="nc" id="L43">	   CriteriaBuilder cb = em.getCriteriaBuilder();</span>
+<span class="nc" id="L44">       CriteriaQuery&lt;T&gt; cq = cb.createQuery(classType);</span>
+<span class="nc" id="L45">       Root&lt;T&gt; root = cq.from(classType);</span>
+<span class="nc" id="L46">       cq.select(root);</span>
+<span class="nc" id="L47">       TypedQuery&lt;T&gt; query = em.createQuery(cq);</span>
+<span class="nc" id="L48">       return query.getResultList();</span>
+    	
+    }
 
-    public abstract void remove(K id);
+    public void remove(K id) {
+<span class="nc" id="L53">    	Optional&lt;T&gt; optionalEntity = this.findById(id);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">    	if(optionalEntity.isEmpty()) {</span>
+<span class="nc" id="L55">    		T entity = optionalEntity.get();</span>
+<span class="nc" id="L56">    		em.remove(entity);</span>
+    	}
+<span class="nc" id="L58">    }</span>
+    
+    protected boolean isNew(T entity) {
+    	try {
+<span class="nc" id="L62">    	Class&lt;T&gt; classType = getClassType();</span>
+<span class="nc" id="L63">    	List&lt;Field&gt; fields = ReflectionUtils.getFields(classType, Id.class);</span>
+<span class="nc" id="L64">    	Field field = fields.stream().findFirst().orElseThrow();</span>
+<span class="nc" id="L65">    	field.setAccessible(true);</span>
+<span class="nc" id="L66">    	Object id = field.get(entity);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">    	return !(id != null</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">    	        &amp;&amp; !em.contains(entity) </span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">    	        &amp;&amp; em.find(classType, id) != null);  </span>
+<span class="nc" id="L70">    	}catch(Exception e) {</span>
+<span class="nc" id="L71">    		throw new RuntimeException(e);</span>
+    	}
+    }
+    
+    @SuppressWarnings(&quot;unchecked&quot;)
+	protected Class&lt;T&gt; getClassType(){
+<span class="nc" id="L77">    	final ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();</span>
+<span class="nc" id="L78">        return (Class&lt;T&gt;) (type).getActualTypeArguments()[0];</span>
+    }
 
 
 }
