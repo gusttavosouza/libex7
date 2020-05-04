@@ -1,5 +1,6 @@
 package br.edu.utfpr.libex7.adapters.persistence.entity.copies;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -15,13 +16,17 @@ import javax.persistence.Table;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.books.BookEntity;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor
 @Table(name="EXEMPLAR")
 @Entity
-public class CopyEntity {
+public class CopyEntity implements Serializable {
 
-	
+	private static final long serialVersionUID = 1L;
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="CODIGO_EXEMPLAR")

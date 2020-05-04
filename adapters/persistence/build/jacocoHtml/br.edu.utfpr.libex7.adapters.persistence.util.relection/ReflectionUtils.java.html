@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 
 <span class="nc" id="L9">public class ReflectionUtils {</span>
 
-    public static List&lt;Field&gt; getFields(Class clazz, Class&lt;? extends Annotation&gt; annotationClass){
-<span class="fc" id="L12">        List&lt;Field&gt; fields = Arrays.asList(clazz.getDeclaredFields());</span>
-<span class="fc" id="L13">        return   fields.stream()</span>
-<span class="fc" id="L14">                .filter(f -&gt; f.isAnnotationPresent(annotationClass))</span>
-<span class="fc" id="L15">                .collect(Collectors.toList());</span>
+    public static List&lt;Field&gt; getFields(Class&lt;?&gt; clazz, Class&lt;? extends Annotation&gt; annotationClass){
+<span class="nc" id="L12">        List&lt;Field&gt; fields = Arrays.asList(clazz.getDeclaredFields());</span>
+<span class="nc" id="L13">        return   fields.stream()</span>
+<span class="nc" id="L14">                .filter(f -&gt; f.isAnnotationPresent(annotationClass))</span>
+<span class="nc" id="L15">                .collect(Collectors.toList());</span>
     }
 
     public static void updateField(Field field, Object object, Object fieldValue){

@@ -23,11 +23,11 @@ public class CategoryEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="CODIGO_TIPO_OBRA ")
+    @Column(name="CODIGO_TIPO_OBRA")
     @Getter
     private Long id;
 
-	@Column(name="DESCRICAO_TIPO_OBRA ")
+	@Column(name="DESCRICAO_TIPO_OBRA")
     @Getter
     @Setter
     private String description;

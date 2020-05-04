@@ -39,13 +39,13 @@ public abstract class GenericRepository<T, K> {
     }
 
     public List<T> findAll(){
-    	Class<T> classType = getClassType();
+       Class<T> classType = getClassType();
 	   CriteriaBuilder cb = em.getCriteriaBuilder();
        CriteriaQuery<T> cq = cb.createQuery(classType);
-       Root<T> rootEntry = cq.from(classType);
-       CriteriaQuery<T> all = cq.select(rootEntry);
-       TypedQuery<T> allQuery = em.createQuery(all);
-       return allQuery.getResultList();
+       Root<T> root = cq.from(classType);
+       cq.select(root);
+       TypedQuery<T> query = em.createQuery(cq);
+       return query.getResultList();
     	
     }
 
