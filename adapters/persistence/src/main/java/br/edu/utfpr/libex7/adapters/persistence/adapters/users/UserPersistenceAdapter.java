@@ -1,5 +1,9 @@
 package br.edu.utfpr.libex7.adapters.persistence.adapters.users;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.UserPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.service.users.UserPersistenceService;
@@ -9,17 +13,15 @@ import br.edu.utfpr.libex7.application.ports.out.users.SaveUserPort;
 import br.edu.utfpr.libex7.application.ports.out.users.SearchUserPort;
 import lombok.RequiredArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 @RequiredArgsConstructor
 public class UserPersistenceAdapter implements SaveUserPort, SearchUserPort, RemoveUserPort {
 
     private final UserPersistenceService service;
-    private final UserPersistenceMapper mapper;
+    @SuppressWarnings("rawtypes")
+	private final UserPersistenceMapper mapper;
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public User save(User user) {
         UserEntity userEntity = mapper.mapToEntity(user);
         service.save(userEntity);
@@ -31,7 +33,8 @@ public class UserPersistenceAdapter implements SaveUserPort, SearchUserPort, Rem
         service.remove(id);
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Optional<User> findById(Long id) {
         Optional<UserEntity> optionalUserEntity = service.findById(id);
         if(optionalUserEntity.isPresent()){
@@ -41,7 +44,8 @@ public class UserPersistenceAdapter implements SaveUserPort, SearchUserPort, Rem
         return Optional.empty();
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<User> findByName(String name) {
         List<UserEntity> userEntities = service.findByName(name);
         List<User> users = new ArrayList<>();
@@ -49,7 +53,8 @@ public class UserPersistenceAdapter implements SaveUserPort, SearchUserPort, Rem
         return users;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<User> findAll() {
         List<UserEntity> userEntities = service.findAll();
         List<User> users = new ArrayList<>();

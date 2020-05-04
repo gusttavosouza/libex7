@@ -1,10 +1,10 @@
 package br.edu.utfpr.libex7.adapters.persistence.mapper.authors;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.AbstractMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.GenericMapper;
 import br.edu.utfpr.libex7.application.domain.authors.Author;
 
-public class AuthorPersistenceMapper implements AbstractMapper<Author, AuthorEntity> {
+public class AuthorPersistenceMapper implements GenericMapper<Author, AuthorEntity> {
 
 
     @Override

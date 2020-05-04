@@ -1,5 +1,23 @@
 package br.edu.utfpr.libex7.adapters.persistence.adapters.users;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.EmployeeEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.EmployeePersistenceMapper;
@@ -7,25 +25,11 @@ import br.edu.utfpr.libex7.adapters.persistence.mapper.users.UserPersistenceMapp
 import br.edu.utfpr.libex7.adapters.persistence.service.users.UserPersistenceService;
 import br.edu.utfpr.libex7.application.domain.users.Employee;
 import br.edu.utfpr.libex7.application.domain.users.User;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
 
 public class UserPersistenceAdapterTest {
 
     private UserPersistenceService service;
-    private UserPersistenceMapper mapper;
+    private UserPersistenceMapper<Employee, EmployeeEntity> mapper;
     private UserPersistenceAdapter adapter;
 
     @BeforeEach

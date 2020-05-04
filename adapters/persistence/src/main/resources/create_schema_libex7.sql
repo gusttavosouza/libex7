@@ -3,22 +3,21 @@
 /* Created on:     23/04/2020 21:03:51                          */
 /*==============================================================*/
 
+--SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists ALUNO;
-
-drop table if exists AUTOR;
-
-drop table if exists DEVOLUCAO;
-
-drop table if exists EMPRESTIMO;
+SET FOREIGN_KEY_CHECKS=0;
 
 drop table if exists EMPRESTIMO_EXEMPLAR;
 
+drop table if exists EMPRESTIMO;
+
+drop table if exists DEVOLUCAO;
+
 drop table if exists EXEMPLAR;
 
-drop table if exists OBRA;
-
 drop table if exists OBRA_AUTOR;
+
+drop table if exists OBRA;
 
 drop table if exists SERVIDOR;
 
@@ -28,7 +27,15 @@ drop table if exists TELEFONE_USUARIO;
 
 drop table if exists TIPO_OBRA;
 
+drop table if exists ALUNO;
+
+drop table if exists AUTOR;
+
 drop table if exists USUARIO;
+
+--SET REFERENTIAL_INTEGRITY TRUE;
+
+SET FOREIGN_KEY_CHECKS=1;
 
 /*==============================================================*/
 /* Table: ALUNO                                                 */
