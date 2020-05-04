@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.EmployeeEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.users.EmployeePersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.UserPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.service.users.UserPersistenceService;
 import br.edu.utfpr.libex7.application.domain.users.Employee;
@@ -28,12 +29,13 @@ import br.edu.utfpr.libex7.application.domain.users.User;
 public class UserPersistenceAdapterTest {
 
     private UserPersistenceService service;
-    private UserPersistenceMapper<User, UserEntity> mapper;
+    private UserPersistenceMapper<Employee, EmployeeEntity> mapper;
     private UserPersistenceAdapter adapter;
 
     @BeforeEach
     public void setup(){
         this.service = mock(UserPersistenceService.class);
+        this.mapper = new EmployeePersistenceMapper();
         this.adapter = new UserPersistenceAdapter(service,mapper);
     }
 
