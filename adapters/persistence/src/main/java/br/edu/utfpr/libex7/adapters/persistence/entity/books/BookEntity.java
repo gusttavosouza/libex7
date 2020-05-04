@@ -6,16 +6,14 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapKeyJoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
@@ -58,10 +56,7 @@ public class BookEntity implements Serializable {
     @Setter
     private Integer year;
 
-    @ElementCollection(targetClass = Double.class)
-    @JoinTable(name="OBRA_AUTOR",
-               joinColumns = @JoinColumn(name="CODIGO_OBRA"))
-    @MapKeyJoinColumn(name="CODIGO_AUTOR")
+    @OneToMany(fetch = FetchType.LAZY)
     private List<AuthorEntity> authors = new ArrayList<>();
     
     public BookEntity(Long id) {

@@ -27,7 +27,7 @@ public abstract class GenericRepository<T, K> {
     	if(isNew(entity)) {
     		em.persist(entity);
     	}else {
-    		em.merge(entity);
+    		entity = em.merge(entity);
     	}
     	em.getTransaction().commit();
        return entity;
@@ -64,9 +64,9 @@ public abstract class GenericRepository<T, K> {
     	Field field = fields.stream().findFirst().orElseThrow();
     	field.setAccessible(true);
     	Object id = field.get(entity);
-    	return id != null
+    	return !(id != null
     	        && !em.contains(entity) 
-    	        && em.find(classType, id) != null;  
+    	        && em.find(classType, id) != null);  
     	}catch(Exception e) {
     		throw new RuntimeException(e);
     	}
