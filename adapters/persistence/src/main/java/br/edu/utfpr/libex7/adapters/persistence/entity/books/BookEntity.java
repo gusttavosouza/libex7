@@ -48,7 +48,7 @@ public class BookEntity implements Serializable {
     private String title;
 
   
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="CODIGO_TIPO_OBRA", referencedColumnName = "CODIGO_TIPO_OBRA")
     @Getter
     @Setter
@@ -90,6 +90,7 @@ public class BookEntity implements Serializable {
     }
     
     public Integer addCopy(CopyEntity copy){
+    	copy.setBook(this);
         this.copies.add(copy);
         return this.copies.size();
     }

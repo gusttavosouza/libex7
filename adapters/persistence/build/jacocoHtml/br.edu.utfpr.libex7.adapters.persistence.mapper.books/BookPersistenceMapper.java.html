@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BookPersistenceMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">persistence</a> &gt; <a href="index.source.html" class="el_package">br.edu.utfpr.libex7.adapters.persistence.mapper.books</a> &gt; <span class="el_source">BookPersistenceMapper.java</span></div><h1>BookPersistenceMapper.java</h1><pre class="source lang-java linenums">package br.edu.utfpr.libex7.adapters.persistence.mapper.books;
+
+import java.util.List;
+
+import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
+import br.edu.utfpr.libex7.adapters.persistence.entity.books.BookEntity;
+import br.edu.utfpr.libex7.adapters.persistence.entity.categories.CategoryEntity;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.GenericMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.authors.AuthorPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.categories.CategoryPersistenceMapper;
+import br.edu.utfpr.libex7.application.domain.authors.Author;
+import br.edu.utfpr.libex7.application.domain.books.Book;
+import br.edu.utfpr.libex7.application.domain.categories.Category;
+import lombok.RequiredArgsConstructor;
+
+<span class="fc" id="L16">@RequiredArgsConstructor</span>
+public class BookPersistenceMapper implements GenericMapper&lt;Book, BookEntity&gt; {
+
+	
+	private final CategoryPersistenceMapper categoryMapper;
+	private final AuthorPersistenceMapper authorMapper;
+	
+	@Override
+	public Book mapToDomain(BookEntity bookEntity) {
+<span class="fc" id="L25">		Long id = bookEntity.getId();</span>
+<span class="fc" id="L26">		String title = bookEntity.getTitle();</span>
+<span class="fc" id="L27">		Integer year = bookEntity.getYear();</span>
+<span class="fc" id="L28">		CategoryEntity category = bookEntity.getCategory();</span>
+<span class="fc" id="L29">		List&lt;AuthorEntity&gt; authors = bookEntity.getAuthors();</span>
+<span class="fc" id="L30">		Book book = new Book(id);</span>
+<span class="fc" id="L31">		book.setTitle(title);</span>
+<span class="fc" id="L32">		book.setYear(year);</span>
+<span class="fc" id="L33">		book.setCategory(categoryMapper.mapToDomain(category));</span>
+<span class="pc" id="L34">		authors.forEach(a -&gt; book.addAuthor(authorMapper.mapToDomain(a)));</span>
+<span class="fc" id="L35">		return book;</span>
+	}
+
+	@Override
+	public BookEntity mapToEntity(Book book) {
+<span class="fc" id="L40">		Long id = book.getId();</span>
+<span class="fc" id="L41">		String title = book.getTitle();</span>
+<span class="fc" id="L42">		Integer year = book.getYear();</span>
+<span class="fc" id="L43">		Category category = book.getCategory();</span>
+<span class="fc" id="L44">		List&lt;Author&gt; authors = book.getAuthors();</span>
+<span class="fc" id="L45">		BookEntity bookEntity = new BookEntity(id);</span>
+<span class="fc" id="L46">		bookEntity.setTitle(title);</span>
+<span class="fc" id="L47">		bookEntity.setYear(year);</span>
+<span class="fc" id="L48">		bookEntity.setCategory(categoryMapper.mapToEntity(category));</span>
+<span class="pc" id="L49">		authors.forEach(a -&gt; bookEntity.addAuthor(authorMapper.mapToEntity(a)));</span>
+<span class="fc" id="L50">		return bookEntity;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
