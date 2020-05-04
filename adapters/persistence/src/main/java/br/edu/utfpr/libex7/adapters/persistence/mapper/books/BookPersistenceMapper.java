@@ -5,7 +5,7 @@ import java.util.List;
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.books.BookEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.categories.CategoryEntity;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.AbstractMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.GenericMapper;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.authors.AuthorPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.categories.CategoryPersistenceMapper;
 import br.edu.utfpr.libex7.application.domain.authors.Author;
@@ -14,7 +14,7 @@ import br.edu.utfpr.libex7.application.domain.categories.Category;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class BookPersistenceMapper implements AbstractMapper<Book, BookEntity> {
+public class BookPersistenceMapper implements GenericMapper<Book, BookEntity> {
 
 	
 	private final CategoryPersistenceMapper categoryMapper;

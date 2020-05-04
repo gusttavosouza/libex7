@@ -1,6 +1,6 @@
 package br.edu.utfpr.libex7.adapters.persistence.mapper;
 
-public interface AbstractMapper<X,Y> {
+public interface GenericMapper<X,Y> {
 
     X mapToDomain(Y objEntity);
 

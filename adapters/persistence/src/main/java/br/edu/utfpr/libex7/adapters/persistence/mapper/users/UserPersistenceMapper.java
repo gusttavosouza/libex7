@@ -1,14 +1,14 @@
 package br.edu.utfpr.libex7.adapters.persistence.mapper.users;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.AbstractMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.GenericMapper;
 import br.edu.utfpr.libex7.application.domain.users.User;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-public abstract class UserPersistenceMapper<X extends User, Y extends UserEntity> implements AbstractMapper<X, Y> {
+public abstract class UserPersistenceMapper<X extends User, Y extends UserEntity> implements GenericMapper<X, Y> {
 
     @Override
     public X mapToDomain(Y userEntity) {
