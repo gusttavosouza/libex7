@@ -52,7 +52,7 @@ public abstract class GenericRepository<T, K> {
 
     public void remove(K id) {
     	Optional<T> optionalEntity = this.findById(id);
-    	if(optionalEntity.isEmpty()) {
+    	if(optionalEntity.isPresent()) {
     		T entity = optionalEntity.get();
     		em.remove(entity);
     	}
@@ -63,7 +63,7 @@ public abstract class GenericRepository<T, K> {
     	try {
     	Class<T> classType = getClassType();
     	List<Field> fields = ReflectionUtils.getFields(classType, Id.class, EmbeddedId.class);
-    	Field field = fields.stream().findFirst().orElseThrow();
+    	Field field = fields.stream().findFirst().orElseThrow(() -> new RuntimeException("Erro ao localizar atributo identificador"));
     	field.setAccessible(true);
     	Object id = field.get(entity);
     	return !(id != null

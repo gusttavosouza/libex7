@@ -27,7 +27,7 @@ public class CategoryPersistenceAdapter implements SaveCategoryPort, SearchCateg
 	@Override
 	public Optional<Category> findById(Long id) {
 		Optional<CategoryEntity> optionalCategory = service.findById(id);
-		if(optionalCategory.isEmpty()) {
+		if(!optionalCategory.isPresent()) {
 			return Optional.empty();
 		}
 		CategoryEntity categoryEntity = optionalCategory.get();
