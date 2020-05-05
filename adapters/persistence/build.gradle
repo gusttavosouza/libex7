@@ -8,6 +8,7 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 11
 targetCompatibility = 11
 
+
 repositories {
     mavenCentral()
 }
@@ -19,3 +20,12 @@ dependencies {
 	
     implementation 'com.h2database:h2:1.4.200'
 }
+
+sourceSets {
+  java {
+    main {
+      output.resourcesDir = java.outputDir
+    }
+  }
+}
+
