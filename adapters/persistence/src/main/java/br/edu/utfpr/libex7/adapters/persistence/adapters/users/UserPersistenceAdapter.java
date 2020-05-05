@@ -1,6 +1,5 @@
 package br.edu.utfpr.libex7.adapters.persistence.adapters.users;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,17 +47,13 @@ public class UserPersistenceAdapter implements SaveUserPort, SearchUserPort, Rem
 	@Override
     public List<User> findByName(String name) {
         List<UserEntity> userEntities = service.findByName(name);
-        List<User> users = new ArrayList<>();
-        userEntities.forEach(u -> users.add(mapper.mapToDomain(u)));
-        return users;
+        return mapper.mapToDomain(userEntities);
     }
 
     @SuppressWarnings("unchecked")
 	@Override
     public List<User> findAll() {
         List<UserEntity> userEntities = service.findAll();
-        List<User> users = new ArrayList<>();
-        userEntities.forEach(u -> users.add(mapper.mapToDomain(u)));
-        return users;
+        return mapper.mapToDomain(userEntities);
     }
 }

@@ -14,7 +14,7 @@ import br.edu.utfpr.libex7.application.domain.categories.Category;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class BookPersistenceMapper implements GenericMapper<Book, BookEntity> {
+public class BookPersistenceMapper extends GenericMapper<Book, BookEntity> {
 
 	
 	private final CategoryPersistenceMapper categoryMapper;
