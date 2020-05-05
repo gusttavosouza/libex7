@@ -46,17 +46,13 @@ public class BookPersistenceAdapter implements SaveBookPort, SearchBookPort, Rem
 	@Override
 	public List<Book> findByAuthorName(String authorName) {
 		List<BookEntity> bookEntities = service.findByAuthorName(authorName);
-		List<Book> books = new LinkedList<>();
-		bookEntities.forEach(c -> books.add(mapper.mapToDomain(c)));
-		return books;
+		return mapper.mapToDomain(bookEntities);
 	}
 
 	@Override
 	public List<Book> findAll() {
 		List<BookEntity> bookEntities = service.findAll();
-		List<Book> books = new LinkedList<>();
-		bookEntities.forEach(c -> books.add(mapper.mapToDomain(c)));
-		return books;
+		return mapper.mapToDomain(bookEntities);
 	}
 
 	@Override
