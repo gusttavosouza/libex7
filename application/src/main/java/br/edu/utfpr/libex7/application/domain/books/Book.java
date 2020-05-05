@@ -8,14 +8,14 @@ import br.edu.utfpr.libex7.application.domain.authors.Author;
 import br.edu.utfpr.libex7.application.domain.categories.Category;
 import br.edu.utfpr.libex7.application.domain.copies.Copy;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class Book {
 
     @Getter
-    private final Long id;
+    private Long id;
 
     @Getter
     @Setter
@@ -33,6 +33,11 @@ public class Book {
     
     private List<Copy> copies = new ArrayList<>();
 
+    
+    public Book(Long id) {
+		this.id = id;
+	}
+    
     public List<Author> getAuthors() {
         return Collections.unmodifiableList(authors);
     }
@@ -50,5 +55,7 @@ public class Book {
         this.copies.add(copy);
         return this.copies.size();
     }
+
+	
 
 }

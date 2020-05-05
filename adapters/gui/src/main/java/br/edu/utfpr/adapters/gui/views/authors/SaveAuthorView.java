@@ -6,11 +6,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 
 public class SaveAuthorView extends BorderPane {
 	
+	@Getter
 	private Button saveButton = new Button("Salvar");
+	
+	@Getter	
 	private Label lblName = new Label("Nome:");
+	
+	@Getter
 	private TextField txtName = new TextField();
 	
 	public SaveAuthorView() {
@@ -24,9 +30,7 @@ public class SaveAuthorView extends BorderPane {
 		setCenter(vBox);
 	}
 	
-	public Button getSaveButton() {
-		return saveButton;
-	}
+
 	
 
 }
