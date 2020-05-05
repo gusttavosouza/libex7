@@ -30,8 +30,7 @@ public class CheckOutPersistenceMapper extends GenericMapper<CheckOut, CheckOutE
 		User user = userMapper.mapToDomain(userEntity);
 		CheckOut checkOut = new CheckOut(user, checkOutDate);
 		checkOut.setExpectedCheckInDate(expectedCheckInDate);
-		CheckIn checkIn = new CheckIn(checkInEntity.getCheckInDate());
-		checkOut.setCheckIn(checkIn);
+		checkOut.checkIn(checkInEntity.getCheckInDate());
 		return checkOut;
 	}
 
@@ -47,8 +46,7 @@ public class CheckOutPersistenceMapper extends GenericMapper<CheckOut, CheckOutE
 		CheckOutEntity checkOutEntity = new CheckOutEntity(checkOutEntityId);
 		checkOutEntity.setExpectedCheckInDate(expectedCheckInDate);
 		LocalDate checkInDate = checkIn.getCheckInDate();
-		CheckInEntity checkInEntity = checkOutEntity.new CheckInEntity(checkInDate);
-		checkOutEntity.setCheckIn(checkInEntity);
+		checkOutEntity.checkIn(checkInDate);
 		return checkOutEntity;
 	}
 

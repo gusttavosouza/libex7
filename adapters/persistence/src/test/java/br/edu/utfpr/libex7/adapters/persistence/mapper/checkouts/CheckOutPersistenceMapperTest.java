@@ -16,7 +16,6 @@ import br.edu.utfpr.libex7.adapters.persistence.mapper.users.StudentPersistenceM
 import br.edu.utfpr.libex7.application.domain.books.Book;
 import br.edu.utfpr.libex7.application.domain.categories.Category;
 import br.edu.utfpr.libex7.application.domain.checkouts.CheckOut;
-import br.edu.utfpr.libex7.application.domain.checkouts.CheckOut.CheckIn;
 import br.edu.utfpr.libex7.application.domain.users.Student;
 
 public class CheckOutPersistenceMapperTest {
@@ -41,7 +40,7 @@ public class CheckOutPersistenceMapperTest {
         book.setYear(1994);
         
         CheckOut checkOut = new CheckOut(new Student(1L), LocalDate.now());
-        checkOut.setCheckIn(new CheckIn(LocalDate.now()));
+        checkOut.checkIn(LocalDate.now());
 
         CheckOutEntity checkOutEntity = mapper.mapToEntity(checkOut);
 
@@ -60,7 +59,7 @@ public class CheckOutPersistenceMapperTest {
 
         CheckOutEntity.CheckOutEntityId checkOutEntityId = new   CheckOutEntity.CheckOutEntityId(new StudentEntity(1L), LocalDate.now());
         CheckOutEntity checkOutEntity = new CheckOutEntity(checkOutEntityId);
-        checkOutEntity.setCheckIn(checkOutEntity.new CheckInEntity(LocalDate.now()));
+        checkOutEntity.checkIn(LocalDate.now());
 
         CheckOut checkOut = mapper.mapToDomain(checkOutEntity);
         

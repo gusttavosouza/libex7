@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -13,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -43,9 +45,7 @@ public class CheckOutEntity implements Serializable {
 	private LocalDate expectedCheckInDate;
 
 	@Getter
-	@Setter
-	@OneToOne
-	@JoinColumn(name = "DATA_DEVOLUCAO", referencedColumnName = "DATA_DEVOLUCAO")
+	@OneToOne(mappedBy = "checkout", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
 	private CheckInEntity checkIn;
 
 	@ManyToMany
@@ -55,13 +55,19 @@ public class CheckOutEntity implements Serializable {
 	          inverseJoinColumns = {@JoinColumn(name="CODIGO_EXEMPLAR", referencedColumnName = "CODIGO_EXEMPLAR")})
 	private List<CopyEntity> copies = new LinkedList<>();
 
-	public List<CopyEntity> getCopies() {
-		return Collections.unmodifiableList(copies);
-	}
-
 	public CheckOutEntity(CheckOutEntityId checkOutId) {
 		this.checkOutId = checkOutId;
 	}
+	
+	public List<CopyEntity> getCopies() {
+		return Collections.unmodifiableList(copies);
+	}
+	
+	public void checkIn(LocalDate checkInDate){
+	   this.checkIn =  new CheckInEntity(this, checkInDate);
+	}
+
+	
 
 	@Embeddable
 	@NoArgsConstructor
@@ -92,9 +98,15 @@ public class CheckOutEntity implements Serializable {
 		@Column(name = "DATA_DEVOLUCAO")
 		private LocalDate checkInDate;
 		
+		@OneToOne
+		@JoinColumns(value = {@JoinColumn(name = "CODIGO_USUARIO", referencedColumnName = "CODIGO_USUARIO"),
+				              @JoinColumn(name = "DATA_EMPRESTIMO", referencedColumnName = "DATA_EMPRESTIMO")})
+		@Getter
+		private CheckOutEntity checkout;
 	
 
-		public CheckInEntity(LocalDate checkInDate) {
+		public CheckInEntity(CheckOutEntity checkout, LocalDate checkInDate) {
+			this.checkout = checkout;
 			this.checkInDate = checkInDate;
 		}
 

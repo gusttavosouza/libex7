@@ -23,30 +23,35 @@ public class CheckOut {
 	private LocalDate expectedCheckInDate;
 
 	@Getter
-	@Setter
 	private CheckIn checkIn;
 
 	private List<Copy> copies = new LinkedList<>();
-
-	public List<Copy> getCopies() {
-		return Collections.unmodifiableList(copies);
-	}
-
+	
 	public CheckOut(User user, LocalDate checkOutDate) {
 		this.user = user;
 		this.checkOutDate = checkOutDate;
 	}
 
+	public List<Copy> getCopies() {
+		return Collections.unmodifiableList(copies);
+	}
+	
+	public void checkIn(LocalDate checkInDate) {
+		this.checkIn = new CheckIn(this, checkInDate);
+	}
+
+	
+
 	public static class CheckIn {
 
 		@Getter
-		@Setter
 		private CheckOut checkout;
 
 		@Getter
 		private LocalDate checkInDate;
 
-		public CheckIn(LocalDate checkInDate) {
+		public CheckIn(CheckOut checkout, LocalDate checkInDate) {
+			this.checkout = checkout;
 			this.checkInDate = checkInDate;
 		}
 

@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.edu.utfpr.libex7.application.domain.checkouts.CheckOut;
-import br.edu.utfpr.libex7.application.domain.checkouts.CheckOut.CheckIn;
 import br.edu.utfpr.libex7.application.domain.users.Student;
 import br.edu.utfpr.libex7.application.domain.users.User;
 import br.edu.utfpr.libex7.application.ports.out.checkout.SaveCheckOutPort;
@@ -34,8 +33,7 @@ public class SaveCheckOutServiceTest {
 		User user = new Student(1L);
 		CheckOut checkout = new CheckOut(user, LocalDate.now());		
 		checkout.setExpectedCheckInDate(LocalDate.now());
-		CheckIn checkIn = new CheckIn(LocalDate.now());
-		checkIn.setCheckout(checkout);
+		checkout.checkIn(LocalDate.now());
 		
 		when(port.save(any(CheckOut.class))).thenReturn(checkout);
 		
