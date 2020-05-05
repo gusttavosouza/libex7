@@ -79,7 +79,7 @@ create table EMPRESTIMO
 (
    CODIGO_USUARIO       int not null,
    DATA_EMPRESTIMO      datetime not null,
-   DATA_DEVOLUCAO       date not null,
+   DATA_DEVOLUCAO       date default null,
    DATA_PREVISTA_DEVOLUCAO_EMPRESTIMO datetime not null,
    primary key (CODIGO_USUARIO, DATA_EMPRESTIMO)
 );

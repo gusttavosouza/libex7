@@ -4,7 +4,7 @@ import br.edu.utfpr.libex7.adapters.persistence.entity.categories.CategoryEntity
 import br.edu.utfpr.libex7.adapters.persistence.mapper.GenericMapper;
 import br.edu.utfpr.libex7.application.domain.categories.Category;
 
-public class CategoryPersistenceMapper implements GenericMapper<Category, CategoryEntity>{
+public class CategoryPersistenceMapper extends GenericMapper<Category, CategoryEntity>{
 
 	@Override
 	public Category mapToDomain(CategoryEntity categoryEntity) {

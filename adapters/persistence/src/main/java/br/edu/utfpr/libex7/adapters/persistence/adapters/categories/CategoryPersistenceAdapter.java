@@ -1,6 +1,5 @@
 package br.edu.utfpr.libex7.adapters.persistence.adapters.categories;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,17 +37,13 @@ public class CategoryPersistenceAdapter implements SaveCategoryPort, SearchCateg
 	@Override
 	public List<Category> findByDescription(String description) {
 		List<CategoryEntity> categoryEntities = service.findByDescription(description);
-		List<Category> categories = new LinkedList<>();
-		categoryEntities.forEach(c -> categories.add(mapper.mapToDomain(c)));
-		return categories;
+		return mapper.mapToDomain(categoryEntities);
 	}
 
 	@Override
 	public List<Category> findAll() {
 		List<CategoryEntity> categoryEntities = service.findAll();
-		List<Category> categories = new LinkedList<>();
-		categoryEntities.forEach(c -> categories.add(mapper.mapToDomain(c)));
-		return categories;
+		return mapper.mapToDomain(categoryEntities);
 	}
 
 	@Override

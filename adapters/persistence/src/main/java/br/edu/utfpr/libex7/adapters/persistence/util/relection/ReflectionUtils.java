@@ -3,16 +3,23 @@ package br.edu.utfpr.libex7.adapters.persistence.util.relection;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ReflectionUtils {
 
-    public static List<Field> getFields(Class<?> clazz, Class<? extends Annotation> annotationClass){
+    @SuppressWarnings("unchecked")
+	public static List<Field> getFields(Class<?> clazz, Class<? extends Annotation>... annotationClasses){
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
-        return   fields.stream()
-                .filter(f -> f.isAnnotationPresent(annotationClass))
-                .collect(Collectors.toList());
+        List<Class<? extends Annotation>> annotations = Arrays.asList(annotationClasses); 
+        List<Field> fieldAnnotations = new LinkedList<>();
+        for(Class<? extends Annotation> annotationClass : annotations) {
+        	fieldAnnotations.addAll(fields.stream()
+                    .filter(f -> f.isAnnotationPresent(annotationClass))
+                    .collect(Collectors.toList()));
+        }
+        return fieldAnnotations;          
     }
 
     public static void updateField(Field field, Object object, Object fieldValue){

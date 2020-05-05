@@ -1,6 +1,5 @@
 package br.edu.utfpr.libex7.adapters.persistence.adapters.copies;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,9 +31,7 @@ public class CopyPersistenceAdapter implements SaveCopyPort, RemoveCopyPort, Sea
 	@Override
 	public List<Copy> findAll() {
 		List<CopyEntity> copyEntities = service.findAll();
-		List<Copy> copies = new LinkedList<>();
-		copyEntities.forEach(c -> copies.add(mapper.mapToDomain(c)));
-		return copies;
+		return mapper.mapToDomain(copyEntities);
 	}
 
 	@Override

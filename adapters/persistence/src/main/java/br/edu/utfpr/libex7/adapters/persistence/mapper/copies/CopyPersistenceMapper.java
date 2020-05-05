@@ -13,7 +13,7 @@ import br.edu.utfpr.libex7.application.domain.copies.StatusCopyEnum;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CopyPersistenceMapper implements GenericMapper<Copy, CopyEntity> {
+public class CopyPersistenceMapper extends GenericMapper<Copy, CopyEntity> {
 	
 	private final BookPersistenceMapper bookPersistenceMapper;
 

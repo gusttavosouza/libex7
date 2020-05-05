@@ -5,6 +5,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.TypedQuery;
@@ -57,10 +58,11 @@ public abstract class GenericRepository<T, K> {
     	}
     }
     
-    protected boolean isNew(T entity) {
+    @SuppressWarnings("unchecked")
+	protected boolean isNew(T entity) {
     	try {
     	Class<T> classType = getClassType();
-    	List<Field> fields = ReflectionUtils.getFields(classType, Id.class);
+    	List<Field> fields = ReflectionUtils.getFields(classType, Id.class, EmbeddedId.class);
     	Field field = fields.stream().findFirst().orElseThrow();
     	field.setAccessible(true);
     	Object id = field.get(entity);

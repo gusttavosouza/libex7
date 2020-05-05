@@ -1,5 +1,8 @@
 package br.edu.utfpr.libex7.adapters.persistence.adapters.author;
 
+import java.util.List;
+import java.util.Optional;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.authors.AuthorPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.service.authors.AuthorPersistenceService;
@@ -8,10 +11,6 @@ import br.edu.utfpr.libex7.application.ports.out.authors.SaveAuthorPort;
 import br.edu.utfpr.libex7.application.ports.out.authors.SearchAuthorPort;
 import br.edu.utfpr.libex7.application.ports.out.users.RemoveUserPort;
 import lombok.RequiredArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class AuthorPersistenceAdapter implements SaveAuthorPort, SearchAuthorPort, RemoveUserPort {
@@ -44,9 +43,7 @@ public class AuthorPersistenceAdapter implements SaveAuthorPort, SearchAuthorPor
     @Override
     public List<Author> findAll() {
         List<AuthorEntity> authorEntities = service.findAll();
-        List<Author> authors = new ArrayList<>();
-        authorEntities.forEach(a -> authors.add(mapper.mapToDomain(a)));
-        return authors;
+        return mapper.mapToDomain(authorEntities);
     }
 
     @Override

@@ -4,7 +4,7 @@ import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.GenericMapper;
 import br.edu.utfpr.libex7.application.domain.authors.Author;
 
-public class AuthorPersistenceMapper implements GenericMapper<Author, AuthorEntity> {
+public class AuthorPersistenceMapper extends GenericMapper<Author, AuthorEntity> {
 
 
     @Override

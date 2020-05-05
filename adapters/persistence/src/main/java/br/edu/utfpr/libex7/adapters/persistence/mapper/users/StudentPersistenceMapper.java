@@ -6,7 +6,6 @@ import br.edu.utfpr.libex7.application.domain.users.Student;
 public class StudentPersistenceMapper extends UserPersistenceMapper<Student, StudentEntity> {
 
 
-
     @Override
     public Student mapToDomain(StudentEntity userEntity) {
         Student student = super.mapToDomain(userEntity);
