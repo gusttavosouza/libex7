@@ -90,7 +90,7 @@ public class CheckOutRepositoryTest {
 		
 		CheckOutEntity savedCheckOutEntity = repository.save(checkOutEntity);
 		
-		savedCheckOutEntity.setCheckIn(savedCheckOutEntity.new CheckInEntity(LocalDate.now()));
+		savedCheckOutEntity.checkIn(LocalDate.now());
 		
 		repository.save(savedCheckOutEntity);
 		assertThat(savedCheckOutEntity).isNotNull();
