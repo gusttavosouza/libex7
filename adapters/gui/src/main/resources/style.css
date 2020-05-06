@@ -1,3 +1,7 @@
+.root {
+	-fx-background-color: rgba(255,255,255);
+}
+
 .button {
     -fx-text-fill: white;
     -fx-font-family: "Arial Narrow";
@@ -11,30 +15,22 @@
 }
 
 
-.menu-bar{
-  -fx-background-color: rgb(55,255,221);
-  -fx-border-color:  #f0cd90;
-  -fx-border-width: white
+.menu-item .label {
+    -fx-text-fill: white;
 }
 
-.menu-bar .label {
-    -fx-font-size: 25 pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: #dedede;
-
+.menu-item:focused {
+     -fx-background-color: white;
 }
 
-
-.menu:hover {
-    -fx-background-color: rgb(55,255,221);
+.menu-item:focused .label {
+    -fx-text-fill: rgb(56,188,255);
 }
 
-.menu-item .label{
-    -fx-font-weight: bold;
-    -fx-background-color: rgb(55,255,221);
-}
-
-.menu .label
-{
-     -fx-text-fill: white;
+.context-menu {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-background-color: rgb(0,139,209);
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
+    -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em; /* 4 1 8 1 */
 }
