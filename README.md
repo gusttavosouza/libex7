@@ -11,7 +11,7 @@ Este projeto foi desenvolvido utilizando JDK 8 e Gradle com JavaFX.
 	$ ./gradlew build
 ```
 
-![title](assets/class_diagram.png)
+
 
 ### Download Jar Exemplo
 
@@ -20,4 +20,6 @@ Este projeto foi desenvolvido utilizando JDK 8 e Gradle com JavaFX.
 ### Diagramas
 
 Abaixo diagramas das classes de domínio:
+
+![title](assets/class_diagram.png)
 
