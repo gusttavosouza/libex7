@@ -1,38 +1,41 @@
 package br.edu.utfpr.libex7.adapters.persistence.mapper.users;
 
-import java.util.List;
-
+import br.edu.utfpr.libex7.adapters.persistence.entity.users.EmployeeEntity;
+import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.GenericMapper;
+import br.edu.utfpr.libex7.application.domain.users.Employee;
+import br.edu.utfpr.libex7.application.domain.users.Student;
 import br.edu.utfpr.libex7.application.domain.users.User;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public abstract class UserPersistenceMapper<X extends User, Y extends UserEntity> extends GenericMapper<X, Y> {
+public class UserPersistenceMapper<X extends User, Y extends UserEntity> extends GenericMapper<X, Y> {
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public X mapToDomain(Y userEntity) {
-        Long id = userEntity.getId();
-        X user = newInstanceDomain(id);
-        List<UserEntity.PhoneEntity> phoneEntities = userEntity.getPhones();
-        phoneEntities.forEach(ph -> user.addPhone(ph.getPhoneId().getNumber()));
-        user.setName(userEntity.getName());
-        user.setDob(userEntity.getDob());
-        return user;
+        if(userEntity instanceof EmployeeEntity) {
+        	EmployeePersistenceMapper employeePersistenceMapper = new EmployeePersistenceMapper();
+        	return (X) employeePersistenceMapper.mapToDomain((EmployeeEntity) userEntity);
+        }else if(userEntity instanceof StudentEntity) {
+        	StudentPersistenceMapper studentPersistenceMapper = new StudentPersistenceMapper();
+        	return (X) studentPersistenceMapper.mapToDomain((StudentEntity) userEntity);
+        }
+        return null;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Y mapToEntity(X user) {
-        Long id = user.getId();
-        Y userEntity = newInstanceEntity(id);
-        List<User.Phone> phones = user.getPhones();
-        phones.forEach(ph -> userEntity.addPhone(ph.getNumber()));
-        userEntity.setName(user.getName());
-        userEntity.setDob(user.getDob());
-        return userEntity;
+    	 if(user instanceof Employee) {
+         	EmployeePersistenceMapper employeePersistenceMapper = new EmployeePersistenceMapper();
+         	return (Y) employeePersistenceMapper.mapToEntity((Employee) user);
+         }else if(user instanceof Student) {
+         	StudentPersistenceMapper studentPersistenceMapper = new StudentPersistenceMapper();
+         	return (Y) studentPersistenceMapper.mapToEntity((Student) user);
+         }
+         return null;
     }
 
-    protected abstract  X newInstanceDomain(Long id);
-
-    protected abstract  Y newInstanceEntity(Long id);
 }

@@ -1,6 +1,7 @@
 package br.edu.utfpr.adapters.gui.handlers.users.students;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import br.edu.utfpr.adapters.gui.views.users.students.SaveStudentView;
 import br.edu.utfpr.libex7.application.domain.users.Student;
@@ -28,7 +29,7 @@ public final class ButtonSaveStudentHandler implements EventHandler<ActionEvent>
 			TextField txtDob = view.getTxtDob();
 			TextField txtStudentNumber = view.getTxtStudentNumber();
 			String name = txtName.getText().toUpperCase().trim();
-			LocalDate dob = LocalDate.parse(txtDob.getText());
+			LocalDate dob = LocalDate.parse(txtDob.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 			Long studentNumber = Long.parseLong(txtStudentNumber.getText());
 			
 			Student user = new Student();

@@ -35,7 +35,7 @@ public class EmployeePersistenceMapperTest {
         user.setEmployeeNumber(employeeNumber);
         user.addPhone(9898989L);
 
-        EmployeeEntity userEntity =  mapper.mapToEntity(user);
+        EmployeeEntity userEntity =  (EmployeeEntity) mapper.mapToEntity(user);
 
 
         assertThat(userEntity.getId()).isEqualTo(user.getId());
@@ -58,7 +58,7 @@ public class EmployeePersistenceMapperTest {
         userEntity.setEmployeeNumber(employeeNumber);
         userEntity.addPhone(9898989L);;
 
-        Employee user = mapper.mapToDomain(userEntity);
+        Employee user = (Employee) mapper.mapToDomain(userEntity);
 
         assertThat(user.getId()).isEqualTo(userEntity.getId());
         assertThat(user.getName()).isEqualTo(userEntity.getName());

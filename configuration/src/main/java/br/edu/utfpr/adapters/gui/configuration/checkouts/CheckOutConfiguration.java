@@ -12,7 +12,6 @@ import br.edu.utfpr.adapters.gui.views.checkouts.SearchCheckOutView;
 import br.edu.utfpr.libex7.adapters.persistence.adapters.checkouts.CheckOutPersistenceAdapter;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.checkouts.CheckOutPersistenceMapper;
-import br.edu.utfpr.libex7.adapters.persistence.mapper.users.StudentPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.UserPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.repository.checkouts.CheckOutRepository;
 import br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceService;
@@ -35,7 +34,7 @@ public class CheckOutConfiguration {
 		CheckOutPersistenceService checkOutPersistenceService = new CheckOutPersistenceService(checkOutRepository);
 		
 		
-		UserPersistenceMapper<Student, StudentEntity> userMapper = new StudentPersistenceMapper();
+		UserPersistenceMapper<Student, StudentEntity> userMapper = new UserPersistenceMapper<>();
 		CheckOutPersistenceMapper checkOutPersistenceMapper = new CheckOutPersistenceMapper(userMapper);
 		CheckOutPersistenceAdapter checkOutPersistenceAdapter = new CheckOutPersistenceAdapter(checkOutPersistenceService, checkOutPersistenceMapper);
 		SaveCheckOutUseCase useCase = new SaveCheckOutService(checkOutPersistenceAdapter);

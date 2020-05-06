@@ -1,6 +1,7 @@
 package br.edu.utfpr.adapters.gui.handlers.users.employees;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import br.edu.utfpr.adapters.gui.views.users.employees.SaveEmployeeView;
 import br.edu.utfpr.libex7.application.domain.users.Employee;
@@ -27,7 +28,7 @@ public final class ButtonSaveEmployeeHandler implements EventHandler<ActionEvent
 			TextField txtDob = view.getTxtDob();
 			TextField txtEmployeeNumber = view.getTxtEmployeeNumber();
 			String name = txtName.getText().toUpperCase().trim();
-			LocalDate dob = LocalDate.parse(txtDob.getText());
+			LocalDate dob = LocalDate.parse(txtDob.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 			Long studentNumber = Long.parseLong(txtEmployeeNumber.getText());
 			Employee user = new Employee();
 			user.setName(name);

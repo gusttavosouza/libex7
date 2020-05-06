@@ -2,6 +2,8 @@ package br.edu.utfpr.adapters.gui.handlers.users.employees;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.edu.utfpr.adapters.gui.views.users.employees.SearchEmployeeView;
 import br.edu.utfpr.libex7.application.domain.users.Employee;
 import br.edu.utfpr.libex7.application.ports.in.users.SearchUserUseCase;
@@ -33,7 +35,7 @@ public final class ButtonSearchEmployeeHandler implements EventHandler<ActionEve
 			 TextField txtName = view.getTxtName();
 			 String name = txtName.getText();
 			 
-			 if(name != null && !name.isEmpty()) {
+			 if(!StringUtils.isEmpty(name)) {
 				 List<Employee> employees = (List<Employee>)(List<?>) useCase.findByName(name);
 				 TableView<Employee> tableView = view.getTableView();
 				 ObservableList<Employee> observableList = (ObservableList<Employee>) FXCollections.observableArrayList(employees);

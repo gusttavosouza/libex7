@@ -30,6 +30,9 @@ public class SaveStudentView extends Stage {
 	private Label lblDob = new Label("Data de Nascimento:");
 	
 	@Getter	
+	private Label lblDobFormat = new Label("dd/mm/aaaa");
+	
+	@Getter	
 	private Label lblStudentNumber= new Label("RA:");
 	
 	@Getter
@@ -60,6 +63,7 @@ public class SaveStudentView extends Stage {
 		gridPane.add(txtName, 2, 1);
 		gridPane.add(lblDob, 1, 2);
 		gridPane.add(txtDob, 2, 2);
+		gridPane.add(lblDobFormat, 3, 2);
 		gridPane.add(lblStudentNumber, 1, 3);
 		gridPane.add(txtStudentNumber, 2, 3);
 		

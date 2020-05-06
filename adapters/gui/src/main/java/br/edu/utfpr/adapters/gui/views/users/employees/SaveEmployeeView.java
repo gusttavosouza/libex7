@@ -31,6 +31,9 @@ public class SaveEmployeeView extends Stage {
 	private Label lblDob = new Label("Data de Nascimento:");
 	
 	@Getter	
+	private Label lblDobFormat = new Label("dd/mm/aaaa");
+	
+	@Getter	
 	private Label lblEmployeeNumber= new Label("Matrícula:");
 	
 	@Getter
@@ -52,7 +55,8 @@ public class SaveEmployeeView extends Stage {
 	
 	
 	private void init() {
-
+		
+	
 		GridPane gridPane = new GridPane();
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
@@ -61,6 +65,7 @@ public class SaveEmployeeView extends Stage {
 		gridPane.add(txtName, 2, 1);
 		gridPane.add(lblDob, 1, 2);
 		gridPane.add(txtDob, 2, 2);
+		gridPane.add(lblDobFormat, 3, 2);
 		gridPane.add(lblEmployeeNumber, 1, 3);
 		gridPane.add(txtEmployeeNumber, 2, 3);
 		
