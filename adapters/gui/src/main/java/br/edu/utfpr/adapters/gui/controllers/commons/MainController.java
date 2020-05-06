@@ -37,12 +37,7 @@ public class MainController {
 			public void handle(ActionEvent event) {
 				SaveAuthorController saveAuthorController = authorController.getSaveAuthorController();
 				SaveAuthorView saveAuthorView = saveAuthorController.getView();
-
-				Scene scene = new Scene(saveAuthorView, 500, 100);
-
-				Stage stage = new Stage();
-				stage.setScene(scene);
-				stage.show();
+				saveAuthorView.show();
 			}
 		});
 
@@ -53,12 +48,7 @@ public class MainController {
 			public void handle(ActionEvent event) {
 				SearchAuthorController searchAuthorController = authorController.getSearchAuthorController();
 				SearchAuthorView searchAuthorView = searchAuthorController.getView();
-
-				Scene scene = new Scene(searchAuthorView, 700, 500);
-
-				Stage stage = new Stage();
-				stage.setScene(scene);
-				stage.show();
+				searchAuthorView.show();
 			}
 		});
 

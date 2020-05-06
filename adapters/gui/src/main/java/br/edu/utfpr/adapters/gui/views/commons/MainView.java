@@ -1,7 +1,10 @@
 package br.edu.utfpr.adapters.gui.views.commons;
 
 
+
+
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -10,13 +13,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
-public class MainView extends BorderPane {
+public class MainView extends Stage {
 	
 	protected MenuBar menuBar;
-	
 	protected Menu menuHome = new Menu("Home");
 	protected Menu menuAuthor = new Menu("Autores");
 	protected Menu menuBook = new Menu("Acervo");
@@ -25,6 +28,12 @@ public class MainView extends BorderPane {
 	protected Menu menuUser= new Menu("Usuários");
 	protected Menu menuSearch = new Menu("Busca");
 	protected Menu menuExit = new Menu("Sair");
+	
+
+	private Scene scene;
+	
+	@Getter
+	private BorderPane root;
 	
 	@Getter
 	protected MenuItem menuItemNewAuthor = new MenuItem("Novo");
@@ -74,11 +83,15 @@ public class MainView extends BorderPane {
 	
 	@Getter
 	@Setter
-	protected Pane root;
+	protected Pane content;
 	
 	public MainView(Pane root) {
-		this.root = root;
+		this.setTitle("Biblioteca Libex7");
+		this.content = root;
+		this.root = new BorderPane();
 		init();
+		this.setMaximized(true);
+		this.setScene(scene);
 	}
 
 	
@@ -95,15 +108,17 @@ public class MainView extends BorderPane {
 		HBox hBox = new HBox(menuBar);
 		hBox.setSpacing(10.0);
 		hBox.setAlignment(Pos.TOP_RIGHT);
-		setAlignment(hBox, Pos.TOP_RIGHT);
-		setAlignment(menuBar, Pos.TOP_RIGHT);
+		BorderPane.setAlignment(hBox, Pos.TOP_RIGHT);
+		BorderPane.setAlignment(menuBar, Pos.TOP_RIGHT);
 		HBox.setHgrow(menuBar, Priority.ALWAYS);
 		
 	
-		this.setCenter(root);
-		GridPane.setHgrow(root,  Priority.ALWAYS);
-		GridPane.setVgrow(root,  Priority.ALWAYS);
-		this.setTop(hBox);
+		root.setCenter(content);
+		GridPane.setHgrow(content,  Priority.ALWAYS);
+		GridPane.setVgrow(content,  Priority.ALWAYS);
+		root.setTop(hBox);
+		this.scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 	}
 	
 	
