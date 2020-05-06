@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.626s</div>
+<div class="counter">0.439s</div>
 <p>duration</p>
 </div>
 </td>
@@ -84,25 +84,25 @@
 <tr>
 <td class="success">Given Existing Author When Find By Id Then Return Author</td>
 <td class="success">givenExistingAuthorWhenFindByIdThenReturnAuthor()</td>
-<td class="success">0.198s</td>
+<td class="success">0.188s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Given Existing Author When Remove By Id Then Do Nothing</td>
 <td class="success">givenExistingAuthorWhenRemoveThenDoNothing()</td>
-<td class="success">0.003s</td>
+<td class="success">0.007s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Given Existing Authors When Find All Then Return Author List</td>
 <td class="success">givenExistingAuthorsWhenFindAllThenReturnAuthorList()</td>
-<td class="success">0.422s</td>
+<td class="success">0.240s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Given New Author When Save Then Return Saved Author</td>
 <td class="success">givenNewAuthorWhenSaveThenReturnSavedAuthor()</td>
-<td class="success">0.003s</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -121,35 +121,35 @@ Hibernate: insert into AUTOR (CODIGO_AUTOR, NOME_AUTOR) values (null, ?)
 <div id="tab2" class="tab">
 <h2>Standard error</h2>
 <span class="code">
-<pre>mai 04, 2020 11:07:57 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+<pre>mai 06, 2020 4:06:33 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
 INFO: HHH000204: Processing PersistenceUnitInfo [name: libex7]
-mai 04, 2020 11:07:57 PM org.hibernate.Version logVersion
+mai 06, 2020 4:06:33 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version 5.4.15.Final
-mai 04, 2020 11:07:57 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager &lt;clinit&gt;
+mai 06, 2020 4:06:33 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager &lt;clinit&gt;
 INFO: HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-mai 04, 2020 11:07:58 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+mai 06, 2020 4:06:34 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-mai 04, 2020 11:07:58 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+mai 06, 2020 4:06:34 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: using driver [org.h2.Driver] at URL [jdbc:h2:mem:libex7db;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=runscript from 'classpath:create_schema_libex7.sql']
-mai 04, 2020 11:07:58 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
-INFO: HHH10001001: Connection properties: {password=****, user=sa}
-mai 04, 2020 11:07:58 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+mai 06, 2020 4:06:34 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {user=sa, password=****}
+mai 06, 2020 4:06:34 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-mai 04, 2020 11:07:58 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections &lt;init&gt;
+mai 06, 2020 4:06:34 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections &lt;init&gt;
 INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
-mai 04, 2020 11:07:59 PM org.hibernate.dialect.Dialect &lt;init&gt;
+mai 06, 2020 4:06:35 PM org.hibernate.dialect.Dialect &lt;init&gt;
 INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-mai 04, 2020 11:08:01 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
+mai 06, 2020 4:06:35 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
 WARN: HHH000038: Composite-id class does not override equals(): br.edu.utfpr.libex7.adapters.persistence.entity.checkouts.CheckOutEntity$CheckOutEntityId
-mai 04, 2020 11:08:01 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
+mai 06, 2020 4:06:35 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
 WARN: HHH000039: Composite-id class does not override hashCode(): br.edu.utfpr.libex7.adapters.persistence.entity.checkouts.CheckOutEntity$CheckOutEntityId
-mai 04, 2020 11:08:01 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
+mai 06, 2020 4:06:35 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
 WARN: HHH000038: Composite-id class does not override equals(): br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity$PhoneEntity$PhoneEntityId
-mai 04, 2020 11:08:01 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
+mai 06, 2020 4:06:35 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
 WARN: HHH000039: Composite-id class does not override hashCode(): br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity$PhoneEntity$PhoneEntityId
-mai 04, 2020 11:08:01 PM org.hibernate.tuple.PojoInstantiator &lt;init&gt;
+mai 06, 2020 4:06:36 PM org.hibernate.tuple.PojoInstantiator &lt;init&gt;
 INFO: HHH000182: No default (no-argument) constructor for class: br.edu.utfpr.libex7.adapters.persistence.entity.checkouts.CheckOutEntity$CheckInEntity (class must be instantiated by Interceptor)
-mai 04, 2020 11:08:02 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+mai 06, 2020 4:06:36 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 </pre>
 </span>
@@ -162,7 +162,7 @@ INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transac
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.1.1</a> at 4 de mai de 2020 23:08:06</p>
+<a href="http://www.gradle.org">Gradle 6.0</a> at 06/05/2020 16:06:40</p>
 </div>
 </div>
 </body>

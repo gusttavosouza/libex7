@@ -2,18 +2,24 @@ package br.edu.utfpr.libex7.application.domain.authors;
 
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class Author {
 
     @Getter
-    private final Long id;
+    private Long id;
 
     @Getter
     @Setter
     private String name;
+
+	public Author(Long id) {
+		this.id = id;
+	}
+    
+    
 
 }

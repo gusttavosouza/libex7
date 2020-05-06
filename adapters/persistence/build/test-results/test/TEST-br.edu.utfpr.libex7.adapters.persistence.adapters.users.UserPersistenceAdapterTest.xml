@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.users.UserPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-05T02:07:56" hostname="DESKTOP-LUUQ2JI" time="0.07">
+<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.users.UserPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-06T19:06:32" hostname="DESKTOP-LUUQ2JI" time="0.05">
   <properties/>
-  <testcase name="givenNewUserWhenSaveThenReturnSavedUser()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.users.UserPersistenceAdapterTest" time="0.056"/>
-  <testcase name="givenFindAllMethodWhenIsCalledThenReturnUserList()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.users.UserPersistenceAdapterTest" time="0.003"/>
+  <testcase name="givenNewUserWhenSaveThenReturnSavedUser()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.users.UserPersistenceAdapterTest" time="0.04"/>
+  <testcase name="givenFindAllMethodWhenIsCalledThenReturnUserList()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.users.UserPersistenceAdapterTest" time="0.002"/>
   <testcase name="givenExistingUserWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.users.UserPersistenceAdapterTest" time="0.002"/>
   <testcase name="givenUserIdWhenExistsThenReturnUser()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.users.UserPersistenceAdapterTest" time="0.002"/>
-  <testcase name="givenUserIdWhenNotExistsThenReturnUser()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.users.UserPersistenceAdapterTest" time="0.003"/>
+  <testcase name="givenUserIdWhenNotExistsThenReturnUser()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.users.UserPersistenceAdapterTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

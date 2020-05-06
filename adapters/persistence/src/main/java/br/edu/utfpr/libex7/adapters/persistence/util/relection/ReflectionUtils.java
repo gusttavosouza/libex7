@@ -19,7 +19,11 @@ public class ReflectionUtils {
                     .filter(f -> f.isAnnotationPresent(annotationClass))
                     .collect(Collectors.toList()));
         }
-        return fieldAnnotations;          
+        if(fieldAnnotations.isEmpty()){
+        	Class<?> superclass = clazz.getSuperclass();
+        	return getFields(superclass, annotationClasses);
+        }
+        return fieldAnnotations;
     }
 
     public static void updateField(Field field, Object object, Object fieldValue){

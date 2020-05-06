@@ -37,7 +37,8 @@ public class AuthorPersistenceAdapter implements SaveAuthorPort, SearchAuthorPor
 
     @Override
     public List<Author> findByName(String name) {
-        return service.findByName(name);
+    	List<AuthorEntity> authors = service.findByName(name);
+        return mapper.mapToDomain(authors);
     }
 
     @Override

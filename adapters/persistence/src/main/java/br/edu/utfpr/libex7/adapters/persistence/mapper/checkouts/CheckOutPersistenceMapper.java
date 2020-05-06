@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CheckOutPersistenceMapper extends GenericMapper<CheckOut, CheckOutEntity> {
 
+
 	@SuppressWarnings("rawtypes")
 	private final UserPersistenceMapper userMapper;
 	
@@ -33,6 +34,7 @@ public class CheckOutPersistenceMapper extends GenericMapper<CheckOut, CheckOutE
 		checkOut.checkIn(checkInEntity.getCheckInDate());
 		return checkOut;
 	}
+
 
 	@SuppressWarnings("unchecked")
 	@Override

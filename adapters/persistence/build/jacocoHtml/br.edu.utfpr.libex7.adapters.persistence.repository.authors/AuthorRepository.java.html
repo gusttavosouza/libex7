@@ -3,20 +3,28 @@
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.adapters.persistence.repository.GenericRepository;
-import br.edu.utfpr.libex7.application.domain.authors.Author;
 
 public class AuthorRepository extends GenericRepository&lt;AuthorEntity, Long&gt; {
 
     public AuthorRepository(EntityManager em) {
-<span class="fc" id="L14">        super(em);</span>
-<span class="fc" id="L15">    }</span>
+<span class="fc" id="L17">        super(em);</span>
+<span class="fc" id="L18">    }</span>
 
-	public List&lt;Author&gt; findByName(String name) {
-		// TODO Auto-generated method stub
-<span class="nc" id="L19">		return null;</span>
+	public List&lt;AuthorEntity&gt; findByName(String name) {
+<span class="nc" id="L21">		   CriteriaBuilder cb = em.getCriteriaBuilder();</span>
+<span class="nc" id="L22">	       CriteriaQuery&lt;AuthorEntity&gt; cq = cb.createQuery(AuthorEntity.class);</span>
+<span class="nc" id="L23">	       Root&lt;AuthorEntity&gt; root = cq.from(AuthorEntity.class);</span>
+<span class="nc" id="L24">	       cq.select(root)</span>
+<span class="nc" id="L25">	          .where(cb.like(root.get(&quot;name&quot;), name + &quot;%&quot;));</span>
+<span class="nc" id="L26">	       TypedQuery&lt;AuthorEntity&gt; query = em.createQuery(cq);</span>
+<span class="nc" id="L27">	       return query.getResultList();</span>
 	}
 
    

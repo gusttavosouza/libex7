@@ -1,38 +1,44 @@
 package br.edu.utfpr.libex7.adapters.persistence.service.users;
 
+import java.util.List;
+import java.util.Optional;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import br.edu.utfpr.libex7.adapters.persistence.repository.users.UserRepository;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-import java.util.Optional;
-
 @RequiredArgsConstructor
-public class UserPersistenceService implements IUserPersistenceService {
+public class UserPersistenceService<T extends UserEntity> implements IUserPersistenceService<T> {
 
-    private final UserRepository userRepository;
-    @Override
-    public UserEntity save(UserEntity user) {
-        return userRepository.save(user);
-    }
+    private final UserRepository<T> userRepository;
 
-    @Override
-    public Optional<UserEntity> findById(Long id) {
-        return userRepository.findById(id);
-    }
+	@Override
+	public T save(T user) {
+		return userRepository.save(user);
+	}
 
-    @Override
-    public List<UserEntity> findAll() {
-        return userRepository.findAll();
-    }
+	@Override
+	public Optional<T> findById(Long id) {
+		return userRepository.findById(id);
+	}
 
-    @Override
-    public void remove(Long id) {
-        userRepository.remove(id);
-    }
+	@Override
+	public List<T> findAll() {
+		return userRepository.findAll();
+	}
 
-    @Override
-    public List<UserEntity> findByName(String name) {
-        return userRepository.findByName(name);
-    }
+	@Override
+	public void remove(Long id) {
+		userRepository.remove(id);
+		
+	}
+
+	@Override
+	public List<T> findByName(String name) {
+		return userRepository.findByName(name);
+	}
+
+	
+    
+   
 }

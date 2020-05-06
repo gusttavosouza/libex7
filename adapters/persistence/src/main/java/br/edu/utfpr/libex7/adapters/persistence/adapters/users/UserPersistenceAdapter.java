@@ -13,16 +13,14 @@ import br.edu.utfpr.libex7.application.ports.out.users.SearchUserPort;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UserPersistenceAdapter implements SaveUserPort, SearchUserPort, RemoveUserPort {
+public class UserPersistenceAdapter<T extends UserEntity> implements SaveUserPort, SearchUserPort, RemoveUserPort {
 
-    private final UserPersistenceService service;
-    @SuppressWarnings("rawtypes")
-	private final UserPersistenceMapper mapper;
+    private final UserPersistenceService<T> service;
+	private final UserPersistenceMapper<User, T> mapper;
 
-    @SuppressWarnings("unchecked")
 	@Override
     public User save(User user) {
-        UserEntity userEntity = mapper.mapToEntity(user);
+        T userEntity = mapper.mapToEntity(user);
         service.save(userEntity);
         return mapper.mapToDomain(userEntity);
     }
@@ -32,28 +30,26 @@ public class UserPersistenceAdapter implements SaveUserPort, SearchUserPort, Rem
         service.remove(id);
     }
 
-    @SuppressWarnings("unchecked")
 	@Override
     public Optional<User> findById(Long id) {
-        Optional<UserEntity> optionalUserEntity = service.findById(id);
+      Optional<T> optionalUserEntity = service.findById(id);
         if(optionalUserEntity.isPresent()){
-            UserEntity userEntity = optionalUserEntity.get();
+            T userEntity = optionalUserEntity.get();
             return Optional.ofNullable(mapper.mapToDomain(userEntity));
         }
         return Optional.empty();
     }
 
-    @SuppressWarnings("unchecked")
+  
 	@Override
     public List<User> findByName(String name) {
-        List<UserEntity> userEntities = service.findByName(name);
+        List<T> userEntities = service.findByName(name);
         return mapper.mapToDomain(userEntities);
     }
 
-    @SuppressWarnings("unchecked")
 	@Override
     public List<User> findAll() {
-        List<UserEntity> userEntities = service.findAll();
+        List<T> userEntities = service.findAll();
         return mapper.mapToDomain(userEntities);
     }
 }

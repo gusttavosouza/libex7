@@ -19,7 +19,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.EmployeeEntity;
-import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.EmployeePersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.UserPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.service.users.UserPersistenceService;
@@ -28,11 +27,12 @@ import br.edu.utfpr.libex7.application.domain.users.User;
 
 public class UserPersistenceAdapterTest {
 
-    private UserPersistenceService service;
+    private UserPersistenceService<EmployeeEntity> service;
     private UserPersistenceMapper<Employee, EmployeeEntity> mapper;
-    private UserPersistenceAdapter adapter;
+    private UserPersistenceAdapter<EmployeeEntity> adapter;
 
-    @BeforeEach
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@BeforeEach
     public void setup(){
         this.service = mock(UserPersistenceService.class);
         this.mapper = new EmployeePersistenceMapper();
@@ -44,7 +44,7 @@ public class UserPersistenceAdapterTest {
     public void givenNewUserWhenSaveThenReturnSavedUser(){
         User user = new Employee(1L);
         user.setName("Foo");
-        when(service.save(any(UserEntity.class))).thenReturn(new EmployeeEntity(1L));
+        when(service.save(any(EmployeeEntity.class))).thenReturn(new EmployeeEntity(1L));
         User savedUser = adapter.save(user);
         assertThat(savedUser).isNotNull();
     }
