@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - CopyRepositoryTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>CopyRepositoryTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/br.edu.utfpr.libex7.adapters.persistence.repository.copies.html">br.edu.utfpr.libex7.adapters.persistence.repository.copies</a> &gt; CopyRepositoryTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">4</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.034s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">Given Existing Book When Find By Id Then Return Book</td>
+<td class="success">givenExistingBookWhenFindByIdThenReturnBook()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Given Existing Book When Remove By Id Then Do Nothing</td>
+<td class="success">givenExistingBookWhenRemoveThenDoNothing()</td>
+<td class="success">0.010s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Given Existing Books When Find All Then Return Book List</td>
+<td class="success">givenExistingBooksWhenFindAllThenReturnBookList()</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Given New Book When Save Then Return Saved Book</td>
+<td class="success">givenNewBookWhenSaveThenReturnSavedBook()</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>Hibernate: insert into TIPO_OBRA (CODIGO_TIPO_OBRA, DESCRICAO_TIPO_OBRA) values (null, ?)
+Hibernate: insert into OBRA (CODIGO_OBRA, CODIGO_TIPO_OBRA, TITULO_OBRA, ANO_PUBLICACAO_OBRA) values (null, ?, ?, ?)
+Hibernate: insert into EXEMPLAR (CODIGO_EXEMPLAR, DATA_AQUISICAO_EXEMPLAR, CODIGO_OBRA, CODIGO_SITUACAO_EXEMPLAR) values (null, ?, ?, ?)
+Hibernate: select copyentity0_.CODIGO_EXEMPLAR as codigo_e1_5_, copyentity0_.DATA_AQUISICAO_EXEMPLAR as data_aqu2_5_, copyentity0_.CODIGO_OBRA as codigo_o4_5_, copyentity0_.CODIGO_SITUACAO_EXEMPLAR as codigo_s3_5_ from EXEMPLAR copyentity0_
+Hibernate: insert into TIPO_OBRA (CODIGO_TIPO_OBRA, DESCRICAO_TIPO_OBRA) values (null, ?)
+Hibernate: insert into OBRA (CODIGO_OBRA, CODIGO_TIPO_OBRA, TITULO_OBRA, ANO_PUBLICACAO_OBRA) values (null, ?, ?, ?)
+Hibernate: insert into EXEMPLAR (CODIGO_EXEMPLAR, DATA_AQUISICAO_EXEMPLAR, CODIGO_OBRA, CODIGO_SITUACAO_EXEMPLAR) values (null, ?, ?, ?)
+Hibernate: insert into TIPO_OBRA (CODIGO_TIPO_OBRA, DESCRICAO_TIPO_OBRA) values (null, ?)
+Hibernate: insert into OBRA (CODIGO_OBRA, CODIGO_TIPO_OBRA, TITULO_OBRA, ANO_PUBLICACAO_OBRA) values (null, ?, ?, ?)
+Hibernate: insert into EXEMPLAR (CODIGO_EXEMPLAR, DATA_AQUISICAO_EXEMPLAR, CODIGO_OBRA, CODIGO_SITUACAO_EXEMPLAR) values (null, ?, ?, ?)
+Hibernate: insert into TIPO_OBRA (CODIGO_TIPO_OBRA, DESCRICAO_TIPO_OBRA) values (null, ?)
+Hibernate: insert into OBRA (CODIGO_OBRA, CODIGO_TIPO_OBRA, TITULO_OBRA, ANO_PUBLICACAO_OBRA) values (null, ?, ?, ?)
+Hibernate: insert into EXEMPLAR (CODIGO_EXEMPLAR, DATA_AQUISICAO_EXEMPLAR, CODIGO_OBRA, CODIGO_SITUACAO_EXEMPLAR) values (null, ?, ?, ?)
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>mai 06, 2020 4:06:38 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH000204: Processing PersistenceUnitInfo [name: libex7]
+mai 06, 2020 4:06:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+mai 06, 2020 4:06:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [org.h2.Driver] at URL [jdbc:h2:mem:libex7db;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=runscript from 'classpath:create_schema_libex7.sql']
+mai 06, 2020 4:06:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {user=sa, password=****}
+mai 06, 2020 4:06:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+mai 06, 2020 4:06:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections &lt;init&gt;
+INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
+mai 06, 2020 4:06:39 PM org.hibernate.dialect.Dialect &lt;init&gt;
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+mai 06, 2020 4:06:39 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
+WARN: HHH000038: Composite-id class does not override equals(): br.edu.utfpr.libex7.adapters.persistence.entity.checkouts.CheckOutEntity$CheckOutEntityId
+mai 06, 2020 4:06:39 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
+WARN: HHH000039: Composite-id class does not override hashCode(): br.edu.utfpr.libex7.adapters.persistence.entity.checkouts.CheckOutEntity$CheckOutEntityId
+mai 06, 2020 4:06:39 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
+WARN: HHH000038: Composite-id class does not override equals(): br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity$PhoneEntity$PhoneEntityId
+mai 06, 2020 4:06:39 PM org.hibernate.mapping.RootClass checkCompositeIdentifier
+WARN: HHH000039: Composite-id class does not override hashCode(): br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity$PhoneEntity$PhoneEntityId
+mai 06, 2020 4:06:39 PM org.hibernate.tuple.PojoInstantiator &lt;init&gt;
+INFO: HHH000182: No default (no-argument) constructor for class: br.edu.utfpr.libex7.adapters.persistence.entity.checkouts.CheckOutEntity$CheckInEntity (class must be instantiated by Interceptor)
+mai 06, 2020 4:06:39 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 6.0</a> at 06/05/2020 16:06:40</p>
+</div>
+</div>
+</body>
+</html>

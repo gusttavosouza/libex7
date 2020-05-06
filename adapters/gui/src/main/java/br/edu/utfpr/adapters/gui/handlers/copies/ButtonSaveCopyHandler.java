@@ -25,23 +25,30 @@ public class ButtonSaveCopyHandler implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
-		ComboBox<Book> cmbBook = view.getCmbBook();
-	    ComboBox<StatusCopyEnum> cmbStatus = view.getCmbStatus();
-	    
-	    Book book = cmbBook.getSelectionModel().getSelectedItem();
-	    StatusCopyEnum statusCopyEnum = cmbStatus.getSelectionModel().getSelectedItem();
-	    
-	    TextField txtAcquisitionDate = view.getTxtAcquisitionDate();
-	    LocalDate acquisitionDate =  LocalDate.parse(txtAcquisitionDate.getText());
+		try {
+			ComboBox<Book> cmbBook = view.getCmbBook();
+			ComboBox<StatusCopyEnum> cmbStatus = view.getCmbStatus();
 
-		Copy copy = new Copy();
-		copy.setBook(book);
-		copy.setStatus(statusCopyEnum);
-		copy.setAcquisitionDate(acquisitionDate);
-		
-		useCase.save(copy);
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Exemplar cadastrado com sucesso");
-		alert.showAndWait();
-		
+			Book book = cmbBook.getSelectionModel().getSelectedItem();
+			StatusCopyEnum statusCopyEnum = cmbStatus.getSelectionModel().getSelectedItem();
+
+			TextField txtAcquisitionDate = view.getTxtAcquisitionDate();
+			LocalDate acquisitionDate = LocalDate.parse(txtAcquisitionDate.getText());
+
+			Copy copy = new Copy();
+			copy.setBook(book);
+			copy.setStatus(statusCopyEnum);
+			copy.setAcquisitionDate(acquisitionDate);
+
+			useCase.save(copy);
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Exemplar cadastrado com sucesso");
+			alert.showAndWait();
+		} catch (Exception e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR, "Erro ao cadastrar exemplar");
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+		}
+
 	}
 }

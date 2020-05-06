@@ -23,21 +23,28 @@ public final class ButtonSaveStudentHandler implements EventHandler<ActionEvent>
 	@Override
 	public void handle(ActionEvent event) {
 		
-		TextField txtName = view.getTxtName();
-		TextField txtDob = view.getTxtDob();
-		TextField txtStudentNumber = view.getTxtStudentNumber();
-		String name = txtName.getText().toUpperCase().trim();
-		LocalDate dob = LocalDate.parse(txtDob.getText());
-		Long studentNumber = Long.parseLong(txtStudentNumber.getText());
-		
-		Student user = new Student();
-		user.setName(name);
-		user.setDob(dob);
-		user.setStudentNumber(studentNumber);
-		
-		useCase.save(user);
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Estudante cadastrado com sucesso");
-		alert.showAndWait();
+		try {
+			TextField txtName = view.getTxtName();
+			TextField txtDob = view.getTxtDob();
+			TextField txtStudentNumber = view.getTxtStudentNumber();
+			String name = txtName.getText().toUpperCase().trim();
+			LocalDate dob = LocalDate.parse(txtDob.getText());
+			Long studentNumber = Long.parseLong(txtStudentNumber.getText());
+			
+			Student user = new Student();
+			user.setName(name);
+			user.setDob(dob);
+			user.setStudentNumber(studentNumber);
+			
+			useCase.save(user);
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Estudante cadastrado com sucesso");
+			alert.showAndWait();
+		}catch (Exception e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR, "Erro ao cadastrar estudante");
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+		}
 		
 	}
 }

@@ -20,14 +20,20 @@ public class ButtonSaveAuthorHandler implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
-		
-		TextField txtName = view.getTxtName();
-		String name = txtName.getText().toUpperCase().trim();
-		Author author = new Author();
-		author.setName(name);
-		useCase.save(author);
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Autor cadastrado com sucesso");
-		alert.showAndWait();
+		try {
+			TextField txtName = view.getTxtName();
+			String name = txtName.getText().toUpperCase().trim();
+			Author author = new Author();
+			author.setName(name);
+			useCase.save(author);
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Autor cadastrado com sucesso");
+			alert.showAndWait();
+		}catch (Exception e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR, "Erro ao cadastrar autor");
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+		}
 		
 	}
 }

@@ -21,13 +21,21 @@ public class ButtonSaveCategoryHandler implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
-		TextField txtDescription = view.getTxtDescription();
-		String description = txtDescription.getText().toUpperCase().trim();
-		Category category = new Category();
-		category.setDescription(description);
-		useCase.save(category);
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Categoria cadastrada com sucesso");
-		alert.showAndWait();
+		try {
+			TextField txtDescription = view.getTxtDescription();
+			String description = txtDescription.getText().toUpperCase().trim();
+			Category category = new Category();
+			category.setDescription(description);
+			useCase.save(category);
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Categoria cadastrada com sucesso");
+			alert.showAndWait();
+		}catch (Exception e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR, "Erro ao cadastrar categoria");
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+		}
+	
 		
 	}
 }

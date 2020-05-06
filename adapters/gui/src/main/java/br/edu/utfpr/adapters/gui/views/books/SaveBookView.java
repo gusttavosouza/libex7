@@ -50,7 +50,7 @@ public class SaveBookView extends Stage {
 	@Getter
 	private ComboBox<Author> cmbAuthor = new ComboBox<>();
 
-	public SaveBookView() {
+	public SaveBookView(){
 		this.setTitle("Novo Livro");
 		this.root = new BorderPane();
 		this.init();
@@ -71,6 +71,21 @@ public class SaveBookView extends Stage {
 			public Author fromString(String author) {
 				return null;
 			}
+		});
+		
+		this.cmbCategory.setConverter(new StringConverter<Category>() {
+
+			@Override
+			public String toString(Category category) {
+				return category.getId() + "-" + category.getDescription();
+			}
+
+			@Override
+			public Category fromString(String string) {
+				return null;
+			}
+			
+			
 		});
 
 		GridPane gridPane = new GridPane();

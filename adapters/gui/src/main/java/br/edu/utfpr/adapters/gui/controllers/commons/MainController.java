@@ -2,8 +2,10 @@ package br.edu.utfpr.adapters.gui.controllers.commons;
 
 
 import br.edu.utfpr.adapters.gui.controllers.authors.AuthorController;
+import br.edu.utfpr.adapters.gui.controllers.authors.SearchAuthorController;
 import br.edu.utfpr.adapters.gui.controllers.books.BookController;
 import br.edu.utfpr.adapters.gui.controllers.categories.CategoryController;
+import br.edu.utfpr.adapters.gui.controllers.categories.SearchCategoryController;
 import br.edu.utfpr.adapters.gui.controllers.checkouts.CheckOutController;
 import br.edu.utfpr.adapters.gui.controllers.copies.CopyController;
 import br.edu.utfpr.adapters.gui.controllers.users.employees.EmployeeController;
@@ -23,6 +25,10 @@ import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchCopyHandler;
 import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchEmployeeHandler;
 import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchStudentHandler;
 import br.edu.utfpr.adapters.gui.views.commons.MainView;
+import br.edu.utfpr.libex7.application.ports.in.authors.SearchAuthorUseCase;
+import br.edu.utfpr.libex7.application.ports.in.categories.SearchCategoryUseCase;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
 import lombok.Getter;
 
@@ -63,7 +69,14 @@ public class MainController {
 		menuItemSearchAuthor.setOnAction(new MenuItemSearchAuthorHandler(authorController));
 
 		MenuItem menuItemNewBook = this.view.getMenuItemNewBook();
-		menuItemNewBook.setOnAction(new MenuItemNewBookHandler(bookController));
+		
+		SearchAuthorController searchAuthorController = this.authorController.getSearchAuthorController();
+		SearchAuthorUseCase searchAuthorUseCase = searchAuthorController.getUseCase();
+		
+		SearchCategoryController searchCategoryController = this.categoryController.getSearchCategoryController();
+		SearchCategoryUseCase useCase = searchCategoryController.getUseCase();
+		menuItemNewBook.setOnAction(new MenuItemNewBookHandler(bookController,searchAuthorUseCase, useCase));
+
 
 		MenuItem menuItemSearchBook = this.view.getMenuItemSearchBook();
 		menuItemSearchBook.setOnAction(new MenuItemSearchBookHandler(bookController));
@@ -102,6 +115,14 @@ public class MainController {
 		menuItemSearchCheckout.setOnAction(new MenuItemSearchCheckOutHandler(checkOutController));
 		
 	
+		MenuItem menuItemExit = this.view.getMenuItemExit();
+		menuItemExit.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+			    System.exit(0);
+			}
+		});
 
 	}
 

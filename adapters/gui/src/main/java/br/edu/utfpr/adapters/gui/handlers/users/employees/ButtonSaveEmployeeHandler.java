@@ -22,19 +22,26 @@ public final class ButtonSaveEmployeeHandler implements EventHandler<ActionEvent
 
 	@Override
 	public void handle(ActionEvent event) {
-		TextField txtName = view.getTxtName();
-		TextField txtDob = view.getTxtDob();
-		TextField txtEmployeeNumber = view.getTxtEmployeeNumber();
-		String name = txtName.getText().toUpperCase().trim();
-		LocalDate dob = LocalDate.parse(txtDob.getText());
-		Long studentNumber = Long.parseLong(txtEmployeeNumber.getText());
-		Employee user = new Employee();
-		user.setName(name);
-		user.setDob(dob);
-		user.setEmployeeNumber(studentNumber);
-		useCase.save(user);
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Servidor cadastrado com sucesso");
-		alert.showAndWait();
-		
+		try {
+			TextField txtName = view.getTxtName();
+			TextField txtDob = view.getTxtDob();
+			TextField txtEmployeeNumber = view.getTxtEmployeeNumber();
+			String name = txtName.getText().toUpperCase().trim();
+			LocalDate dob = LocalDate.parse(txtDob.getText());
+			Long studentNumber = Long.parseLong(txtEmployeeNumber.getText());
+			Employee user = new Employee();
+			user.setName(name);
+			user.setDob(dob);
+			user.setEmployeeNumber(studentNumber);
+			useCase.save(user);
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Servidor cadastrado com sucesso");
+			alert.showAndWait();
+		} catch (Exception e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR, "Erro ao cadastrar servidor");
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+		}
+
 	}
 }

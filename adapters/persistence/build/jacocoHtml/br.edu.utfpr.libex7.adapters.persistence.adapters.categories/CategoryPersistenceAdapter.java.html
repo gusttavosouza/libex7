@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CategoryPersistenceAdapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">persistence</a> &gt; <a href="index.source.html" class="el_package">br.edu.utfpr.libex7.adapters.persistence.adapters.categories</a> &gt; <span class="el_source">CategoryPersistenceAdapter.java</span></div><h1>CategoryPersistenceAdapter.java</h1><pre class="source lang-java linenums">package br.edu.utfpr.libex7.adapters.persistence.adapters.categories;
+
+import java.util.List;
+import java.util.Optional;
+
+import br.edu.utfpr.libex7.adapters.persistence.entity.categories.CategoryEntity;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.categories.CategoryPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.service.categories.CategoryPersistenceService;
+import br.edu.utfpr.libex7.application.domain.categories.Category;
+import br.edu.utfpr.libex7.application.ports.out.categories.RemoveCategoryPort;
+import br.edu.utfpr.libex7.application.ports.out.categories.SaveCategoryPort;
+import br.edu.utfpr.libex7.application.ports.out.categories.SearchCategoryPort;
+import lombok.RequiredArgsConstructor;
+
+<span class="fc" id="L15">@RequiredArgsConstructor</span>
+public class CategoryPersistenceAdapter implements SaveCategoryPort, SearchCategoryPort, RemoveCategoryPort {
+
+	
+	private final CategoryPersistenceService service;
+	private final CategoryPersistenceMapper mapper;
+	
+	@Override
+	public void remove(Long id) {
+<span class="fc" id="L24">		service.remove(id);</span>
+<span class="fc" id="L25">	}</span>
+
+	@Override
+	public Optional&lt;Category&gt; findById(Long id) {
+<span class="fc" id="L29">		Optional&lt;CategoryEntity&gt; optionalCategory = service.findById(id);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">		if(!optionalCategory.isPresent()) {</span>
+<span class="fc" id="L31">			return Optional.empty();</span>
+		}
+<span class="fc" id="L33">		CategoryEntity categoryEntity = optionalCategory.get();</span>
+<span class="fc" id="L34">		return Optional.ofNullable(mapper.mapToDomain(categoryEntity));</span>
+	}
+
+	@Override
+	public List&lt;Category&gt; findByDescription(String description) {
+<span class="nc" id="L39">		List&lt;CategoryEntity&gt; categoryEntities = service.findByDescription(description);</span>
+<span class="nc" id="L40">		return mapper.mapToDomain(categoryEntities);</span>
+	}
+
+	@Override
+	public List&lt;Category&gt; findAll() {
+<span class="fc" id="L45">		List&lt;CategoryEntity&gt; categoryEntities = service.findAll();</span>
+<span class="fc" id="L46">		return mapper.mapToDomain(categoryEntities);</span>
+	}
+
+	@Override
+	public Category save(Category category) {
+<span class="fc" id="L51">		CategoryEntity categoryEntity = mapper.mapToEntity(category);</span>
+<span class="fc" id="L52">		service.save(categoryEntity);</span>
+<span class="fc" id="L53">		return mapper.mapToDomain(categoryEntity);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

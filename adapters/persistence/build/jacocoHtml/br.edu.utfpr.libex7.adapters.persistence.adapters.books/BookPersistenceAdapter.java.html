@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BookPersistenceAdapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">persistence</a> &gt; <a href="index.source.html" class="el_package">br.edu.utfpr.libex7.adapters.persistence.adapters.books</a> &gt; <span class="el_source">BookPersistenceAdapter.java</span></div><h1>BookPersistenceAdapter.java</h1><pre class="source lang-java linenums">package br.edu.utfpr.libex7.adapters.persistence.adapters.books;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+
+import br.edu.utfpr.libex7.adapters.persistence.entity.books.BookEntity;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.books.BookPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.service.books.BookPersistenceService;
+import br.edu.utfpr.libex7.application.domain.books.Book;
+import br.edu.utfpr.libex7.application.ports.out.books.RemoveBookPort;
+import br.edu.utfpr.libex7.application.ports.out.books.SaveBookPort;
+import br.edu.utfpr.libex7.application.ports.out.books.SearchBookPort;
+import lombok.RequiredArgsConstructor;
+
+<span class="fc" id="L16">@RequiredArgsConstructor</span>
+public class BookPersistenceAdapter implements SaveBookPort, SearchBookPort, RemoveBookPort {
+
+	private final BookPersistenceService service;
+	private final BookPersistenceMapper mapper;
+	
+	
+	@Override
+	public void remove(Long id) {
+<span class="fc" id="L25">		service.remove(id);	</span>
+<span class="fc" id="L26">	}</span>
+
+	@Override
+	public Optional&lt;Book&gt; findById(Long id) {
+<span class="fc" id="L30">		Optional&lt;BookEntity&gt; optionalBook = service.findById(id);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">		if(!optionalBook.isPresent()) {</span>
+<span class="fc" id="L32">			return Optional.empty();</span>
+		}
+<span class="fc" id="L34">		BookEntity BookEntity = optionalBook.get();</span>
+<span class="fc" id="L35">		return Optional.ofNullable(mapper.mapToDomain(BookEntity));</span>
+	}
+
+	@Override
+	public List&lt;Book&gt; findByTitle(String title) {
+<span class="nc" id="L40">		List&lt;BookEntity&gt; bookEntities = service.findByTitle(title);</span>
+<span class="nc" id="L41">		List&lt;Book&gt; books = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L42">		bookEntities.forEach(c -&gt; books.add(mapper.mapToDomain(c)));</span>
+<span class="nc" id="L43">		return books;</span>
+	}
+
+	@Override
+	public List&lt;Book&gt; findByAuthorName(String authorName) {
+<span class="nc" id="L48">		List&lt;BookEntity&gt; bookEntities = service.findByAuthorName(authorName);</span>
+<span class="nc" id="L49">		return mapper.mapToDomain(bookEntities);</span>
+	}
+
+	@Override
+	public List&lt;Book&gt; findAll() {
+<span class="fc" id="L54">		List&lt;BookEntity&gt; bookEntities = service.findAll();</span>
+<span class="fc" id="L55">		return mapper.mapToDomain(bookEntities);</span>
+	}
+
+	@Override
+	public Book save(Book book) {
+<span class="fc" id="L60">		BookEntity bookEntity = mapper.mapToEntity(book);</span>
+<span class="fc" id="L61">		service.save(bookEntity);</span>
+<span class="fc" id="L62">		return mapper.mapToDomain(bookEntity);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

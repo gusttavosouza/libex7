@@ -89,6 +89,9 @@ public class MainView extends Stage {
 	@Getter
 	protected MenuItem menuItemSearchEmployee = new MenuItem("Buscar Servidor");
 	
+	@Getter
+	protected MenuItem menuItemExit = new MenuItem("Sair");
+	
 	
 	@Getter
 	@Setter
@@ -112,7 +115,7 @@ public class MainView extends Stage {
 		this.menuCopy.getItems().addAll(menuItemNewCopy, menuItemSearchCopy);
 		this.menuCheckOut.getItems().addAll(menuItemNewCheckout, menuItemSearchCheckout);
 		this.menuUser.getItems().addAll(menuItemNewStudent, menuItemSearchStudent, menuItemNewEmployee, menuItemSearchEmployee);
-		
+		this.menuExit.getItems().addAll(menuItemExit);
 		
 		
 		this.menuBar = new MenuBar(menuHome,menuAuthor,menuBook,menuCategory,menuCopy, menuCheckOut, menuUser, menuExit);
