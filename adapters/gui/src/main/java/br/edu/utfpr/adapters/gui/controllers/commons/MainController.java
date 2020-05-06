@@ -1,90 +1,107 @@
 package br.edu.utfpr.adapters.gui.controllers.commons;
 
+
 import br.edu.utfpr.adapters.gui.controllers.authors.AuthorController;
-import br.edu.utfpr.adapters.gui.controllers.authors.SaveAuthorController;
-import br.edu.utfpr.adapters.gui.controllers.authors.SearchAuthorController;
 import br.edu.utfpr.adapters.gui.controllers.books.BookController;
-import br.edu.utfpr.adapters.gui.controllers.books.SaveBookController;
-import br.edu.utfpr.adapters.gui.controllers.books.SearchBookController;
-import br.edu.utfpr.adapters.gui.views.authors.SaveAuthorView;
-import br.edu.utfpr.adapters.gui.views.authors.SearchAuthorView;
-import br.edu.utfpr.adapters.gui.views.books.SaveBookView;
-import br.edu.utfpr.adapters.gui.views.books.SearchBookView;
+import br.edu.utfpr.adapters.gui.controllers.categories.CategoryController;
+import br.edu.utfpr.adapters.gui.controllers.checkouts.CheckOutController;
+import br.edu.utfpr.adapters.gui.controllers.copies.CopyController;
+import br.edu.utfpr.adapters.gui.controllers.users.employees.EmployeeController;
+import br.edu.utfpr.adapters.gui.controllers.users.students.StudentController;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemNewAuthorHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemNewBookHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemNewCategoryHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemNewCheckOutHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemNewCopyHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemNewEmployeeHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemNewStudentHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchAuthorHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchBookHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchCategoryHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchCheckOutHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchCopyHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchEmployeeHandler;
+import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchStudentHandler;
 import br.edu.utfpr.adapters.gui.views.commons.MainView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
-import javafx.stage.Stage;
 import lombok.Getter;
 
 @Getter
 public class MainController {
 
+
 	private final MainView view;
 	private final AuthorController authorController;
 	private final BookController bookController;
+	private final CategoryController categoryController;
+	private final CopyController copyController;
+	private final CheckOutController checkOutController;
+	private final StudentController studentController;
+	private final EmployeeController employeeController;
 
-	public MainController(MainView view, AuthorController authorController, BookController bookController) {
+	public MainController(MainView view, 
+			              AuthorController authorController,  
+			              CategoryController categoryController , 
+			              BookController bookController, 
+			              CopyController copyController,
+			              CheckOutController checkOutController,
+			              StudentController studentController,
+			              EmployeeController employeeController) {
 		this.view = view;
 		this.authorController = authorController;
+		this.categoryController = categoryController;
 		this.bookController = bookController;
+		this.copyController = copyController;
+		this.checkOutController = checkOutController;
+		this.studentController = studentController;
+		this.employeeController = employeeController;
 
 		MenuItem menuItemNewAuthor = this.view.getMenuItemNewAuthor();
-		menuItemNewAuthor.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				SaveAuthorController saveAuthorController = authorController.getSaveAuthorController();
-				SaveAuthorView saveAuthorView = saveAuthorController.getView();
-				saveAuthorView.show();
-			}
-		});
+		menuItemNewAuthor.setOnAction(new MenuItemNewAuthorHandler(authorController));
 
 		MenuItem menuItemSearchAuthor = this.view.getMenuItemSearchAuthor();
-		menuItemSearchAuthor.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				SearchAuthorController searchAuthorController = authorController.getSearchAuthorController();
-				SearchAuthorView searchAuthorView = searchAuthorController.getView();
-				searchAuthorView.show();
-			}
-		});
+		menuItemSearchAuthor.setOnAction(new MenuItemSearchAuthorHandler(authorController));
 
 		MenuItem menuItemNewBook = this.view.getMenuItemNewBook();
-		menuItemNewBook.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				SaveBookController saveBookController = bookController.getSaveBookController();
-				SaveBookView saveBookView = saveBookController.getView();
-
-				Scene scene = new Scene(saveBookView, 700, 500);
-
-				Stage stage = new Stage();
-				stage.setScene(scene);
-				stage.show();
-
-			}
-		});
+		menuItemNewBook.setOnAction(new MenuItemNewBookHandler(bookController));
 
 		MenuItem menuItemSearchBook = this.view.getMenuItemSearchBook();
-		menuItemSearchBook.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				SearchBookController searchBookController = bookController.getSearchBookController();
-				SearchBookView searchBookView = searchBookController.getView();
-
-				Scene scene = new Scene(searchBookView, 700, 500);
-
-				Stage stage = new Stage();
-				stage.setScene(scene);
-				stage.show();
-
-			}
-		});
+		menuItemSearchBook.setOnAction(new MenuItemSearchBookHandler(bookController));
+		
+		MenuItem menuItemNewCategory = this.view.getMenuItemNewCategory();
+		menuItemNewCategory.setOnAction(new MenuItemNewCategoryHandler(categoryController));
+		
+		
+		MenuItem menuItemSearchCategory = this.view.getMenuItemSearchCategory();
+		menuItemSearchCategory.setOnAction(new MenuItemSearchCategoryHandler(categoryController));
+		
+		MenuItem menuItemNewCopy = view.getMenuItemNewCopy();
+		menuItemNewCopy.setOnAction(new MenuItemNewCopyHandler(copyController));
+		
+		MenuItem menuItemSearchCopy = view.getMenuItemSearchCopy();
+		menuItemSearchCopy.setOnAction(new MenuItemSearchCopyHandler(copyController));
+		
+		MenuItem menuItemNewStudent = this.view.getMenuItemNewStudent();
+		menuItemNewStudent.setOnAction(new MenuItemNewStudentHandler(studentController));
+		
+		
+		MenuItem menuItemSearchStudent = this.view.getMenuItemSearchStudent();
+		menuItemSearchStudent.setOnAction(new MenuItemSearchStudentHandler(studentController));
+		
+		MenuItem menuItemNewEmployee = this.view.getMenuItemNewEmployee();
+		menuItemNewEmployee.setOnAction(new MenuItemNewEmployeeHandler(employeeController));
+		
+		MenuItem menuItemSearchEmployee = this.view.getMenuItemSearchEmployee();
+		menuItemSearchEmployee.setOnAction(new MenuItemSearchEmployeeHandler(employeeController));
+		
+		MenuItem menuItemNewCheckout = this.view.getMenuItemNewCheckout();
+		
+		menuItemNewCheckout.setOnAction(new MenuItemNewCheckOutHandler(checkOutController));
+		
+		MenuItem menuItemSearchCheckout = this.view.getMenuItemSearchCheckout();
+		menuItemSearchCheckout.setOnAction(new MenuItemSearchCheckOutHandler(checkOutController));
+		
+	
 
 	}
 

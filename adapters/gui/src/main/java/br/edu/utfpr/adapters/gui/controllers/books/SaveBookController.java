@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import br.edu.utfpr.adapters.gui.handlers.books.ButtonSaveBookHandler;
 import br.edu.utfpr.adapters.gui.views.books.SaveBookView;
 import br.edu.utfpr.libex7.application.domain.authors.Author;
 import br.edu.utfpr.libex7.application.domain.books.Book;
@@ -11,10 +12,6 @@ import br.edu.utfpr.libex7.application.domain.categories.Category;
 import br.edu.utfpr.libex7.application.ports.in.authors.SearchAuthorUseCase;
 import br.edu.utfpr.libex7.application.ports.in.books.SaveBookUseCase;
 import br.edu.utfpr.libex7.application.ports.in.categories.SearchCategoryUseCase;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -22,6 +19,9 @@ import lombok.Getter;
 
 @Getter
 public class SaveBookController {
+
+	
+
 
 	private final SaveBookUseCase useCase;
 	private final SearchCategoryUseCase searchCategoryUseCase;
@@ -65,28 +65,9 @@ public class SaveBookController {
 		book.setCategory(category);
 		book.addAuthor(author);
 		
-		
-		
-		
-    	saveButton.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				useCase.save(book);
-				Alert alert = new Alert(AlertType.CONFIRMATION, "Livro cadastrado com sucesso");
-				alert.showAndWait();
-				
-			}
-		});
+	
+    	saveButton.setOnAction(new ButtonSaveBookHandler(useCase, book));
 	}
 
-
-
-
-
-	
-
-    
-  
     
 }

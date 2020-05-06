@@ -1,21 +1,14 @@
 package br.edu.utfpr.adapters.gui.controllers.users.students;
 
-import java.util.List;
-
+import br.edu.utfpr.adapters.gui.handlers.users.students.ButtonSearchStudentHandler;
 import br.edu.utfpr.adapters.gui.views.users.students.SearchStudentView;
-import br.edu.utfpr.libex7.application.domain.users.Student;
 import br.edu.utfpr.libex7.application.ports.in.users.SearchUserUseCase;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import lombok.Getter;
 
 @Getter
 public class SearchStudentController {
+
 
 	private final SearchUserUseCase useCase;
     private final SearchStudentView view;
@@ -30,22 +23,7 @@ public class SearchStudentController {
 
 	private void init() {
 	   Button button = view.getSearchButton();
-	   button.setOnAction(new EventHandler<ActionEvent>() {
-		
-		@Override
-		public void handle(ActionEvent event) {
-			 TextField txtName = view.getTxtName();
-			 String name = txtName.getText();
-			 
-			 if(name != null && !name.isEmpty()) {
-				 List<Student> authors = null;
-				 ListView<Student> listView = view.getListView();
-				 ObservableList<Student> observableList = (ObservableList<Student>) FXCollections.observableArrayList(authors);
-				 listView.setItems(observableList);
-			 }
-			
-		}
-	});
+	   button.setOnAction(new ButtonSearchStudentHandler(useCase, view));
 		
 	}
     

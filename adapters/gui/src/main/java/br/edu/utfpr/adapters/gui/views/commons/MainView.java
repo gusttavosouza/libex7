@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -24,6 +25,7 @@ public class MainView extends Stage {
 	protected Menu menuAuthor = new Menu("Autores");
 	protected Menu menuBook = new Menu("Acervo");
 	protected Menu menuCategory = new Menu("Categorias");
+	protected Menu menuCopy= new Menu("Exemplares"); 
 	protected Menu menuCheckOut= new Menu("Empréstimos"); 
 	protected Menu menuUser= new Menu("Usuários");
 	protected Menu menuSearch = new Menu("Busca");
@@ -58,6 +60,13 @@ public class MainView extends Stage {
 	@Getter
 	protected MenuItem menuItemSearchCategory = new MenuItem("Buscar");
 	
+	@Getter
+	protected MenuItem menuItemNewCopy = new MenuItem("Novo");
+	
+	
+	@Getter
+	protected MenuItem menuItemSearchCopy = new MenuItem("Buscar");
+	
 	
 	@Getter
 	protected MenuItem menuItemNewCheckout = new MenuItem("Novo");
@@ -74,11 +83,11 @@ public class MainView extends Stage {
 	protected MenuItem menuItemSearchStudent = new MenuItem("Buscar Estudante");
 	
 	@Getter
-	protected MenuItem menuItemNewSEmployee = new MenuItem("Novo Servidor");
+	protected MenuItem menuItemNewEmployee = new MenuItem("Novo Servidor");
 	
 	
 	@Getter
-	protected MenuItem menuItemSearchEmplyee = new MenuItem("Buscar Servidor");
+	protected MenuItem menuItemSearchEmployee = new MenuItem("Buscar Servidor");
 	
 	
 	@Getter
@@ -92,6 +101,7 @@ public class MainView extends Stage {
 		init();
 		this.setMaximized(true);
 		this.setScene(scene);
+		this.getIcons().add(new Image(getClass().getResource("/images/logo.png").toExternalForm()));
 	}
 
 	
@@ -99,12 +109,13 @@ public class MainView extends Stage {
 		this.menuAuthor.getItems().addAll(menuItemNewAuthor, menuItemSearchAuthor);
 		this.menuBook.getItems().addAll(menuItemNewBook, menuItemSearchBook);
 		this.menuCategory.getItems().addAll(menuItemNewCategory, menuItemSearchCategory);
+		this.menuCopy.getItems().addAll(menuItemNewCopy, menuItemSearchCopy);
 		this.menuCheckOut.getItems().addAll(menuItemNewCheckout, menuItemSearchCheckout);
-		this.menuUser.getItems().addAll(menuItemNewStudent, menuItemSearchStudent, menuItemNewSEmployee, menuItemSearchEmplyee);
+		this.menuUser.getItems().addAll(menuItemNewStudent, menuItemSearchStudent, menuItemNewEmployee, menuItemSearchEmployee);
 		
 		
 		
-		this.menuBar = new MenuBar(menuHome,menuAuthor,menuBook, menuCheckOut, menuUser, menuExit);
+		this.menuBar = new MenuBar(menuHome,menuAuthor,menuBook,menuCategory,menuCopy, menuCheckOut, menuUser, menuExit);
 		HBox hBox = new HBox(menuBar);
 		hBox.setSpacing(10.0);
 		hBox.setAlignment(Pos.TOP_RIGHT);

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.edu.utfpr.libex7.adapters.persistence.mapper.checkouts.CheckOutPersistenceMapperTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-05-05T02:07:56" hostname="DESKTOP-LUUQ2JI" time="0.015">
-  <properties/>
-  <testcase name="givenCheckOutEntityWhenMapThenReturnCheckOutDomain()" classname="br.edu.utfpr.libex7.adapters.persistence.mapper.checkouts.CheckOutPersistenceMapperTest" time="0.013"/>
-  <testcase name="givenCheckOutDomainWhenMapThenReturnCheckOutEntity()" classname="br.edu.utfpr.libex7.adapters.persistence.mapper.checkouts.CheckOutPersistenceMapperTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

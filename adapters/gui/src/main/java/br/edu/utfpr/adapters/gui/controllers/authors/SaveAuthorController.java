@@ -1,18 +1,16 @@
 package br.edu.utfpr.adapters.gui.controllers.authors;
 
+import br.edu.utfpr.adapters.gui.handlers.authors.ButtonSaveAuthorHandler;
 import br.edu.utfpr.adapters.gui.views.authors.SaveAuthorView;
-import br.edu.utfpr.libex7.application.domain.authors.Author;
 import br.edu.utfpr.libex7.application.ports.in.authors.SaveAuthorUseCase;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import lombok.Getter;
 
 @Getter
 public class SaveAuthorController {
+
+	
+
 
 	private final SaveAuthorUseCase useCase;
     private final SaveAuthorView view;
@@ -27,21 +25,7 @@ public class SaveAuthorController {
 
 	private void init(SaveAuthorUseCase useCase, SaveAuthorView view) {
 		Button saveButton = view.getSaveButton();
-    	saveButton.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				
-		    	TextField txtName = view.getTxtName();
-				String name = txtName.getText().toUpperCase().trim();
-				Author author = new Author();
-				author.setName(name);
-				useCase.save(author);
-				Alert alert = new Alert(AlertType.CONFIRMATION, "Autor cadastrado com sucesso");
-				alert.showAndWait();
-				
-			}
-		});
+    	saveButton.setOnAction(new ButtonSaveAuthorHandler(view, useCase));
 	}
 
     

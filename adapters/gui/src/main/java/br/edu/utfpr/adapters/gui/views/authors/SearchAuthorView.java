@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
@@ -42,6 +43,7 @@ public class SearchAuthorView extends Stage {
 		this.root = new GridPane();
 		init();
 		this.setScene(scene);
+		this.getIcons().add(new Image(getClass().getResource("/images/author.png").toExternalForm()));
 	}
 
 	@SuppressWarnings("unchecked")
