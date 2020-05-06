@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import lombok.Getter;
 
@@ -39,9 +39,14 @@ public class SearchAuthorController {
 			 
 			 if(name != null && !name.isEmpty()) {
 				 List<Author> authors = useCase.findByName(name);
-				 ListView<Author> listView = view.getListView();
+			     TableView<Author> tableView = view.getTableView();
 				 ObservableList<Author> observableList = FXCollections.observableArrayList(authors);
-				 listView.setItems(observableList);
+				 tableView.setItems(observableList);
+			 }else {
+				 List<Author> authors = useCase.findAll();
+				 TableView<Author> tableView = view.getTableView();
+				 ObservableList<Author> observableList = FXCollections.observableArrayList(authors);
+				 tableView.setItems(observableList);
 			 }
 			
 		}

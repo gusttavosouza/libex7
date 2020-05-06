@@ -27,14 +27,15 @@ public class SaveAuthorController {
 
 	private void init(SaveAuthorUseCase useCase, SaveAuthorView view) {
 		Button saveButton = view.getSaveButton();
-    	TextField txtName = view.getTxtName();
-		String name = txtName.getText().toUpperCase().trim();
-		Author author = new Author();
-		author.setName(name);
     	saveButton.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
+				
+		    	TextField txtName = view.getTxtName();
+				String name = txtName.getText().toUpperCase().trim();
+				Author author = new Author();
+				author.setName(name);
 				useCase.save(author);
 				Alert alert = new Alert(AlertType.CONFIRMATION, "Autor cadastrado com sucesso");
 				alert.showAndWait();

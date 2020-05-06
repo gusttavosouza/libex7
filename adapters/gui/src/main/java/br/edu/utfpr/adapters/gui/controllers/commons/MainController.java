@@ -1,19 +1,21 @@
 package br.edu.utfpr.adapters.gui.controllers.commons;
 
-
-
 import br.edu.utfpr.adapters.gui.controllers.authors.AuthorController;
+import br.edu.utfpr.adapters.gui.controllers.authors.SaveAuthorController;
+import br.edu.utfpr.adapters.gui.controllers.authors.SearchAuthorController;
 import br.edu.utfpr.adapters.gui.controllers.books.BookController;
-import br.edu.utfpr.adapters.gui.views.authors.AuthorView;
-import br.edu.utfpr.adapters.gui.views.books.BookView;
+import br.edu.utfpr.adapters.gui.controllers.books.SaveBookController;
+import br.edu.utfpr.adapters.gui.controllers.books.SearchBookController;
+import br.edu.utfpr.adapters.gui.views.authors.SaveAuthorView;
+import br.edu.utfpr.adapters.gui.views.authors.SearchAuthorView;
+import br.edu.utfpr.adapters.gui.views.books.SaveBookView;
+import br.edu.utfpr.adapters.gui.views.books.SearchBookView;
 import br.edu.utfpr.adapters.gui.views.commons.MainView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
+import javafx.stage.Stage;
 import lombok.Getter;
 
 @Getter
@@ -28,42 +30,69 @@ public class MainController {
 		this.authorController = authorController;
 		this.bookController = bookController;
 
-		MenuItem menuAuthorItem = this.view.getMenuAuthorItem();
-		menuAuthorItem.setOnAction(new EventHandler<ActionEvent>() {
+		MenuItem menuItemNewAuthor = this.view.getMenuItemNewAuthor();
+		menuItemNewAuthor.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				
-				Pane root = (Pane) view.getRoot();
-				root.getChildren().clear();
-				
-	
-				AuthorView authorView = authorController.getAuthorView();
-				
-				view.setCenter(authorView);
-				GridPane.setHgrow(authorView,  Priority.ALWAYS);
-				GridPane.setVgrow(authorView,  Priority.ALWAYS);
-				
-			
-			
-				
-				root.getChildren().setAll(authorView);
+				SaveAuthorController saveAuthorController = authorController.getSaveAuthorController();
+				SaveAuthorView saveAuthorView = saveAuthorController.getView();
+
+				Scene scene = new Scene(saveAuthorView, 500, 100);
+
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.show();
 			}
 		});
-		
-		
-		MenuItem menuBookItem = this.view.getMenuBookItem();
-		menuBookItem.setOnAction(new EventHandler<ActionEvent>() {
+
+		MenuItem menuItemSearchAuthor = this.view.getMenuItemSearchAuthor();
+		menuItemSearchAuthor.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-		        BookView bookView = bookController.getBookView();
-				Pane root = (Pane) view.getRoot();
-				AnchorPane.setTopAnchor(root, 0.0);
-				AnchorPane.setRightAnchor(root, 0.0);
-				AnchorPane.setLeftAnchor(root, 0.0);
-				AnchorPane.setBottomAnchor(root, 0.0);
-				root.getChildren().setAll(bookView);
+				SearchAuthorController searchAuthorController = authorController.getSearchAuthorController();
+				SearchAuthorView searchAuthorView = searchAuthorController.getView();
+
+				Scene scene = new Scene(searchAuthorView, 700, 500);
+
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.show();
+			}
+		});
+
+		MenuItem menuItemNewBook = this.view.getMenuItemNewBook();
+		menuItemNewBook.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				SaveBookController saveBookController = bookController.getSaveBookController();
+				SaveBookView saveBookView = saveBookController.getView();
+
+				Scene scene = new Scene(saveBookView, 700, 500);
+
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.show();
+
+			}
+		});
+
+		MenuItem menuItemSearchBook = this.view.getMenuItemSearchBook();
+		menuItemSearchBook.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				SearchBookController searchBookController = bookController.getSearchBookController();
+				SearchBookView searchBookView = searchBookController.getView();
+
+				Scene scene = new Scene(searchBookView, 700, 500);
+
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.show();
+
 			}
 		});
 

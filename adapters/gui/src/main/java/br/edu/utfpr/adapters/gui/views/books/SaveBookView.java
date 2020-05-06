@@ -1,13 +1,16 @@
 package br.edu.utfpr.adapters.gui.views.books;
 
+import br.edu.utfpr.libex7.application.domain.authors.Author;
 import br.edu.utfpr.libex7.application.domain.categories.Category;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 import lombok.Getter;
 
 public class SaveBookView extends BorderPane {
@@ -24,6 +27,9 @@ public class SaveBookView extends BorderPane {
 	@Getter	
 	private Label lblCategory = new Label("Categoria:");
 	
+	@Getter	
+	private Label lblAuthor = new Label("Autor:");
+	
 	@Getter
 	private TextField txtTitle = new TextField();
 	
@@ -33,16 +39,46 @@ public class SaveBookView extends BorderPane {
 	@Getter
 	private ComboBox<Category> cmbCategory = new ComboBox<>();
 	
+	@Getter
+	private ComboBox<Author> cmbAuthor = new ComboBox<>();
+	
 	public SaveBookView() {
 		this.init();
 	}
 	
 	
 	private void init() {
-		HBox hBoxTitle = new HBox(lblTitle, txtTitle);
-		HBox hBoxYear = new HBox(lblYear, txtYear);
-		HBox hBoxCategory = new HBox(lblCategory, cmbCategory);
-		VBox vBox = new VBox(hBoxTitle,hBoxYear,hBoxCategory, saveButton);
+		
+		
+		this.cmbAuthor.setConverter(new StringConverter<Author>() {
+			
+			@Override
+			public String toString(Author author) {
+				return author.getId() + "-" + author.getName();
+			}
+			
+			@Override
+			public Author fromString(String author) {
+				return null;
+			}
+		});
+		
+		GridPane gridPane = new GridPane();
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
+		
+		gridPane.add(lblTitle, 1, 1);
+		gridPane.add(txtTitle, 2, 1);
+		gridPane.add(lblYear, 1, 2);
+		gridPane.add(txtYear, 2, 2);
+		gridPane.add(lblCategory, 1, 3);
+		gridPane.add(cmbCategory, 2, 3);
+		gridPane.add(lblAuthor, 1, 4);
+		gridPane.add(cmbAuthor, 2, 4);
+		
+	
+		HBox hBox = new HBox(gridPane);
+		VBox vBox = new VBox(hBox, saveButton);
 		setCenter(vBox);
 	}
 	
