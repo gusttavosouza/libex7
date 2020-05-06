@@ -52,9 +52,9 @@ public abstract class GenericRepository&lt;T, K&gt; {
 
     public void remove(K id) {
 <span class="fc" id="L54">    	Optional&lt;T&gt; optionalEntity = this.findById(id);</span>
-<span class="pc bpc" id="L55" title="1 of 2 branches missed.">    	if(optionalEntity.isEmpty()) {</span>
-<span class="nc" id="L56">    		T entity = optionalEntity.get();</span>
-<span class="nc" id="L57">    		em.remove(entity);</span>
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">    	if(optionalEntity.isPresent()) {</span>
+<span class="fc" id="L56">    		T entity = optionalEntity.get();</span>
+<span class="fc" id="L57">    		em.remove(entity);</span>
     	}
 <span class="fc" id="L59">    }</span>
     
@@ -63,7 +63,7 @@ public abstract class GenericRepository&lt;T, K&gt; {
     	try {
 <span class="fc" id="L64">    	Class&lt;T&gt; classType = getClassType();</span>
 <span class="fc" id="L65">    	List&lt;Field&gt; fields = ReflectionUtils.getFields(classType, Id.class, EmbeddedId.class);</span>
-<span class="fc" id="L66">    	Field field = fields.stream().findFirst().orElseThrow();</span>
+<span class="pc" id="L66">    	Field field = fields.stream().findFirst().orElseThrow(() -&gt; new RuntimeException(&quot;Erro ao localizar atributo identificador&quot;));</span>
 <span class="fc" id="L67">    	field.setAccessible(true);</span>
 <span class="fc" id="L68">    	Object id = field.get(entity);</span>
 <span class="fc bfc" id="L69" title="All 2 branches covered.">    	return !(id != null</span>

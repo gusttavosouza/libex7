@@ -4,8 +4,10 @@ import java.time.LocalDate;
 
 import br.edu.utfpr.libex7.application.domain.books.Book;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor
 public class Copy {
 
 	

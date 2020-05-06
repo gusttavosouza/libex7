@@ -3,7 +3,7 @@ package br.edu.utfpr.libex7.adapters.persistence.entity.books;
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.categories.CategoryEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.copies.CopyEntity;
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;

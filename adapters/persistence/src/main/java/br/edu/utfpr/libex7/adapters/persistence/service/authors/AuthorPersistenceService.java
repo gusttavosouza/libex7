@@ -1,12 +1,11 @@
 package br.edu.utfpr.libex7.adapters.persistence.service.authors;
 
-import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
-import br.edu.utfpr.libex7.adapters.persistence.repository.authors.AuthorRepository;
-import br.edu.utfpr.libex7.application.domain.authors.Author;
-import lombok.RequiredArgsConstructor;
-
 import java.util.List;
 import java.util.Optional;
+
+import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
+import br.edu.utfpr.libex7.adapters.persistence.repository.authors.AuthorRepository;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class AuthorPersistenceService  implements IAuthorPersistenceService{
@@ -34,7 +33,7 @@ public class AuthorPersistenceService  implements IAuthorPersistenceService{
     }
 
     @Override
-    public List<Author> findByName(String name) {
+    public List<AuthorEntity> findByName(String name) {
         return authorRepository.findByName(name);
     }
 }

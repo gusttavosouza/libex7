@@ -28,7 +28,7 @@ public class BookPersistenceAdapter implements SaveBookPort, SearchBookPort, Rem
 	@Override
 	public Optional&lt;Book&gt; findById(Long id) {
 <span class="fc" id="L30">		Optional&lt;BookEntity&gt; optionalBook = service.findById(id);</span>
-<span class="fc bfc" id="L31" title="All 2 branches covered.">		if(optionalBook.isEmpty()) {</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">		if(!optionalBook.isPresent()) {</span>
 <span class="fc" id="L32">			return Optional.empty();</span>
 		}
 <span class="fc" id="L34">		BookEntity BookEntity = optionalBook.get();</span>

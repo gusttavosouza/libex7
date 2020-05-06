@@ -26,11 +26,11 @@ import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import br.edu.utfpr.libex7.adapters.persistence.repository.books.BookRepository;
 import br.edu.utfpr.libex7.adapters.persistence.repository.categories.CategoryRepository;
-import br.edu.utfpr.libex7.adapters.persistence.repository.users.UserRepository;
+import br.edu.utfpr.libex7.adapters.persistence.repository.users.StudentRepository;
 
 public class CheckOutRepositoryTest {
 
-	private UserRepository userRepository;
+	private StudentRepository userRepository;
 	private BookRepository bookRepository;
     private CheckOutRepository repository;
 	private CategoryRepository categoryRepository;
@@ -50,7 +50,7 @@ public class CheckOutRepositoryTest {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		this.categoryRepository = new CategoryRepository(entityManager);
 		this.bookRepository = new BookRepository(entityManager);
-		this.userRepository = new UserRepository(entityManager);
+		this.userRepository = new StudentRepository(entityManager);
 		this.repository = new CheckOutRepository(entityManager);
 		
 		category = new CategoryEntity();
@@ -77,7 +77,7 @@ public class CheckOutRepositoryTest {
 		user.setName("Foo");
 		user.setDob(LocalDate.now());
 		
-		userRepository.save(user);	
+		userRepository.save((StudentEntity) user);	
 	}
 
 	@Test

@@ -1,20 +1,20 @@
 package br.edu.utfpr.libex7.application.domain.users;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-@RequiredArgsConstructor
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
 public abstract class User {
 
     @Getter
-    protected final Long id;
+    protected Long id;
 
     @Getter
     @Setter
@@ -25,7 +25,8 @@ public abstract class User {
     protected LocalDate dob;
 
     protected List<Phone> phones = new LinkedList<>();
-
+    
+   
     public List<Phone> getPhones() {
         return Collections.unmodifiableList(phones);
     }
@@ -36,7 +37,11 @@ public abstract class User {
         return this.phones.size();
     }
 
-    @Getter
+    public User(Long id) {
+		this.id = id;
+	}
+
+	@Getter
     @AllArgsConstructor
     public static class Phone {
 

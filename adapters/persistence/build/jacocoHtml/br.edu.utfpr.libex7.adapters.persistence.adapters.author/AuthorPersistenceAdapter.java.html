@@ -37,18 +37,19 @@ public class AuthorPersistenceAdapter implements SaveAuthorPort, SearchAuthorPor
 
     @Override
     public List&lt;Author&gt; findByName(String name) {
-<span class="nc" id="L40">        return service.findByName(name);</span>
+<span class="nc" id="L40">    	List&lt;AuthorEntity&gt; authors = service.findByName(name);</span>
+<span class="nc" id="L41">        return mapper.mapToDomain(authors);</span>
     }
 
     @Override
     public List&lt;Author&gt; findAll() {
-<span class="fc" id="L45">        List&lt;AuthorEntity&gt; authorEntities = service.findAll();</span>
-<span class="fc" id="L46">        return mapper.mapToDomain(authorEntities);</span>
+<span class="fc" id="L46">        List&lt;AuthorEntity&gt; authorEntities = service.findAll();</span>
+<span class="fc" id="L47">        return mapper.mapToDomain(authorEntities);</span>
     }
 
     @Override
     public void remove(Long id) {
-<span class="fc" id="L51">        service.remove(id);</span>
-<span class="fc" id="L52">    }</span>
+<span class="fc" id="L52">        service.remove(id);</span>
+<span class="fc" id="L53">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,19 +1,19 @@
 package br.edu.utfpr.libex7.adapters.persistence.service.users;
 
-import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
-
 import java.util.List;
 import java.util.Optional;
 
-public interface IUserPersistenceService {
+import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 
-    UserEntity save(UserEntity user);
+public interface IUserPersistenceService<T extends UserEntity> {
 
-    Optional<UserEntity> findById(Long id);
+    T save(T user);
 
-    List<UserEntity> findAll();
+    Optional<T> findById(Long id);
+
+    List<T> findAll();
 
     void remove(Long id);
 
-    List<UserEntity> findByName(String name);
+    List<T> findByName(String name);
 }

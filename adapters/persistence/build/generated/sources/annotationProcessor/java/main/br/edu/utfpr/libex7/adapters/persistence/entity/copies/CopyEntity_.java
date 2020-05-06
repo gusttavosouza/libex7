@@ -2,7 +2,7 @@ package br.edu.utfpr.libex7.adapters.persistence.entity.copies;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.books.BookEntity;
 import java.time.LocalDate;
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 

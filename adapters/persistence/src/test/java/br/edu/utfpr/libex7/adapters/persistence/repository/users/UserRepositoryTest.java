@@ -23,7 +23,7 @@ import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 public class UserRepositoryTest {
 
     private static EntityManagerFactory entityManagerFactory;
-	private UserRepository repository;
+	private EmployeeRepository repository;
     
     @BeforeAll
     public static void setupAll(){
@@ -33,7 +33,7 @@ public class UserRepositoryTest {
     @BeforeEach
     public void setup(){
     	EntityManager entityManager = entityManagerFactory.createEntityManager();
-        this.repository = new UserRepository(entityManager);
+        this.repository = new EmployeeRepository(entityManager);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class UserRepositoryTest {
         userEntity.addPhone(99989898L);
         UserEntity savedUser = this.repository.save(userEntity);
 
-        Optional<UserEntity> optionalUserEntity = repository.findById(savedUser.getId());
+        Optional<EmployeeEntity> optionalUserEntity = repository.findById(savedUser.getId());
         assertTrue(optionalUserEntity.isPresent());
     }
 
@@ -98,7 +98,7 @@ public class UserRepositoryTest {
         userEntity.addPhone(99989898L);
         this.repository.save(userEntity);
 
-        List<UserEntity> userEntities = repository.findAll();
+        List<EmployeeEntity> userEntities = repository.findAll();
         assertFalse(userEntities.isEmpty());
     }
 }

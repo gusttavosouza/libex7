@@ -1,6 +1,6 @@
 package br.edu.utfpr.libex7.adapters.persistence.entity.users;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
