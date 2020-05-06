@@ -3,21 +3,29 @@
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import br.edu.utfpr.libex7.adapters.persistence.entity.categories.CategoryEntity;
 import br.edu.utfpr.libex7.adapters.persistence.repository.GenericRepository;
 
 public class CategoryRepository extends GenericRepository&lt;CategoryEntity, Long&gt; {
 
-    public CategoryRepository(EntityManager em) {
-<span class="fc" id="L13">        super(em);</span>
-<span class="fc" id="L14">    }</span>
+	public CategoryRepository(EntityManager em) {
+<span class="fc" id="L17">		super(em);</span>
+<span class="fc" id="L18">	}</span>
 
 	public List&lt;CategoryEntity&gt; findByDescription(String description) {
-		// TODO Auto-generated method stub
-<span class="nc" id="L18">		return null;</span>
+<span class="nc" id="L21">		CriteriaBuilder cb = em.getCriteriaBuilder();</span>
+<span class="nc" id="L22">		CriteriaQuery&lt;CategoryEntity&gt; cq = cb.createQuery(CategoryEntity.class);</span>
+<span class="nc" id="L23">		Root&lt;CategoryEntity&gt; root = cq.from(CategoryEntity.class);</span>
+<span class="nc" id="L24">		cq.select(root)</span>
+<span class="nc" id="L25">		  .where(cb.like(root.get(&quot;description&quot;), description + &quot;%&quot;));</span>
+<span class="nc" id="L26">		TypedQuery&lt;CategoryEntity&gt; query = em.createQuery(cq);</span>
+<span class="nc" id="L27">		return query.getResultList();</span>
 	}
 
-   
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserPersistenceMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">persistence</a> &gt; <a href="index.source.html" class="el_package">br.edu.utfpr.libex7.adapters.persistence.mapper.users</a> &gt; <span class="el_source">UserPersistenceMapper.java</span></div><h1>UserPersistenceMapper.java</h1><pre class="source lang-java linenums">package br.edu.utfpr.libex7.adapters.persistence.mapper.users;
 
-import java.util.List;
-
+import br.edu.utfpr.libex7.adapters.persistence.entity.users.EmployeeEntity;
+import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.GenericMapper;
+import br.edu.utfpr.libex7.application.domain.users.Employee;
+import br.edu.utfpr.libex7.application.domain.users.Student;
 import br.edu.utfpr.libex7.application.domain.users.User;
 import lombok.RequiredArgsConstructor;
 
-<span class="fc" id="L10">@RequiredArgsConstructor</span>
-public abstract class UserPersistenceMapper&lt;X extends User, Y extends UserEntity&gt; extends GenericMapper&lt;X, Y&gt; {
+<span class="fc" id="L12">@RequiredArgsConstructor</span>
+public class UserPersistenceMapper&lt;X extends User, Y extends UserEntity&gt; extends GenericMapper&lt;X, Y&gt; {
 
-    @Override
+    @SuppressWarnings(&quot;unchecked&quot;)
+	@Override
     public X mapToDomain(Y userEntity) {
-<span class="fc" id="L15">        Long id = userEntity.getId();</span>
-<span class="fc" id="L16">        X user = newInstanceDomain(id);</span>
-<span class="fc" id="L17">        List&lt;UserEntity.PhoneEntity&gt; phoneEntities = userEntity.getPhones();</span>
-<span class="fc" id="L18">        phoneEntities.forEach(ph -&gt; user.addPhone(ph.getPhoneId().getNumber()));</span>
-<span class="fc" id="L19">        user.setName(userEntity.getName());</span>
-<span class="fc" id="L20">        user.setDob(userEntity.getDob());</span>
-<span class="fc" id="L21">        return user;</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        if(userEntity instanceof EmployeeEntity) {</span>
+<span class="nc" id="L19">        	EmployeePersistenceMapper employeePersistenceMapper = new EmployeePersistenceMapper();</span>
+<span class="nc" id="L20">        	return (X) employeePersistenceMapper.mapToDomain((EmployeeEntity) userEntity);</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        }else if(userEntity instanceof StudentEntity) {</span>
+<span class="nc" id="L22">        	StudentPersistenceMapper studentPersistenceMapper = new StudentPersistenceMapper();</span>
+<span class="nc" id="L23">        	return (X) studentPersistenceMapper.mapToDomain((StudentEntity) userEntity);</span>
+        }
+<span class="nc" id="L25">        return null;</span>
     }
 
-    @Override
+    @SuppressWarnings(&quot;unchecked&quot;)
+	@Override
     public Y mapToEntity(X user) {
-<span class="fc" id="L26">        Long id = user.getId();</span>
-<span class="fc" id="L27">        Y userEntity = newInstanceEntity(id);</span>
-<span class="fc" id="L28">        List&lt;User.Phone&gt; phones = user.getPhones();</span>
-<span class="fc" id="L29">        phones.forEach(ph -&gt; userEntity.addPhone(ph.getNumber()));</span>
-<span class="fc" id="L30">        userEntity.setName(user.getName());</span>
-<span class="fc" id="L31">        userEntity.setDob(user.getDob());</span>
-<span class="fc" id="L32">        return userEntity;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">    	 if(user instanceof Employee) {</span>
+<span class="nc" id="L32">         	EmployeePersistenceMapper employeePersistenceMapper = new EmployeePersistenceMapper();</span>
+<span class="nc" id="L33">         	return (Y) employeePersistenceMapper.mapToEntity((Employee) user);</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">         }else if(user instanceof Student) {</span>
+<span class="nc" id="L35">         	StudentPersistenceMapper studentPersistenceMapper = new StudentPersistenceMapper();</span>
+<span class="nc" id="L36">         	return (Y) studentPersistenceMapper.mapToEntity((Student) user);</span>
+         }
+<span class="nc" id="L38">         return null;</span>
     }
 
-    protected abstract  X newInstanceDomain(Long id);
-
-    protected abstract  Y newInstanceEntity(Long id);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

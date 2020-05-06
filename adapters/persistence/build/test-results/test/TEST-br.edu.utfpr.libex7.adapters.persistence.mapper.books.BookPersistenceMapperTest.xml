@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.edu.utfpr.libex7.adapters.persistence.mapper.books.BookPersistenceMapperTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-05-06T19:06:32" hostname="DESKTOP-LUUQ2JI" time="0.004">
+<testsuite name="br.edu.utfpr.libex7.adapters.persistence.mapper.books.BookPersistenceMapperTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-05-06T22:37:16" hostname="DESKTOP-LUUQ2JI" time="0.004">
   <properties/>
   <testcase name="givenBookEntityWhenMapThenReturnBookDomain()" classname="br.edu.utfpr.libex7.adapters.persistence.mapper.books.BookPersistenceMapperTest" time="0.002"/>
   <testcase name="givenBookDomainWhenMapThenReturnBookEntity()" classname="br.edu.utfpr.libex7.adapters.persistence.mapper.books.BookPersistenceMapperTest" time="0.001"/>

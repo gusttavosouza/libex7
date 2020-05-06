@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-06T19:06:30" hostname="DESKTOP-LUUQ2JI" time="2.114">
+<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-06T22:37:14" hostname="DESKTOP-LUUQ2JI" time="1.617">
   <properties/>
-  <testcase name="givenAuthorIdWhenExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="1.96"/>
-  <testcase name="givenExistingAuthorWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.017"/>
-  <testcase name="givenNewAuthorWhenSaveThenReturnSavedAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.127"/>
-  <testcase name="givenAuthorIdWhenNotExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.003"/>
+  <testcase name="givenAuthorIdWhenExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="1.407"/>
+  <testcase name="givenExistingAuthorWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.028"/>
+  <testcase name="givenNewAuthorWhenSaveThenReturnSavedAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.169"/>
+  <testcase name="givenAuthorIdWhenNotExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.006"/>
   <testcase name="givenFindAllMethodWhenIsCalledThenReturnAuthorList()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

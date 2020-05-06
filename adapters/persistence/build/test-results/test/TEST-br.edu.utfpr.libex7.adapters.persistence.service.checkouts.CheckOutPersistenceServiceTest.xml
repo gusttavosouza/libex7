@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceServiceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-05-06T19:06:39" hostname="DESKTOP-LUUQ2JI" time="0.038">
+<testsuite name="br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceServiceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-05-06T22:37:23" hostname="DESKTOP-LUUQ2JI" time="0.049">
   <properties/>
-  <testcase name="givenCheckOutIdWhenExistsThenReturnCheckOut()" classname="br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceServiceTest" time="0.032"/>
+  <testcase name="givenCheckOutIdWhenExistsThenReturnCheckOut()" classname="br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceServiceTest" time="0.039"/>
   <testcase name="givenFindAllMethodWhenIsCalledThenReturnCheckOutList()" classname="br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceServiceTest" time="0.002"/>
-  <testcase name="givenNewCheckOutWhenSaveThenReturnSavedCheckOut()" classname="br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceServiceTest" time="0.001"/>
-  <testcase name="givenCheckOutIdWhenNotExistsThenReturnCheckOut()" classname="br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceServiceTest" time="0.001"/>
+  <testcase name="givenNewCheckOutWhenSaveThenReturnSavedCheckOut()" classname="br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceServiceTest" time="0.003"/>
+  <testcase name="givenCheckOutIdWhenNotExistsThenReturnCheckOut()" classname="br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceServiceTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

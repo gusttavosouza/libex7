@@ -19,17 +19,21 @@ import java.util.stream.Collectors;
 <span class="fc" id="L19">                    .filter(f -&gt; f.isAnnotationPresent(annotationClass))</span>
 <span class="fc" id="L20">                    .collect(Collectors.toList()));</span>
 <span class="fc" id="L21">        }</span>
-<span class="fc" id="L22">        return fieldAnnotations;          </span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if(fieldAnnotations.isEmpty()){</span>
+<span class="fc" id="L23">        	Class&lt;?&gt; superclass = clazz.getSuperclass();</span>
+<span class="fc" id="L24">        	return getFields(superclass, annotationClasses);</span>
+        }
+<span class="fc" id="L26">        return fieldAnnotations;</span>
     }
 
     public static void updateField(Field field, Object object, Object fieldValue){
         try {
-<span class="nc" id="L27">            field.setAccessible(true);</span>
-<span class="nc" id="L28">            field.set(object, fieldValue);</span>
-<span class="nc" id="L29">        } catch (IllegalAccessException e) {</span>
-<span class="nc" id="L30">            e.printStackTrace();</span>
-<span class="nc" id="L31">            throw new RuntimeException(&quot;Erro ao modificar valor do atributo &quot; + field.getName(), e);</span>
-<span class="nc" id="L32">        }</span>
-<span class="nc" id="L33">    }</span>
+<span class="nc" id="L31">            field.setAccessible(true);</span>
+<span class="nc" id="L32">            field.set(object, fieldValue);</span>
+<span class="nc" id="L33">        } catch (IllegalAccessException e) {</span>
+<span class="nc" id="L34">            e.printStackTrace();</span>
+<span class="nc" id="L35">            throw new RuntimeException(&quot;Erro ao modificar valor do atributo &quot; + field.getName(), e);</span>
+<span class="nc" id="L36">        }</span>
+<span class="nc" id="L37">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

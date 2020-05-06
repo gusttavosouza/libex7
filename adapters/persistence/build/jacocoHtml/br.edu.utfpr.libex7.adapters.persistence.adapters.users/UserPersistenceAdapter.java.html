@@ -13,48 +13,44 @@ import br.edu.utfpr.libex7.application.ports.out.users.SearchUserPort;
 import lombok.RequiredArgsConstructor;
 
 <span class="fc" id="L15">@RequiredArgsConstructor</span>
-public class UserPersistenceAdapter implements SaveUserPort, SearchUserPort, RemoveUserPort {
+public class UserPersistenceAdapter&lt;T extends UserEntity&gt; implements SaveUserPort, SearchUserPort, RemoveUserPort {
 
-    private final UserPersistenceService service;
-    @SuppressWarnings(&quot;rawtypes&quot;)
-	private final UserPersistenceMapper mapper;
+    private final UserPersistenceService&lt;T&gt; service;
+	private final UserPersistenceMapper&lt;User, T&gt; mapper;
 
-    @SuppressWarnings(&quot;unchecked&quot;)
 	@Override
     public User save(User user) {
-<span class="fc" id="L25">        UserEntity userEntity = mapper.mapToEntity(user);</span>
-<span class="fc" id="L26">        service.save(userEntity);</span>
-<span class="fc" id="L27">        return mapper.mapToDomain(userEntity);</span>
+<span class="fc" id="L23">        T userEntity = mapper.mapToEntity(user);</span>
+<span class="fc" id="L24">        service.save(userEntity);</span>
+<span class="fc" id="L25">        return mapper.mapToDomain(userEntity);</span>
     }
 
     @Override
     public void remove(Long id) {
-<span class="fc" id="L32">        service.remove(id);</span>
-<span class="fc" id="L33">    }</span>
+<span class="fc" id="L30">        service.remove(id);</span>
+<span class="fc" id="L31">    }</span>
 
-    @SuppressWarnings(&quot;unchecked&quot;)
 	@Override
     public Optional&lt;User&gt; findById(Long id) {
-<span class="fc" id="L38">        Optional&lt;UserEntity&gt; optionalUserEntity = service.findById(id);</span>
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if(optionalUserEntity.isPresent()){</span>
-<span class="fc" id="L40">            UserEntity userEntity = optionalUserEntity.get();</span>
-<span class="fc" id="L41">            return Optional.ofNullable(mapper.mapToDomain(userEntity));</span>
+<span class="fc" id="L35">      Optional&lt;T&gt; optionalUserEntity = service.findById(id);</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if(optionalUserEntity.isPresent()){</span>
+<span class="fc" id="L37">            T userEntity = optionalUserEntity.get();</span>
+<span class="fc" id="L38">            return Optional.ofNullable(mapper.mapToDomain(userEntity));</span>
         }
-<span class="fc" id="L43">        return Optional.empty();</span>
+<span class="fc" id="L40">        return Optional.empty();</span>
     }
 
-    @SuppressWarnings(&quot;unchecked&quot;)
+  
 	@Override
     public List&lt;User&gt; findByName(String name) {
-<span class="nc" id="L49">        List&lt;UserEntity&gt; userEntities = service.findByName(name);</span>
-<span class="nc" id="L50">        return mapper.mapToDomain(userEntities);</span>
+<span class="nc" id="L46">        List&lt;T&gt; userEntities = service.findByName(name);</span>
+<span class="nc" id="L47">        return mapper.mapToDomain(userEntities);</span>
     }
 
-    @SuppressWarnings(&quot;unchecked&quot;)
 	@Override
     public List&lt;User&gt; findAll() {
-<span class="fc" id="L56">        List&lt;UserEntity&gt; userEntities = service.findAll();</span>
-<span class="fc" id="L57">        return mapper.mapToDomain(userEntities);</span>
+<span class="fc" id="L52">        List&lt;T&gt; userEntities = service.findAll();</span>
+<span class="fc" id="L53">        return mapper.mapToDomain(userEntities);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
