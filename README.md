@@ -4,11 +4,16 @@ Projeto do Curso de Pós-Graduaçãp em Engenharia de Software da UTFPR.
 
 ## Building
 
-Este projeto foi desenvolvido utilizando JDK 8 e Gradle com JavaFX.
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
+- JDK 8
+- JavaFX
+- Hibernate
+- H2 Database
+- Gradle
 
 ```
-	$ ./gradlew build
+$ ./gradlew build
 ```
 
 
