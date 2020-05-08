@@ -21,6 +21,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.copies.CopyEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import lombok.AllArgsConstructor;
@@ -28,65 +32,77 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-<span class="fc" id="L31">@NoArgsConstructor</span>
+<span class="fc" id="L35">@NoArgsConstructor</span>
 @Entity
 @Table(name = &quot;EMPRESTIMO&quot;)
+@SelectBeforeUpdate(false)
+@DynamicInsert(false)
+@DynamicUpdate(false)
 public class CheckOutEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-<span class="fc" id="L39">	@Getter</span>
+<span class="fc" id="L46">	@Getter</span>
 	private CheckOutEntityId checkOutId;
 
-<span class="fc" id="L42">	@Getter</span>
-<span class="fc" id="L43">	@Setter</span>
+<span class="fc" id="L49">	@Getter</span>
+<span class="fc" id="L50">	@Setter</span>
 	@Column(name = &quot;DATA_PREVISTA_DEVOLUCAO_EMPRESTIMO&quot;)
 	private LocalDate expectedCheckInDate;
 
-<span class="fc" id="L47">	@Getter</span>
+<span class="fc" id="L54">	@Getter</span>
 	@OneToOne(mappedBy = &quot;checkout&quot;, cascade = CascadeType.ALL, fetch= FetchType.LAZY)
 	private CheckInEntity checkIn;
 
-<span class="fc" id="L51">	@ManyToMany</span>
+<span class="fc" id="L58">	@ManyToMany</span>
 	@JoinTable(name = &quot;EMPRESTIMO_EXEMPLAR&quot;,
 	          joinColumns = {@JoinColumn(name=&quot;CODIGO_USUARIO&quot;, referencedColumnName = &quot;CODIGO_USUARIO&quot;),
 	        		         @JoinColumn(name=&quot;DATA_EMPRESTIMO&quot;, referencedColumnName = &quot;DATA_EMPRESTIMO&quot;)},
 	          inverseJoinColumns = {@JoinColumn(name=&quot;CODIGO_EXEMPLAR&quot;, referencedColumnName = &quot;CODIGO_EXEMPLAR&quot;)})
 	private List&lt;CopyEntity&gt; copies = new LinkedList&lt;&gt;();
 
-<span class="fc" id="L58">	public CheckOutEntity(CheckOutEntityId checkOutId) {</span>
-<span class="fc" id="L59">		this.checkOutId = checkOutId;</span>
-<span class="fc" id="L60">	}</span>
+<span class="fc" id="L65">	public CheckOutEntity(CheckOutEntityId checkOutId) {</span>
+<span class="fc" id="L66">		this.checkOutId = checkOutId;</span>
+<span class="fc" id="L67">	}</span>
 	
 	public List&lt;CopyEntity&gt; getCopies() {
-<span class="fc" id="L63">		return Collections.unmodifiableList(copies);</span>
+<span class="fc" id="L70">		return Collections.unmodifiableList(copies);</span>
+	}
+	
+	
+	public Integer addCopy(CopyEntity copy) {
+<span class="nc" id="L75">		this.copies.add(copy);</span>
+<span class="nc" id="L76">		return this.copies.size();</span>
 	}
 	
 	public void checkIn(LocalDate checkInDate){
-<span class="fc" id="L67">	   this.checkIn =  new CheckInEntity(this, checkInDate);</span>
-<span class="fc" id="L68">	}</span>
+<span class="fc" id="L80">	   this.checkIn =  new CheckInEntity(this, checkInDate);</span>
+<span class="fc" id="L81">	}</span>
 
 	
 
 	@Embeddable
-<span class="fc" id="L73">	@NoArgsConstructor</span>
-<span class="fc" id="L74">	@AllArgsConstructor</span>
+<span class="fc" id="L86">	@NoArgsConstructor</span>
+<span class="fc" id="L87">	@AllArgsConstructor</span>
+	@SelectBeforeUpdate(false)
+	@DynamicInsert(false)
+	@DynamicUpdate(false)
 	public static class CheckOutEntityId implements Serializable {
 
 		private static final long serialVersionUID = 1L;
 
-<span class="fc" id="L79">		@Getter</span>
+<span class="fc" id="L95">		@Getter</span>
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name = &quot;CODIGO_USUARIO&quot;, referencedColumnName = &quot;CODIGO_USUARIO&quot;)
 		private UserEntity user;
 
-<span class="fc" id="L84">		@Getter</span>
+<span class="fc" id="L100">		@Getter</span>
 		@Column(name = &quot;DATA_EMPRESTIMO&quot;)
 		private LocalDate checkOutDate;
 	}
 
-<span class="nc" id="L89">	@NoArgsConstructor</span>
+<span class="nc" id="L105">	@NoArgsConstructor</span>
 	@Entity
 	@Table(name = &quot;DEVOLUCAO&quot;)
 	public class CheckInEntity implements Serializable {
@@ -94,21 +110,21 @@ public class CheckOutEntity implements Serializable {
 		private static final long serialVersionUID = 1L;
 
 		@Id
-<span class="fc" id="L97">		@Getter</span>
+<span class="fc" id="L113">		@Getter</span>
 		@Column(name = &quot;DATA_DEVOLUCAO&quot;)
 		private LocalDate checkInDate;
 		
 		@OneToOne
 		@JoinColumns(value = {@JoinColumn(name = &quot;CODIGO_USUARIO&quot;, referencedColumnName = &quot;CODIGO_USUARIO&quot;),
 				              @JoinColumn(name = &quot;DATA_EMPRESTIMO&quot;, referencedColumnName = &quot;DATA_EMPRESTIMO&quot;)})
-<span class="nc" id="L104">		@Getter</span>
+<span class="nc" id="L120">		@Getter</span>
 		private CheckOutEntity checkout;
 	
 
-<span class="fc" id="L108">		public CheckInEntity(CheckOutEntity checkout, LocalDate checkInDate) {</span>
-<span class="fc" id="L109">			this.checkout = checkout;</span>
-<span class="fc" id="L110">			this.checkInDate = checkInDate;</span>
-<span class="fc" id="L111">		}</span>
+<span class="fc" id="L124">		public CheckInEntity(CheckOutEntity checkout, LocalDate checkInDate) {</span>
+<span class="fc" id="L125">			this.checkout = checkout;</span>
+<span class="fc" id="L126">			this.checkInDate = checkInDate;</span>
+<span class="fc" id="L127">		}</span>
 
 	}
 

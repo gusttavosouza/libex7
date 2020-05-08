@@ -6,26 +6,33 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-<span class="fc" id="L14">@NoArgsConstructor</span>
+<span class="fc" id="L18">@NoArgsConstructor</span>
 @Getter
-<span class="fc" id="L16">@Setter</span>
+<span class="fc" id="L20">@Setter</span>
 @Table(name=&quot;SERVIDOR&quot;)
 @Entity
+@SelectBeforeUpdate(false)
+@DynamicInsert(false)
+@DynamicUpdate(false)
 public class EmployeeEntity extends UserEntity implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name=&quot;MATRICULA_SERVIDOR&quot;)
-<span class="fc" id="L25">    private Long employeeNumber;</span>
+<span class="fc" id="L32">    private Long employeeNumber;</span>
 
     public EmployeeEntity(Long id) {
-<span class="fc" id="L28">        super(id);</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L35">        super(id);</span>
+<span class="fc" id="L36">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

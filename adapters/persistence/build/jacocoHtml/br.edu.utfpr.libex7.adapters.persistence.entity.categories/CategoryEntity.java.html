@@ -9,13 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-<span class="fc" id="L16">@NoArgsConstructor</span>
+<span class="fc" id="L20">@NoArgsConstructor</span>
 @Table(name=&quot;TIPO_OBRA&quot;)
 @Entity
+@SelectBeforeUpdate(false)
+@DynamicInsert(false)
+@DynamicUpdate(false)
 public class CategoryEntity implements Serializable {
 
    
@@ -24,17 +31,17 @@ public class CategoryEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name=&quot;CODIGO_TIPO_OBRA&quot;)
-<span class="fc" id="L27">    @Getter</span>
+<span class="fc" id="L34">    @Getter</span>
     private Long id;
 
 	@Column(name=&quot;DESCRICAO_TIPO_OBRA&quot;)
-<span class="fc" id="L31">    @Getter</span>
-<span class="fc" id="L32">    @Setter</span>
+<span class="fc" id="L38">    @Getter</span>
+<span class="fc" id="L39">    @Setter</span>
     private String description;
 
-<span class="fc" id="L35">	public CategoryEntity(Long id) {</span>
-<span class="fc" id="L36">		this.id = id;</span>
-<span class="fc" id="L37">	}</span>
+<span class="fc" id="L42">	public CategoryEntity(Long id) {</span>
+<span class="fc" id="L43">		this.id = id;</span>
+<span class="fc" id="L44">	}</span>
     
     
     

@@ -14,14 +14,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.books.BookEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-<span class="fc" id="L22">@NoArgsConstructor</span>
+<span class="fc" id="L26">@NoArgsConstructor</span>
 @Table(name=&quot;EXEMPLAR&quot;)
 @Entity
+@SelectBeforeUpdate(false)
+@DynamicInsert(false)
+@DynamicUpdate(false)
 public class CopyEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -30,32 +37,32 @@ public class CopyEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name=&quot;CODIGO_EXEMPLAR&quot;)
-<span class="fc" id="L33">	@Getter</span>
+<span class="fc" id="L40">	@Getter</span>
 	private Long id;
 	
 	
 	@Column(name=&quot;CODIGO_SITUACAO_EXEMPLAR&quot;)
 	@Convert(converter = StatusCopyDataEnumConverter.class )
-<span class="fc" id="L39">	@Getter</span>
-<span class="fc" id="L40">	@Setter</span>
+<span class="fc" id="L46">	@Getter</span>
+<span class="fc" id="L47">	@Setter</span>
 	private StatusCopyDataEnum status;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = &quot;CODIGO_OBRA&quot;, referencedColumnName = &quot;CODIGO_OBRA&quot;)
-<span class="fc" id="L45">	@Getter</span>
-<span class="fc" id="L46">	@Setter</span>
+<span class="fc" id="L52">	@Getter</span>
+<span class="fc" id="L53">	@Setter</span>
 	private BookEntity book;
 	
 	@Column(name=&quot;DATA_AQUISICAO_EXEMPLAR&quot;)
-<span class="fc" id="L50">	@Getter</span>
-<span class="fc" id="L51">	@Setter</span>
+<span class="fc" id="L57">	@Getter</span>
+<span class="fc" id="L58">	@Setter</span>
 	private LocalDate acquisitionDate;
 	
 	
 	
-<span class="fc" id="L56">	public CopyEntity(Long id) {</span>
-<span class="fc" id="L57">		this.id = id;</span>
-<span class="fc" id="L58">	}</span>
+<span class="fc" id="L63">	public CopyEntity(Long id) {</span>
+<span class="fc" id="L64">		this.id = id;</span>
+<span class="fc" id="L65">	}</span>
 	
 	
 	

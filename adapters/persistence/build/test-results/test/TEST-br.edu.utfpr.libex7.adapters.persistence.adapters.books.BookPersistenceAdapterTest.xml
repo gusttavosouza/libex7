@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-06T22:37:16" hostname="DESKTOP-LUUQ2JI" time="0.085">
+<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-08T00:32:30" hostname="DESKTOP-LUUQ2JI" time="0.085">
   <properties/>
-  <testcase name="givenBookIdWhenNotExistsThenReturnBook()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" time="0.068"/>
-  <testcase name="givenExistingBookWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" time="0.001"/>
-  <testcase name="givenNewBookWhenSaveThenReturnSavedBook()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" time="0.008"/>
-  <testcase name="givenFindAllMethodWhenIsCalledThenReturnBookList()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" time="0.002"/>
+  <testcase name="givenBookIdWhenNotExistsThenReturnBook()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" time="0.069"/>
+  <testcase name="givenExistingBookWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" time="0.002"/>
+  <testcase name="givenNewBookWhenSaveThenReturnSavedBook()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" time="0.005"/>
+  <testcase name="givenFindAllMethodWhenIsCalledThenReturnBookList()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" time="0.003"/>
   <testcase name="givenBookIdWhenExistsThenReturnBook()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.books.BookPersistenceAdapterTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

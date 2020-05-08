@@ -10,15 +10,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 
-<span class="fc" id="L19">@NoArgsConstructor</span>
+<span class="fc" id="L23">@NoArgsConstructor</span>
 @Table(name = &quot;AUTOR&quot;)
 @Entity
+@SelectBeforeUpdate(false)
+@DynamicInsert(false)
+@DynamicUpdate(false)
 public class AuthorEntity implements Serializable {
 
  
@@ -27,18 +34,18 @@ public class AuthorEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = &quot;CODIGO_AUTOR&quot;)
-<span class="fc" id="L30">	@Getter</span>
+<span class="fc" id="L37">	@Getter</span>
     private Long id;
 
    
     @Column(name=&quot;NOME_AUTOR&quot;)
-<span class="fc" id="L35">    @Getter</span>
-<span class="fc" id="L36">    @Setter</span>
+<span class="fc" id="L42">    @Getter</span>
+<span class="fc" id="L43">    @Setter</span>
     private String name;
 
-<span class="fc" id="L39">	public AuthorEntity(Long id) {</span>
-<span class="fc" id="L40">		this.id = id;</span>
-<span class="fc" id="L41">	}</span>
+<span class="fc" id="L46">	public AuthorEntity(Long id) {</span>
+<span class="fc" id="L47">		this.id = id;</span>
+<span class="fc" id="L48">	}</span>
     
 	
 	

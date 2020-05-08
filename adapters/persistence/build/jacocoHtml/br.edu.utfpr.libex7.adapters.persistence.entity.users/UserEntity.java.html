@@ -22,14 +22,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-<span class="fc" id="L29">@NoArgsConstructor</span>
+<span class="fc" id="L33">@NoArgsConstructor</span>
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Table(name=&quot;USUARIO&quot;)
+@SelectBeforeUpdate(false)
+@DynamicInsert(false)
+@DynamicUpdate(false)
 public abstract class UserEntity implements Serializable {
 
    
@@ -39,45 +46,45 @@ public abstract class UserEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = &quot;CODIGO_USUARIO&quot;)
-<span class="fc" id="L42">	@Getter</span>
+<span class="fc" id="L49">	@Getter</span>
     protected Long id;
 
    
     @Column(name = &quot;NOME_USUARIO&quot;)
-<span class="fc" id="L47">    @Getter</span>
-<span class="fc" id="L48">    @Setter</span>
+<span class="fc" id="L54">    @Getter</span>
+<span class="fc" id="L55">    @Setter</span>
     protected String name;
 
     
     @Column(name = &quot;DATA_NASCIMENTO_USUARIO&quot;)
-<span class="fc" id="L53">    @Getter</span>
-<span class="fc" id="L54">    @Setter</span>
+<span class="fc" id="L60">    @Getter</span>
+<span class="fc" id="L61">    @Setter</span>
     protected LocalDate dob;
 
-<span class="fc" id="L57">    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = &quot;phoneId.user&quot;, orphanRemoval = true)</span>
+<span class="fc" id="L64">    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = &quot;phoneId.user&quot;, orphanRemoval = true)</span>
     protected List&lt;PhoneEntity&gt; phones = new LinkedList&lt;&gt;();
     
    
-<span class="fc" id="L61">    public UserEntity(Long id) {</span>
-<span class="fc" id="L62">		this.id = id;</span>
-<span class="fc" id="L63">	}</span>
+<span class="fc" id="L68">    public UserEntity(Long id) {</span>
+<span class="fc" id="L69">		this.id = id;</span>
+<span class="fc" id="L70">	}</span>
    
     public List&lt;PhoneEntity&gt; getPhones() {
-<span class="fc" id="L66">        return Collections.unmodifiableList(phones);</span>
+<span class="fc" id="L73">        return Collections.unmodifiableList(phones);</span>
     }
 
 
     public Integer addPhone(Long number){
-<span class="fc" id="L71">    	PhoneEntity.PhoneEntityId phoneId = new PhoneEntity.PhoneEntityId(this, number);</span>
-<span class="fc" id="L72">        PhoneEntity phone = new PhoneEntity(phoneId);</span>
-<span class="fc" id="L73">        this.phones.add(phone);</span>
-<span class="fc" id="L74">        return this.phones.size();</span>
+<span class="fc" id="L78">    	PhoneEntity.PhoneEntityId phoneId = new PhoneEntity.PhoneEntityId(this, number);</span>
+<span class="fc" id="L79">        PhoneEntity phone = new PhoneEntity(phoneId);</span>
+<span class="fc" id="L80">        this.phones.add(phone);</span>
+<span class="fc" id="L81">        return this.phones.size();</span>
     }
 
 
 
 	@Getter
-<span class="nc" id="L80">    @NoArgsConstructor</span>
+<span class="nc" id="L87">    @NoArgsConstructor</span>
     @Table(name=&quot;TELEFONE_USUARIO&quot;)
     @Entity
     public static class PhoneEntity implements Serializable{
@@ -86,33 +93,33 @@ public abstract class UserEntity implements Serializable {
 		private static final long serialVersionUID = 1L;
 		
 		@EmbeddedId
-<span class="fc" id="L89">		private PhoneEntityId phoneId;</span>
+<span class="fc" id="L96">		private PhoneEntityId phoneId;</span>
 		
 		
-<span class="fc" id="L92">		public PhoneEntity(PhoneEntityId phoneId) {</span>
-<span class="fc" id="L93">			this.phoneId = phoneId;</span>
-<span class="fc" id="L94">		}</span>
+<span class="fc" id="L99">		public PhoneEntity(PhoneEntityId phoneId) {</span>
+<span class="fc" id="L100">			this.phoneId = phoneId;</span>
+<span class="fc" id="L101">		}</span>
 
 
 		@Embeddable
 		@Getter
-<span class="nc" id="L99">	    @NoArgsConstructor</span>
+<span class="nc" id="L106">	    @NoArgsConstructor</span>
 		 public static class PhoneEntityId implements Serializable{
 			
 			 private static final long serialVersionUID = 1L;
 				
 				@ManyToOne(fetch = FetchType.LAZY)
 				@JoinColumn(name = &quot;CODIGO_USUARIO&quot;, referencedColumnName = &quot;CODIGO_USUARIO&quot;)
-<span class="nc" id="L106">		        private UserEntity user;</span>
+<span class="nc" id="L113">		        private UserEntity user;</span>
 		       
 				@Column(name = &quot;NUMERO_TELEFONE&quot;)
-<span class="fc" id="L109">				private Long number;</span>
+<span class="fc" id="L116">				private Long number;</span>
 		        
 		        
-<span class="fc" id="L112">				public PhoneEntityId(UserEntity user, Long number) {</span>
-<span class="fc" id="L113">					this.user = user;</span>
-<span class="fc" id="L114">					this.number = number;</span>
-<span class="fc" id="L115">				}</span>
+<span class="fc" id="L119">				public PhoneEntityId(UserEntity user, Long number) {</span>
+<span class="fc" id="L120">					this.user = user;</span>
+<span class="fc" id="L121">					this.number = number;</span>
+<span class="fc" id="L122">				}</span>
 		        
 		        
 		 }
