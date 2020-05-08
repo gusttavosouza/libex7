@@ -12,6 +12,10 @@ import br.edu.utfpr.libex7.adapters.persistence.entity.books.BookEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.categories.CategoryEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.checkouts.CheckOutEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.authors.AuthorPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.books.BookPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.categories.CategoryPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.copies.CopyPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.StudentPersistenceMapper;
 import br.edu.utfpr.libex7.application.domain.books.Book;
 import br.edu.utfpr.libex7.application.domain.categories.Category;
@@ -22,11 +26,20 @@ public class CheckOutPersistenceMapperTest {
 
 	private StudentPersistenceMapper userMapper;
     private CheckOutPersistenceMapper mapper;
-
+    private BookPersistenceMapper bookMapper;
+    private CopyPersistenceMapper copyMapper;
+    private CategoryPersistenceMapper categoryMapper;
+    private AuthorPersistenceMapper authorMapper;
+    
+    
     @BeforeEach
     public void setup(){
     	this.userMapper = new StudentPersistenceMapper();
-        this.mapper = new CheckOutPersistenceMapper(userMapper);
+    	this.categoryMapper = new CategoryPersistenceMapper();
+    	this.authorMapper = new AuthorPersistenceMapper();
+    	this.bookMapper = new BookPersistenceMapper(categoryMapper, authorMapper);
+    	this.copyMapper = new CopyPersistenceMapper(bookMapper);
+        this.mapper = new CheckOutPersistenceMapper(userMapper, copyMapper);
     }
 
 

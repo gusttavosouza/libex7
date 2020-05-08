@@ -11,7 +11,11 @@ import br.edu.utfpr.adapters.gui.views.checkouts.SaveCheckOutView;
 import br.edu.utfpr.adapters.gui.views.checkouts.SearchCheckOutView;
 import br.edu.utfpr.libex7.adapters.persistence.adapters.checkouts.CheckOutPersistenceAdapter;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.StudentEntity;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.authors.AuthorPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.books.BookPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.categories.CategoryPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.checkouts.CheckOutPersistenceMapper;
+import br.edu.utfpr.libex7.adapters.persistence.mapper.copies.CopyPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.mapper.users.UserPersistenceMapper;
 import br.edu.utfpr.libex7.adapters.persistence.repository.checkouts.CheckOutRepository;
 import br.edu.utfpr.libex7.adapters.persistence.service.checkouts.CheckOutPersistenceService;
@@ -33,9 +37,12 @@ public class CheckOutConfiguration {
 		CheckOutRepository checkOutRepository = new CheckOutRepository(entityManager);
 		CheckOutPersistenceService checkOutPersistenceService = new CheckOutPersistenceService(checkOutRepository);
 		
-		
+		CategoryPersistenceMapper categoryMapper = new CategoryPersistenceMapper();
+		AuthorPersistenceMapper authorMapper = new AuthorPersistenceMapper();
+		BookPersistenceMapper bookMapper = new BookPersistenceMapper(categoryMapper, authorMapper);
+		CopyPersistenceMapper copyMapper = new CopyPersistenceMapper(bookMapper);
 		UserPersistenceMapper<Student, StudentEntity> userMapper = new UserPersistenceMapper<>();
-		CheckOutPersistenceMapper checkOutPersistenceMapper = new CheckOutPersistenceMapper(userMapper);
+		CheckOutPersistenceMapper checkOutPersistenceMapper = new CheckOutPersistenceMapper(userMapper, copyMapper);
 		CheckOutPersistenceAdapter checkOutPersistenceAdapter = new CheckOutPersistenceAdapter(checkOutPersistenceService, checkOutPersistenceMapper);
 		SaveCheckOutUseCase useCase = new SaveCheckOutService(checkOutPersistenceAdapter);
 	    SaveCheckOutView saveCheckOutView = new SaveCheckOutView();

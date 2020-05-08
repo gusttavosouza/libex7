@@ -1,6 +1,7 @@
 package br.edu.utfpr.adapters.gui.handlers.copies;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import br.edu.utfpr.adapters.gui.views.copies.SaveCopyView;
 import br.edu.utfpr.libex7.application.domain.books.Book;
@@ -33,7 +34,7 @@ public class ButtonSaveCopyHandler implements EventHandler<ActionEvent> {
 			StatusCopyEnum statusCopyEnum = cmbStatus.getSelectionModel().getSelectedItem();
 
 			TextField txtAcquisitionDate = view.getTxtAcquisitionDate();
-			LocalDate acquisitionDate = LocalDate.parse(txtAcquisitionDate.getText());
+			LocalDate acquisitionDate = LocalDate.parse(txtAcquisitionDate.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
 			Copy copy = new Copy();
 			copy.setBook(book);

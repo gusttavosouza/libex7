@@ -4,11 +4,14 @@ package br.edu.utfpr.adapters.gui.controllers.commons;
 import br.edu.utfpr.adapters.gui.controllers.authors.AuthorController;
 import br.edu.utfpr.adapters.gui.controllers.authors.SearchAuthorController;
 import br.edu.utfpr.adapters.gui.controllers.books.BookController;
+import br.edu.utfpr.adapters.gui.controllers.books.SearchBookController;
 import br.edu.utfpr.adapters.gui.controllers.categories.CategoryController;
 import br.edu.utfpr.adapters.gui.controllers.categories.SearchCategoryController;
 import br.edu.utfpr.adapters.gui.controllers.checkouts.CheckOutController;
 import br.edu.utfpr.adapters.gui.controllers.copies.CopyController;
+import br.edu.utfpr.adapters.gui.controllers.copies.SearchCopyController;
 import br.edu.utfpr.adapters.gui.controllers.users.employees.EmployeeController;
+import br.edu.utfpr.adapters.gui.controllers.users.students.SearchStudentController;
 import br.edu.utfpr.adapters.gui.controllers.users.students.StudentController;
 import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemNewAuthorHandler;
 import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemNewBookHandler;
@@ -26,7 +29,10 @@ import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchEmployeeHandler;
 import br.edu.utfpr.adapters.gui.handlers.commons.MenuItemSearchStudentHandler;
 import br.edu.utfpr.adapters.gui.views.commons.MainView;
 import br.edu.utfpr.libex7.application.ports.in.authors.SearchAuthorUseCase;
+import br.edu.utfpr.libex7.application.ports.in.books.SearchBookUseCase;
 import br.edu.utfpr.libex7.application.ports.in.categories.SearchCategoryUseCase;
+import br.edu.utfpr.libex7.application.ports.in.copies.SearchCopyUseCase;
+import br.edu.utfpr.libex7.application.ports.in.users.SearchUserUseCase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
@@ -89,7 +95,10 @@ public class MainController {
 		menuItemSearchCategory.setOnAction(new MenuItemSearchCategoryHandler(categoryController));
 		
 		MenuItem menuItemNewCopy = view.getMenuItemNewCopy();
-		menuItemNewCopy.setOnAction(new MenuItemNewCopyHandler(copyController));
+		
+		SearchBookController searchBookController = bookController.getSearchBookController();
+		SearchBookUseCase searchBookUseCase = searchBookController.getUseCase();
+		menuItemNewCopy.setOnAction(new MenuItemNewCopyHandler(copyController, searchBookUseCase));
 		
 		MenuItem menuItemSearchCopy = view.getMenuItemSearchCopy();
 		menuItemSearchCopy.setOnAction(new MenuItemSearchCopyHandler(copyController));
@@ -109,10 +118,16 @@ public class MainController {
 		
 		MenuItem menuItemNewCheckout = this.view.getMenuItemNewCheckout();
 		
-		menuItemNewCheckout.setOnAction(new MenuItemNewCheckOutHandler(checkOutController));
+		SearchStudentController searchStudentController = studentController.getSearchStudentController();
+		SearchUserUseCase searchUserUseCase = searchStudentController.getUseCase();
+		
+		SearchCopyController searchCopyController = copyController.getSearchCopyController();
+		SearchCopyUseCase searchCopyUseCase = searchCopyController.getUseCase();
+		
+		menuItemNewCheckout.setOnAction(new MenuItemNewCheckOutHandler(checkOutController, searchUserUseCase, searchCopyUseCase));
 		
 		MenuItem menuItemSearchCheckout = this.view.getMenuItemSearchCheckout();
-		menuItemSearchCheckout.setOnAction(new MenuItemSearchCheckOutHandler(checkOutController));
+		menuItemSearchCheckout.setOnAction(new MenuItemSearchCheckOutHandler(checkOutController, searchUserUseCase, searchCopyUseCase));
 		
 	
 		MenuItem menuItemExit = this.view.getMenuItemExit();

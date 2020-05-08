@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 public class MenuItemNewBookHandler implements EventHandler<ActionEvent> {
 	private final BookController bookController;
@@ -29,6 +30,12 @@ public class MenuItemNewBookHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event) {
 		SaveBookController saveBookController = bookController.getSaveBookController();
 		SaveBookView saveBookView = saveBookController.getView();
+		TextField txtTitle = saveBookView.getTxtTitle();
+		TextField txtYear = saveBookView.getTxtYear();
+		
+		
+		txtTitle.clear();
+		txtYear.clear();
 		
 		List<Author> authors = searchAuthorUseCase.findAll();
 		List<Category> categories = searchCategoryUseCase.findAll();

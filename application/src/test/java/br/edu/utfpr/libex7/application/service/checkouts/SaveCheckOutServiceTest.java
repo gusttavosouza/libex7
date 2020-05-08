@@ -37,7 +37,7 @@ public class SaveCheckOutServiceTest {
 		
 		when(port.save(any(CheckOut.class))).thenReturn(checkout);
 		
-		CheckOut savedCheckout = this.service.register(checkout);
+		CheckOut savedCheckout = this.service.save(checkout);
 		assertThat(savedCheckout.getCheckIn()).isEqualTo(checkout.getCheckIn());
 		assertThat(savedCheckout.getCheckOutDate()).isEqualTo(checkout.getCheckOutDate());
 		assertThat(savedCheckout.getCopies().size()).isEqualTo(checkout.getCopies().size());

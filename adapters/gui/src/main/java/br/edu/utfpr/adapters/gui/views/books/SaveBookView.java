@@ -2,6 +2,7 @@ package br.edu.utfpr.adapters.gui.views.books;
 
 import br.edu.utfpr.libex7.application.domain.authors.Author;
 import br.edu.utfpr.libex7.application.domain.categories.Category;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -105,8 +106,10 @@ public class SaveBookView extends Stage {
 		HBox hBox = new HBox(gridPane);
 		VBox vBox = new VBox(hBox);
 		
+		VBox.setMargin(hBox, new Insets(10, 10, 10, 10));
+		
 		root.setCenter(vBox);
-		this.scene = new Scene(root, 500, 300);
+		this.scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 	}
 

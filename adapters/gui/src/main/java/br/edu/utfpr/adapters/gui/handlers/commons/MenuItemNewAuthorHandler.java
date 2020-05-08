@@ -5,6 +5,7 @@ import br.edu.utfpr.adapters.gui.controllers.authors.SaveAuthorController;
 import br.edu.utfpr.adapters.gui.views.authors.SaveAuthorView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
 
 public class MenuItemNewAuthorHandler implements EventHandler<ActionEvent> {
 	private final AuthorController authorController;
@@ -17,6 +18,8 @@ public class MenuItemNewAuthorHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event) {
 		SaveAuthorController saveAuthorController = authorController.getSaveAuthorController();
 		SaveAuthorView saveAuthorView = saveAuthorController.getView();
+		TextField txtName = saveAuthorView.getTxtName();
+		txtName.clear();
 		saveAuthorView.show();
 	}
 }

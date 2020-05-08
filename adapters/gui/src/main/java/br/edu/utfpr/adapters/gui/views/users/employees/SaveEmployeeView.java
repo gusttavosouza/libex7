@@ -1,5 +1,6 @@
 package br.edu.utfpr.adapters.gui.views.users.employees;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -70,17 +71,17 @@ public class SaveEmployeeView extends Stage {
 		gridPane.add(txtEmployeeNumber, 2, 3);
 		
 		
-		
 		gridPane.add(saveButton, 2, 4);
 		
 		HBox hBox = new HBox(gridPane);
 		VBox vBox = new VBox(hBox);
+		VBox.setMargin(hBox, new Insets(10, 10, 10, 10));
 		
 		GridPane.setHgrow(vBox, Priority.ALWAYS);
 		GridPane.setVgrow(vBox, Priority.ALWAYS);
 		
 		root.setCenter(vBox);
-		this.scene = new Scene(root, 500, 150);
+		this.scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 	}
 	

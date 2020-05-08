@@ -36,6 +36,11 @@ public class CheckOut {
 		return Collections.unmodifiableList(copies);
 	}
 	
+	public Integer addCopy(Copy copy) {
+		this.copies.add(copy);
+		return this.copies.size();
+	}
+	
 	public void checkIn(LocalDate checkInDate) {
 		this.checkIn = new CheckIn(this, checkInDate);
 	}

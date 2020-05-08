@@ -11,7 +11,7 @@ public class SaveCheckOutService implements SaveCheckOutUseCase {
 	private final SaveCheckOutPort port;
 
 	@Override
-	public CheckOut register(CheckOut checkout) {
+	public CheckOut save(CheckOut checkout) {
 		return port.save(checkout);
 	}
 	

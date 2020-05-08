@@ -1,7 +1,9 @@
 package br.edu.utfpr.adapters.gui.controllers.checkouts;
 
+import br.edu.utfpr.adapters.gui.handlers.checkouts.ButtonSearchCheckOutHandler;
 import br.edu.utfpr.adapters.gui.views.checkouts.SearchCheckOutView;
 import br.edu.utfpr.libex7.application.ports.in.checkout.SearchCheckOutUseCase;
+import javafx.scene.control.Button;
 import lombok.Getter;
 
 @Getter
@@ -18,8 +20,8 @@ public class SearchCheckOutController {
 	}
 
 	private void init() {
-	  // Button button = view.getSearchButton();
-	  // button.setOnAction(new ButtonSearchBookHandler(useCase, view));
+		Button button = view.getSearchButton();
+		button.setOnAction(new ButtonSearchCheckOutHandler(useCase, view));
 		
 	}
 

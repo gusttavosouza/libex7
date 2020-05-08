@@ -5,6 +5,7 @@ import br.edu.utfpr.adapters.gui.controllers.users.employees.SearchEmployeeContr
 import br.edu.utfpr.adapters.gui.views.users.employees.SearchEmployeeView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
 
 public class MenuItemSearchEmployeeHandler implements EventHandler<ActionEvent> {
 	
@@ -18,6 +19,16 @@ public class MenuItemSearchEmployeeHandler implements EventHandler<ActionEvent> 
 	public void handle(ActionEvent event) {
 		 SearchEmployeeController searchEmployeeController = employeeController.getSearchEmployeeController();
 		 SearchEmployeeView searchEmployeeView = searchEmployeeController.getView();
+		 
+		 TextField txtID = searchEmployeeView.getTxtID();
+		 TextField txtName = searchEmployeeView.getTxtName();
+		 TextField txtEmployeeNumber = searchEmployeeView.getTxtEmployeeNumber();
+		 
+		 
+		 txtID.clear();
+		 txtName.clear();
+		 txtEmployeeNumber.clear();
+		 
 		 searchEmployeeView.show();
 
 		

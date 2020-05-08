@@ -1,5 +1,6 @@
 package br.edu.utfpr.adapters.gui.views.users.students;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -66,19 +67,17 @@ public class SaveStudentView extends Stage {
 		gridPane.add(lblDobFormat, 3, 2);
 		gridPane.add(lblStudentNumber, 1, 3);
 		gridPane.add(txtStudentNumber, 2, 3);
-		
-		
-		
 		gridPane.add(saveButton, 2, 4);
 		
 		HBox hBox = new HBox(gridPane);
 		VBox vBox = new VBox(hBox);
+		VBox.setMargin(hBox, new Insets(10, 10, 10, 10));
 		
 		GridPane.setHgrow(vBox, Priority.ALWAYS);
 		GridPane.setVgrow(vBox, Priority.ALWAYS);
 		
 		root.setCenter(vBox);
-		this.scene = new Scene(root, 500, 150);
+		this.scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 	}
 	

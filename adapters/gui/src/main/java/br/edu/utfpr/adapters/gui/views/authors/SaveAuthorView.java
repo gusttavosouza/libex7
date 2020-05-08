@@ -1,5 +1,6 @@
 package br.edu.utfpr.adapters.gui.views.authors;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -51,11 +52,13 @@ public class SaveAuthorView extends Stage {
 		HBox hBox = new HBox(gridPane);
 		VBox vBox = new VBox(hBox);
 		
+		VBox.setMargin(hBox, new Insets(10, 10, 10, 10));
+		
 		GridPane.setHgrow(vBox, Priority.ALWAYS);
 		GridPane.setVgrow(vBox, Priority.ALWAYS);
 		
 		root.setCenter(vBox);
-		this.scene = new Scene(root, 500, 80);
+		this.scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 	}
 	

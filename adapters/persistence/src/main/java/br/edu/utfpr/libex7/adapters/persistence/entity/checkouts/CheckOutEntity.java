@@ -21,6 +21,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.copies.CopyEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.users.UserEntity;
 import lombok.AllArgsConstructor;
@@ -31,6 +35,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "EMPRESTIMO")
+@SelectBeforeUpdate(false)
+@DynamicInsert(false)
+@DynamicUpdate(false)
 public class CheckOutEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -63,6 +70,12 @@ public class CheckOutEntity implements Serializable {
 		return Collections.unmodifiableList(copies);
 	}
 	
+	
+	public Integer addCopy(CopyEntity copy) {
+		this.copies.add(copy);
+		return this.copies.size();
+	}
+	
 	public void checkIn(LocalDate checkInDate){
 	   this.checkIn =  new CheckInEntity(this, checkInDate);
 	}
@@ -72,6 +85,9 @@ public class CheckOutEntity implements Serializable {
 	@Embeddable
 	@NoArgsConstructor
 	@AllArgsConstructor
+	@SelectBeforeUpdate(false)
+	@DynamicInsert(false)
+	@DynamicUpdate(false)
 	public static class CheckOutEntityId implements Serializable {
 
 		private static final long serialVersionUID = 1L;

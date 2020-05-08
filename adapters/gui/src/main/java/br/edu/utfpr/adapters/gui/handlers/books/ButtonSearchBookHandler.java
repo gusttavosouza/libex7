@@ -1,8 +1,11 @@
 package br.edu.utfpr.adapters.gui.handlers.books;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import br.edu.utfpr.adapters.gui.views.books.SearchBookView;
 import br.edu.utfpr.libex7.application.domain.books.Book;
@@ -30,13 +33,24 @@ public class ButtonSearchBookHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event) {
 
 		try {
+
+			TextField txtID = view.getTxtID();
 			TextField txtTitle = view.getTxtTitle();
 			TextField txtAuthorName = view.getTxtAuthorName();
 
+			String id = txtID.getText();
 			String title = txtTitle.getText();
 			String authorName = txtAuthorName.getText();
 
-			if (StringUtils.isEmpty(title)) {
+			if (!StringUtils.isEmpty(id)) {
+				Optional<Book> optional = useCase.findById(NumberUtils.toLong(id));
+				if (optional.isPresent()) {
+					Book book = optional.get();
+					TableView<Book> tableView = view.getTableView();
+					ObservableList<Book> observableList = FXCollections.observableArrayList(Arrays.asList(book));
+					tableView.setItems(observableList);
+				}
+			} else if (!StringUtils.isEmpty(title)) {
 				List<Book> books = useCase.findByTitle(title);
 				TableView<Book> tableView = view.getTableView();
 				ObservableList<Book> observableList = FXCollections.observableArrayList(books);

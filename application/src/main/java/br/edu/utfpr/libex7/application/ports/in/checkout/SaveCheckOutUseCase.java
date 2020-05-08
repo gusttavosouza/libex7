@@ -4,6 +4,6 @@ import br.edu.utfpr.libex7.application.domain.checkouts.CheckOut;
 
 public interface SaveCheckOutUseCase {
 	
-	CheckOut register (CheckOut checkout);
+	CheckOut save (CheckOut checkout);
 
 }

@@ -14,6 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.books.BookEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +26,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name="EXEMPLAR")
 @Entity
+@SelectBeforeUpdate(false)
+@DynamicInsert(false)
+@DynamicUpdate(false)
 public class CopyEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

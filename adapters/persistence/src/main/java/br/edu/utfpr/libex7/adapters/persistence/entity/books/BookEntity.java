@@ -19,6 +19,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import br.edu.utfpr.libex7.adapters.persistence.entity.authors.AuthorEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.categories.CategoryEntity;
 import br.edu.utfpr.libex7.adapters.persistence.entity.copies.CopyEntity;
@@ -29,6 +33,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "OBRA")
 @Entity
+@SelectBeforeUpdate(false)
+@DynamicInsert(false)
+@DynamicUpdate(false)
 public class BookEntity implements Serializable {
 
 
@@ -48,7 +55,7 @@ public class BookEntity implements Serializable {
     private String title;
 
   
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade ={CascadeType.MERGE})
     @JoinColumn(name="CODIGO_TIPO_OBRA", referencedColumnName = "CODIGO_TIPO_OBRA")
     @Getter
     @Setter
@@ -60,7 +67,7 @@ public class BookEntity implements Serializable {
     @Setter
     private Integer year;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     @JoinTable(name = "OBRA_AUTOR",
 					    joinColumns = {@JoinColumn(name="CODIGO_OBRA", 
 					                               referencedColumnName = "CODIGO_OBRA")},

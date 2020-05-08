@@ -5,6 +5,7 @@ import br.edu.utfpr.adapters.gui.controllers.categories.SaveCategoryController;
 import br.edu.utfpr.adapters.gui.views.categories.SaveCategoryView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
 
 public final class MenuItemNewCategoryHandler implements EventHandler<ActionEvent> {
 	private final CategoryController categoryController;
@@ -17,6 +18,10 @@ public final class MenuItemNewCategoryHandler implements EventHandler<ActionEven
 	public void handle(ActionEvent event) {
 		SaveCategoryController saveCategoryController = categoryController.getSaveCategoryController();
 		SaveCategoryView saveCategoryView = saveCategoryController.getView();
+		
+		TextField txtDescription = saveCategoryView.getTxtDescription();
+		txtDescription.clear();
+		
 		saveCategoryView.show();
 	}
 }
