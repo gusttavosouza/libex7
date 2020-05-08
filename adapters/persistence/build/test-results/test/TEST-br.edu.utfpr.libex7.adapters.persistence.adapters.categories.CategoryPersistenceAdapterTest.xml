@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.categories.CategoryPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-08T00:32:30" hostname="DESKTOP-LUUQ2JI" time="0.064">
+<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.categories.CategoryPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-08T17:03:00" hostname="DESKTOP-LUUQ2JI" time="0.058">
   <properties/>
-  <testcase name="givenExistingCategoryWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.categories.CategoryPersistenceAdapterTest" time="0.05"/>
+  <testcase name="givenExistingCategoryWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.categories.CategoryPersistenceAdapterTest" time="0.046"/>
   <testcase name="givenCategoryIdWhenExistsThenReturnCategory()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.categories.CategoryPersistenceAdapterTest" time="0.004"/>
   <testcase name="givenFindAllMethodWhenIsCalledThenReturnCategoryList()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.categories.CategoryPersistenceAdapterTest" time="0.002"/>
-  <testcase name="givenNewCategoryWhenSaveThenReturnSavedCategory()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.categories.CategoryPersistenceAdapterTest" time="0.002"/>
-  <testcase name="givenCategoryIdWhenNotExistsThenReturnCategory()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.categories.CategoryPersistenceAdapterTest" time="0.002"/>
+  <testcase name="givenNewCategoryWhenSaveThenReturnSavedCategory()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.categories.CategoryPersistenceAdapterTest" time="0.001"/>
+  <testcase name="givenCategoryIdWhenNotExistsThenReturnCategory()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.categories.CategoryPersistenceAdapterTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -32,19 +32,19 @@ public class SaveCheckOutView extends Stage {
 	private Button saveButton = new Button("Salvar");
 
 	@Getter
-	private Label lblUser = new Label("Usuário:");
+	private Label lblUser = new Label("Usuï¿½rio:");
 
 	@Getter
 	private Label lblCopy = new Label("Exemplar:");
 
 	@Getter
-	private Label lblExpectedCheckInDate = new Label("Data prevista devolução:");
+	private Label lblExpectedCheckInDate = new Label("Data Prevista DevoluÃ§Ã£o:");
 	
 	@Getter
 	private Label lblExpectedCheckInDateFormat = new Label("dd/mm/aaaa");
 
 	@Getter
-	private Label lblCheckInDate = new Label("Data Devolução:");
+	private Label lblCheckInDate = new Label("Data DevoluÃ§Ã£o:");
 	
 	@Getter
 	private Label lblCheckInDateFormat = new Label("dd/mm/aaaa");
@@ -62,7 +62,7 @@ public class SaveCheckOutView extends Stage {
 	private TextField txtCheckInDate = new TextField();
 
 	public SaveCheckOutView() {
-		this.setTitle("Novo Empréstimo");
+		this.setTitle("Novo Emprï¿½stimo");
 		this.root = new BorderPane();
 		this.init();
 		this.setScene(scene);

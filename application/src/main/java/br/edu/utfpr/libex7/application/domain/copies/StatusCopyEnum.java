@@ -2,8 +2,8 @@ package br.edu.utfpr.libex7.application.domain.copies;
 
 public enum StatusCopyEnum {
 
-	AVAILABLE("Disponível"),
-	UNAVAILABLE("Indisponível");
+	AVAILABLE("DisponÃ­vel"),
+	UNAVAILABLE("IndisponÃ­vel");
 	
 	private String description;
 

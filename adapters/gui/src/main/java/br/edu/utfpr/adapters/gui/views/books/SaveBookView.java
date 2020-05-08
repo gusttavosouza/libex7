@@ -28,7 +28,7 @@ public class SaveBookView extends Stage {
 	private Button saveButton = new Button("Salvar");
 
 	@Getter
-	private Label lblTitle = new Label("Título:");
+	private Label lblTitle = new Label("TÃ­tulo:");
 
 	@Getter
 	private Label lblYear = new Label("Ano:");

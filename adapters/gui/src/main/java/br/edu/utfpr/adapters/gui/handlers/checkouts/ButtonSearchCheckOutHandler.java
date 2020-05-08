@@ -53,7 +53,7 @@ public class ButtonSearchCheckOutHandler implements EventHandler<ActionEvent> {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			Alert alert = new Alert(AlertType.ERROR, "Erro ao consultar empréstimos");
+			Alert alert = new Alert(AlertType.ERROR, "Erro ao consultar emprÃ©stimos");
 			alert.setContentText(e.getMessage());
 			alert.showAndWait();
 		}

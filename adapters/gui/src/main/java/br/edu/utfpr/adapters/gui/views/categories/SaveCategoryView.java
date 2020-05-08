@@ -25,7 +25,7 @@ public class SaveCategoryView extends Stage {
 	private Button saveButton = new Button("Salvar");
 
 	@Getter
-	private Label lblDescription = new Label("Descrição:");
+	private Label lblDescription = new Label("DescriÃ§Ã£o:");
 
 	@Getter
 	private TextField txtDescription = new TextField();

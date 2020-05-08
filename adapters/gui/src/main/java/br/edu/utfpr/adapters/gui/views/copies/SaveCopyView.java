@@ -37,7 +37,7 @@ private Scene scene;
 
 
 	@Getter	
-	private Label lblAcquisitionDate = new Label("Data da Aquisição:");
+	private Label lblAcquisitionDate = new Label("Data da AquisiÃ§Ã£o:");
 	
 	@Getter	
 	private Label lblAcquisitionDateFormat = new Label("dd/mm/aaaa");

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.edu.utfpr.libex7.adapters.persistence.service.category.CategoryPersistenceServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-08T00:32:38" hostname="DESKTOP-LUUQ2JI" time="0.048">
+<testsuite name="br.edu.utfpr.libex7.adapters.persistence.service.category.CategoryPersistenceServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-08T17:03:09" hostname="DESKTOP-LUUQ2JI" time="0.043">
   <properties/>
-  <testcase name="givenExistingCategoryWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.service.category.CategoryPersistenceServiceTest" time="0.038"/>
+  <testcase name="givenExistingCategoryWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.service.category.CategoryPersistenceServiceTest" time="0.035"/>
   <testcase name="givenCategoryIdWhenExistsThenReturnCategory()" classname="br.edu.utfpr.libex7.adapters.persistence.service.category.CategoryPersistenceServiceTest" time="0.002"/>
   <testcase name="givenFindAllMethodWhenIsCalledThenReturnCategoryList()" classname="br.edu.utfpr.libex7.adapters.persistence.service.category.CategoryPersistenceServiceTest" time="0.002"/>
   <testcase name="givenNewCategoryWhenSaveThenReturnSavedCategory()" classname="br.edu.utfpr.libex7.adapters.persistence.service.category.CategoryPersistenceServiceTest" time="0.002"/>

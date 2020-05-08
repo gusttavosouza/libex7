@@ -1,17 +1,14 @@
-plugins {
-    id 'java'
-}
+apply plugin: 'application'
 
 group 'br.edu.utfpr.libex7.configuration'
-version '1.0-SNAPSHOT'
 
 
-repositories {
-    mavenCentral()
-}
+mainClassName = 'br.edu.utfpr.adapters.gui.Libex7Application'
+
 
 dependencies {
     implementation project(':application')
     implementation project(':adapters:persistence')
     implementation project(':adapters:gui')
 }
+

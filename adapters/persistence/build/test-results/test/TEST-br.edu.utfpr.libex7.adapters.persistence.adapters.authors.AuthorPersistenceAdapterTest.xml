@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-08T00:32:28" hostname="DESKTOP-LUUQ2JI" time="1.645">
+<testsuite name="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-08T17:02:59" hostname="DESKTOP-LUUQ2JI" time="1.356">
   <properties/>
-  <testcase name="givenAuthorIdWhenExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="1.453"/>
-  <testcase name="givenExistingAuthorWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.023"/>
+  <testcase name="givenAuthorIdWhenExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="1.161"/>
+  <testcase name="givenExistingAuthorWhenRemoveThenDoNothing()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.026"/>
   <testcase name="givenNewAuthorWhenSaveThenReturnSavedAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.16"/>
   <testcase name="givenAuthorIdWhenNotExistsThenReturnAuthor()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.003"/>
   <testcase name="givenFindAllMethodWhenIsCalledThenReturnAuthorList()" classname="br.edu.utfpr.libex7.adapters.persistence.adapters.authors.AuthorPersistenceAdapterTest" time="0.002"/>

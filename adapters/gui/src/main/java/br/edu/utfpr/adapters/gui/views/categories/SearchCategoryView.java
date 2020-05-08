@@ -27,7 +27,7 @@ public class SearchCategoryView extends Stage {
 	
 	
 	private Label lblId = new Label("ID:");
-	private Label lblDescription = new Label("Descrição:");
+	private Label lblDescription = new Label("DescriÃ§Ã£o:");
 
 	@Getter
 	private TextField txtID = new TextField();
@@ -63,7 +63,7 @@ public class SearchCategoryView extends Stage {
 		gridPane.setVgap(10);
 
 		TableColumn<Category, String> columID = new TableColumn<>("ID");
-		TableColumn<Category, String> columDescription = new TableColumn<>("Descrição");
+		TableColumn<Category, String> columDescription = new TableColumn<>("DescriÃ§Ã£o");
 
 		columID.setCellValueFactory(cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getId())));
 		columDescription.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDescription()));

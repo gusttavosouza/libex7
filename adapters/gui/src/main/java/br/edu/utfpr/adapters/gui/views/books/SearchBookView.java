@@ -26,7 +26,7 @@ public class SearchBookView extends Stage {
 	private GridPane root;
 	
 	private Label lblId = new Label("ID:");
-	private Label lblTitle = new Label("Título");
+	private Label lblTitle = new Label("TÃ­tulo");
 	private Label lblAuthorName = new Label("Autor");
 	
 	@Getter
@@ -67,7 +67,7 @@ public class SearchBookView extends Stage {
 		gridPane.setVgap(10);
 		
 		TableColumn<Book, String> columID = new TableColumn<>("ID");
-		TableColumn<Book, String> columTitle = new TableColumn<>("Título");
+		TableColumn<Book, String> columTitle = new TableColumn<>("TÃ­tulo");
 		TableColumn<Book, String> columYear = new TableColumn<>("Ano");
 		TableColumn<Book, String> columCategory = new TableColumn<>("Categoria");
 

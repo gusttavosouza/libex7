@@ -34,7 +34,7 @@ public class SearchCheckOutView extends Stage{
 	
 	private Label lblId = new Label("ID:");
 	private Label lblCopy = new Label("Exemplar:");
-	private Label lblUser = new Label("Usuário:");
+	private Label lblUser = new Label("Usuï¿½rio:");
 	
 	@Getter
 	private TextField txtID = new TextField();
@@ -52,7 +52,7 @@ public class SearchCheckOutView extends Stage{
 	private TableView<CheckOut> tableView = new TableView<>();
 
 	public SearchCheckOutView() {
-		this.setTitle("Consulta Empréstimo");
+		this.setTitle("Consulta EmprÃ©stimo");
 		this.root = new GridPane();
 		init();
 		this.setScene(scene);
@@ -108,9 +108,9 @@ public class SearchCheckOutView extends Stage{
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 		
-		TableColumn<CheckOut, String> columCheckOutDate = new TableColumn<>("Data Empréstimo");
-		TableColumn<CheckOut, String> columUser = new TableColumn<>("Usuário");
-		TableColumn<CheckOut, String> columExpectedCheckInDate = new TableColumn<>("Data Prevista Devolução");
+		TableColumn<CheckOut, String> columCheckOutDate = new TableColumn<>("Data Emprï¿½stimo");
+		TableColumn<CheckOut, String> columUser = new TableColumn<>("Usuï¿½rio");
+		TableColumn<CheckOut, String> columExpectedCheckInDate = new TableColumn<>("Data Prevista Devoluï¿½ï¿½o");
 		
 
 	

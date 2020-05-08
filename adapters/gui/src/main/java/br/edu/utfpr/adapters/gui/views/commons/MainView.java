@@ -26,8 +26,8 @@ public class MainView extends Stage {
 	protected Menu menuBook = new Menu("Acervo");
 	protected Menu menuCategory = new Menu("Categorias");
 	protected Menu menuCopy= new Menu("Exemplares"); 
-	protected Menu menuCheckOut= new Menu("EmprÈstimos"); 
-	protected Menu menuUser= new Menu("Usu·rios");
+	protected Menu menuCheckOut= new Menu("Emp√©stimos"); 
+	protected Menu menuUser= new Menu("Usu√°rios");
 	protected Menu menuSearch = new Menu("Busca");
 	protected Menu menuExit = new Menu("Sair");
 	

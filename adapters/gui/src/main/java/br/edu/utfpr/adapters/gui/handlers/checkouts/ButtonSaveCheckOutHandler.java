@@ -51,11 +51,11 @@ public class ButtonSaveCheckOutHandler implements EventHandler<ActionEvent> {
 			}
 			
 			useCase.save(checkout);
-			Alert alert = new Alert(AlertType.CONFIRMATION, "Empréstimo salvo com sucesso");
+			Alert alert = new Alert(AlertType.CONFIRMATION, "EmprÃ©stimo salvo com sucesso");
 			alert.showAndWait();
 		}catch (Exception e) {
 			e.printStackTrace();
-			Alert alert = new Alert(AlertType.ERROR, "Erro ao realizar empréstimo");
+			Alert alert = new Alert(AlertType.ERROR, "Erro ao realizar emprï¿½stimo");
 			alert.setContentText(e.getMessage());
 			alert.showAndWait();
 		}

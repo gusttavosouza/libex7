@@ -32,7 +32,7 @@ public class SearchCopyView extends Stage {
 	private Label lblId = new Label("ID:");
 	private Label lblBook = new Label("Livro");
 	private Label lblStatus = new Label("Status");
-	private Label lblAcquisitionDate = new Label("Data da Aquisição");
+	private Label lblAcquisitionDate = new Label("Data da AquisiÃ§Ã£o");
 	
 	@Getter
 	private TextField txtID = new TextField();
@@ -80,7 +80,7 @@ public class SearchCopyView extends Stage {
 		TableColumn<Copy, String> columID = new TableColumn<>("ID");
 		TableColumn<Copy, String> columBook = new TableColumn<>("Livro");
 		TableColumn<Copy, String> columStatus = new TableColumn<>("Status");
-		TableColumn<Copy, String> columnAcquisitionDate = new TableColumn<>("Data da Aquisição");
+		TableColumn<Copy, String> columnAcquisitionDate = new TableColumn<>("Data da AquisiÃ§Ã£o");
 
 	
 		columID.setCellValueFactory(cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getId())));

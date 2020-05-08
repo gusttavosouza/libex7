@@ -35,7 +35,7 @@ public class SaveEmployeeView extends Stage {
 	private Label lblDobFormat = new Label("dd/mm/aaaa");
 	
 	@Getter	
-	private Label lblEmployeeNumber= new Label("Matrícula:");
+	private Label lblEmployeeNumber= new Label("MatrÃ­cula:");
 	
 	@Getter
 	private TextField txtName = new TextField();

@@ -46,7 +46,7 @@ public class SearchEmployeeView extends Stage {
 	private TableView<Employee> tableView = new TableView<>();
 
 	public SearchEmployeeView() {
-		this.setTitle("Consulta Autor");
+		this.setTitle("Consulta Servidor");
 		this.root = new GridPane();
 		init();
 		this.setScene(scene);
@@ -69,7 +69,7 @@ public class SearchEmployeeView extends Stage {
 		gridPane.setVgap(10);
 
 		TableColumn<Employee, String> columID = new TableColumn<>("ID");
-		TableColumn<Employee, String> columEmployeeNumber = new TableColumn<>("Matrícula");
+		TableColumn<Employee, String> columEmployeeNumber = new TableColumn<>("MatrÃ­cula");
 		TableColumn<Employee, String> columName = new TableColumn<>("Nome");
 		TableColumn<Employee, String> columDob = new TableColumn<>("Data de Nascimento");
 		

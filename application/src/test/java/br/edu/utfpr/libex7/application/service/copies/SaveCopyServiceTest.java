@@ -31,7 +31,7 @@ public class SaveCopyServiceTest {
 	@DisplayName("Given Copy When Save Then Return Saved Copy")
 	public void givenCopyWhenSaveThenReturnSavedCopy() {
 		Copy copy = new Copy(1L);
-		copy.setStatus(StatusCopyEnum.fromValue("Disponível"));
+		copy.setStatus(StatusCopyEnum.fromValue("DisponÃ­vel"));
 		copy.setBook(new Book(1L));
 		copy.setAcquisitionDate(LocalDate.now());
 		when(port.save(any(Copy.class))).thenReturn(copy);
