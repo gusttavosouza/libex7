@@ -24,7 +24,16 @@ $ ./gradlew build
 
 ### Diagramas
 
-Abaixo diagramas das classes de domínio:
+#### Application Module:
 
-![title](assets/class_diagram.png)
+![title](assets/domain_class_diagram.png)
+
+#### Persistence Module:
+
+![title](assets/persistence_class_diagram.png)
+
+
+#### GUI Module:
+
+![title](assets/gui_class_diagram.png)
 
